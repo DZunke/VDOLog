@@ -8,47 +8,18 @@ use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 
-/**
- * @ORM\Entity(repositoryClass=ProtocolRepository::class)
- */
 class Protocol
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\Column(type="guid")
-     */
     private string $id;
-
-    /** @ORM\ManyToOne(targetEntity=Game::class, inversedBy="protocol", fetch="EXTRA_LAZY") */
     private Game $game;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Protocol::class, inversedBy="children")
-     * @ORM\JoinColumn(nullable=true)
-     */
     private ?Protocol $parent;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Protocol::class, mappedBy="parent", orphanRemoval=true, cascade={"ALL"})
-     *
-     * @var Collection<int,Protocol>
-     */
+    /** @var Collection<int,Protocol> */
     private Collection $children;
-
-    /** @ORM\Column(type="text") */
-    private string $content = '';
-
-    /** @ORM\Column(type="string") */
-    private string $sender = '';
-
-    /** @ORM\Column(type="string") */
+    private string $content  = '';
+    private string $sender   = '';
     private string $recipent = '';
-
-    /** @ORM\Column(type="datetime_immutable") */
     private DateTimeInterface $createdAt;
 
     public function __construct()

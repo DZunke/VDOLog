@@ -50,6 +50,10 @@ jobs:
                 run: make static-analysis
                 continue-on-error: ${{ matrix.experimental }}
 
+            -   name: Lint Doctrine Scheme
+                run: make lint-doctrine
+                continue-on-error: ${{ matrix.experimental }}
+
             -   name: Unit Tests
                 run: make phpunit
                 continue-on-error: ${{ matrix.experimental }}

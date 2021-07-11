@@ -7,44 +7,20 @@ namespace VDOLog\Core\Domain;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity()
- *
  * @UniqueEntity("name")
  */
 class Game
 {
-    /**
-     * @ORM\Id()
-     * @ORM\Column(type="guid")
-     * @ORM\GeneratedValue(strategy="NONE")
-     */
     private string $id;
-
-    /** @ORM\Column(type="string") */
     private string $name = '';
 
-    /**
-     * @ORM\OneToMany(
-     *     targetEntity=Protocol::class,
-     *     mappedBy="game",
-     *     orphanRemoval=true,
-     *     cascade={"ALL"}, fetch="EXTRA_LAZY"
-     * )
-     * @ORM\OrderBy({"createdAt" = "ASC"})
-     *
-     * @var Collection<int,Protocol>
-     */
+    /** @var Collection<int,Protocol> */
     private Collection $protocol;
-
-    /** @ORM\Column(type="datetime_immutable") */
     private DateTimeImmutable $createdAt;
-
-    /** @ORM\Column(type="datetime_immutable", nullable=true) */
     private ?DateTimeImmutable $closedAt = null;
 
     public function __construct()
