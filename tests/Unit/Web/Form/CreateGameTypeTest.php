@@ -7,33 +7,33 @@ namespace VDOLog\Tests\Unit\Web\Form;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Validator\Validation;
-use VDOLog\Core\Domain\Game;
-use VDOLog\Web\Form\GameType;
+use VDOLog\Web\Form\CreateGameType;
+use VDOLog\Web\Form\Dto\CreateGameDto;
 
-final class GameTypeTest extends TypeTestCase
+final class CreateGameTypeTest extends TypeTestCase
 {
     public function testSubmitValidData(): void
     {
         $formData = ['name' => 'test game'];
-        $game     = new Game();
+        $obj      = new CreateGameDto();
 
-        $form = $this->factory->create(GameType::class, $game);
+        $form = $this->factory->create(CreateGameType::class, $obj);
         $form->submit($formData);
 
-        self::assertSame($game, $game);
-        self::assertSame('test game', $game->getName());
+        self::assertSame($obj, $obj);
+        self::assertSame('test game', $obj->name);
     }
 
     public function testSubmitInvalidData(): void
     {
         $formData = ['name' => ''];
-        $game     = new Game();
+        $obj      = new CreateGameDto();
 
-        $form = $this->factory->create(GameType::class, $game);
+        $form = $this->factory->create(CreateGameType::class, $obj);
         $form->submit($formData);
 
         self::assertFalse($form->isValid());
-        self::assertSame($game, $game);
+        self::assertSame($obj, $obj);
 
         self::assertCount(1, $form->get('name')->getErrors());
     }

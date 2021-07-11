@@ -9,9 +9,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use VDOLog\Core\Domain\Game;
+use VDOLog\Web\Form\Dto\CreateGameDto;
 
-class GameType extends AbstractType
+class CreateGameType extends AbstractType
 {
     /** @inheritDoc */
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -30,6 +30,6 @@ class GameType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(['data_class' => Game::class]);
+        $resolver->setDefaults(['data_class' => CreateGameDto::class]);
     }
 }

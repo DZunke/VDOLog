@@ -14,6 +14,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use VDOLog\Core\Domain\Protocol;
+use VDOLog\Web\Form\Dto\AddProtocolDto;
 
 final class ProtocolType extends AbstractType
 {
@@ -28,7 +29,7 @@ final class ProtocolType extends AbstractType
     {
         $resolver->setDefaults([
             'csrf_protection' => false,
-            'data_class' => Protocol::class,
+            'data_class' => AddProtocolDto::class,
         ]);
     }
 
