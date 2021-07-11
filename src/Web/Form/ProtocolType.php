@@ -13,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use VDOLog\Web\Entity\Protocol;
+use VDOLog\Core\Domain\Protocol;
 
 final class ProtocolType extends AbstractType
 {

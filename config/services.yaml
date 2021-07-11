@@ -14,7 +14,7 @@ services:
 
     VDOLog\Web\:
         resource: '../src/Web/*'
-        exclude: '../src/Web/{Entity,Model,Kernel.php}'
+        exclude: '../src/Web/{Model,Kernel.php}'
 
     VDOLog\Web\Controller\:
         resource: '../src/Web/Controller'

@@ -12,7 +12,7 @@ use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use InvalidArgumentException;
 use Symfony\Component\Routing\RouterInterface;
-use VDOLog\Web\Entity\Game;
+use VDOLog\Core\Domain\Game;
 
 use function array_key_exists;
 use function assert;

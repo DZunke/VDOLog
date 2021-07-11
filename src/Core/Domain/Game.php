@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VDOLog\Web\Entity;
+namespace VDOLog\Core\Domain;
 
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -30,7 +30,7 @@ class Game
 
     /**
      * @ORM\OneToMany(
-     *     targetEntity="VDOLog\Web\Entity\Protocol",
+     *     targetEntity=Protocol::class,
      *     mappedBy="game",
      *     orphanRemoval=true,
      *     cascade={"ALL"}, fetch="EXTRA_LAZY"

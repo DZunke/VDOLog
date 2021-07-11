@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace VDOLog\Web\Model;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use VDOLog\Web\Entity\Game;
+use VDOLog\Core\Domain\Game;
 
 use function strlen;
 

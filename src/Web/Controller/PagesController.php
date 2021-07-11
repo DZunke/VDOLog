@@ -31,7 +31,9 @@ final class PagesController extends AbstractController
      */
     public function changelog(Request $request): Response
     {
-        $changelog = file_get_contents($this->projectDir . DIRECTORY_SEPARATOR . 'CHANGELOG.' . $request->getDefaultLocale() . '.md');
+        $changelog = file_get_contents(
+            $this->projectDir . DIRECTORY_SEPARATOR . 'CHANGELOG.' . $request->getDefaultLocale() . '.md'
+        );
 
         $currentChangelogPath = $this->projectDir . DIRECTORY_SEPARATOR . 'CHANGELOG.' . $request->getLocale() . '.md';
         if (file_exists($currentChangelogPath)) {

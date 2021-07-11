@@ -9,8 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use VDOLog\Web\Entity\Game;
-use VDOLog\Web\Entity\Protocol;
+use VDOLog\Core\Domain\Game;
+use VDOLog\Core\Domain\Protocol;
 use VDOLog\Web\Form\ProtocolType;
 
 /**
@@ -20,7 +20,7 @@ class ProtocolController extends AbstractController
 {
     /**
      * @Route("/", name="protocol_index")
-     * @ParamConverter("game", class="VDOLog\Web\Entity\Game", options={"id" = "game"})
+     * @ParamConverter("game", class=Game::class, options={"id" = "game"})
      */
     public function index(Request $request, Game $game): Response
     {
