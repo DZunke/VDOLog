@@ -7,7 +7,7 @@ namespace VDOLog\Core\Application\Protocol;
 use Assert\Assertion;
 use VDOLog\Core\Domain\Protocol;
 
-final class AddProtocol
+class AddProtocol
 {
     private string $gameId;
     private string $content;
@@ -18,7 +18,7 @@ final class AddProtocol
 
     public function __construct(string $gameId, string $content)
     {
-        Assertion::notBlank($gameId, 'A game must always be given');
+        Assertion::uuid($gameId, 'A game id must not be valid');
         Assertion::notBlank($content, 'A protocol entry must never be empty');
 
         $this->gameId  = $gameId;

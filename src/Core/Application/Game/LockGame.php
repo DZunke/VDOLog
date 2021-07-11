@@ -6,13 +6,13 @@ namespace VDOLog\Core\Application\Game;
 
 use Assert\Assertion;
 
-final class LockGame
+class LockGame
 {
     private string $id;
 
     public function __construct(string $id)
     {
-        Assertion::notBlank($id, 'A game always have an id');
+        Assertion::uuid($id, 'A valid game id must be given');
 
         $this->id = $id;
     }

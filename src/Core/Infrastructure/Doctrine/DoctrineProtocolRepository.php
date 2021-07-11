@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use VDOLog\Core\Domain\Game;
 use VDOLog\Core\Domain\Protocol;
+use VDOLog\Core\Domain\Protocol\Exception\ProtocolNotFound;
 use VDOLog\Core\Domain\ProtocolRepository;
 
 class DoctrineProtocolRepository implements ProtocolRepository
@@ -18,6 +19,16 @@ class DoctrineProtocolRepository implements ProtocolRepository
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
+    }
+
+    public function get(string $id): Protocol
+    {
+        $protocol = $this->em->find(Protocol::class, $id);
+        if ($protocol === null) {
+            throw ProtocolNotFound::forId($id);
+        }
+
+        return $protocol;
     }
 
     /**

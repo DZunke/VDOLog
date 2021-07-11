@@ -6,13 +6,13 @@ namespace VDOLog\Core\Application\Game;
 
 use Assert\Assertion;
 
-final class DeleteGame
+class DeleteGame
 {
     private string $id;
 
     public function __construct(string $id)
     {
-        Assertion::notBlank($id, 'A game always have an id');
+        Assertion::uuid($id, 'To delete a game a valid id must be given');
 
         $this->id = $id;
     }

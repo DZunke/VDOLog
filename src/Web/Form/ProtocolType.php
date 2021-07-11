@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace VDOLog\Web\Form;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -14,15 +13,16 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use VDOLog\Core\Domain\Protocol;
+use VDOLog\Core\Domain\ProtocolRepository;
 use VDOLog\Web\Form\Dto\AddProtocolDto;
 
 final class ProtocolType extends AbstractType
 {
-    private EntityManagerInterface $em;
+    private ProtocolRepository $protocolRepository;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(ProtocolRepository $protocolRepository)
     {
-        $this->em = $entityManager;
+        $this->protocolRepository = $protocolRepository;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -46,7 +46,7 @@ final class ProtocolType extends AbstractType
                     return null;
                 }
 
-                return $this->em->getRepository(Protocol::class)->find($protocol);
+                return $this->protocolRepository->get($protocol);
             }
         ));
 

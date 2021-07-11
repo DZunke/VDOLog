@@ -6,7 +6,7 @@ namespace VDOLog\Core\Application\Game;
 
 use Assert\Assertion;
 
-final class CreateGame
+class CreateGame
 {
     private string $name;
 

@@ -6,15 +6,15 @@ namespace VDOLog\Core\Application\Game;
 
 use Assert\Assertion;
 
-final class EditGame
+class EditGame
 {
     private string $id;
     private string $name;
 
     public function __construct(string $id, string $name)
     {
-        Assertion::notBlank($name, 'There is no game id given');
-        Assertion::notBlank($name, 'A game must have a name');
+        Assertion::uuid($id, 'A game id must be given to edit it');
+        Assertion::notBlank($name, 'A game must not get an empty name');
 
         $this->id   = $id;
         $this->name = $name;
