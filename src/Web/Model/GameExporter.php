@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Model;
+namespace VDOLog\Web\Model;
 
-use App\Entity\Game;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use VDOLog\Web\Entity\Game;
 
 use function strlen;
 

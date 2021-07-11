@@ -63,12 +63,12 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "VDOLog\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "VDOLog\\Tests\\": "tests/"
         }
     },
     "replace": {

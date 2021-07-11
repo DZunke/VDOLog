@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Entity;
+namespace VDOLog\Web\Entity;
 
 use DateTimeImmutable;
 use DateTimeInterface;
@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ProtocolRepository")
+ * @ORM\Entity(repositoryClass="VDOLog\Web\Repository\ProtocolRepository")
  */
 class Protocol
 {
@@ -23,17 +23,17 @@ class Protocol
      */
     private string $id;
 
-    /** @ORM\ManyToOne(targetEntity="App\Entity\Game", inversedBy="protocol", fetch="EXTRA_LAZY") */
+    /** @ORM\ManyToOne(targetEntity="VDOLog\Web\Entity\Game", inversedBy="protocol", fetch="EXTRA_LAZY") */
     private Game $game;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Protocol", inversedBy="children")
+     * @ORM\ManyToOne(targetEntity="VDOLog\Web\Entity\Protocol", inversedBy="children")
      * @ORM\JoinColumn(nullable=true)
      */
     private ?Protocol $parent;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Protocol", mappedBy="parent", orphanRemoval=true, cascade={"ALL"})
+     * @ORM\OneToMany(targetEntity="VDOLog\Web\Entity\Protocol", mappedBy="parent", orphanRemoval=true, cascade={"ALL"})
      *
      * @var Collection<int,Protocol>
      */

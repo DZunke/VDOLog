@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Repository;
+namespace VDOLog\Web\Repository;
 
-use App\Entity\Game;
-use App\Entity\Protocol;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityRepository;
+use VDOLog\Web\Entity\Game;
+use VDOLog\Web\Entity\Protocol;
 
 /**
  * @extends EntityRepository<Protocol>

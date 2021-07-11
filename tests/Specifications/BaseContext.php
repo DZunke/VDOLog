@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Specifications;
+namespace VDOLog\Tests\Specifications;
 
 use Behat\Behat\Context\Context;
 use Behat\Testwork\Hook\Scope\HookScope;

@@ -12,14 +12,14 @@ services:
         Twig\Extension\ExtensionInterface:
             tags: [ 'twig.extension' ]
 
-    App\:
-        resource: '../src/*'
-        exclude: '../src/{Entity,Model,Kernel.php}'
+    VDOLog\Web\:
+        resource: '../src/Web/*'
+        exclude: '../src/Web/{Entity,Model,Kernel.php}'
 
-    App\Controller\:
-        resource: '../src/Controller'
+    VDOLog\Web\Controller\:
+        resource: '../src/Web/Controller'
         tags: [ 'controller.service_arguments' ]
 
-    App\Model\ApplicationConfiguration:
+    VDOLog\Web\Model\ApplicationConfiguration:
         arguments:
             - ['%kernel.project_dir%/config/phpdesktop/settings.json', '%kernel.project_dir%/../settings.json']

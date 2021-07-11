@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Twig;
+namespace VDOLog\Web\Twig;
 
-use App\Model\ApplicationConfiguration;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
+use VDOLog\Web\Model\ApplicationConfiguration;
 
 final class ApplicationConfigurationExtension extends AbstractExtension implements GlobalsInterface
 {

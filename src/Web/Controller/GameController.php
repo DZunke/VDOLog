@@ -2,11 +2,8 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace VDOLog\Web\Controller;
 
-use App\Entity\Game;
-use App\Form\GameType;
-use App\Model\GameExporter;
 use DateTimeImmutable;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,6 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use VDOLog\Web\Entity\Game;
+use VDOLog\Web\Form\GameType;
+use VDOLog\Web\Model\GameExporter;
 
 use function assert;
 use function is_string;

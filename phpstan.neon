@@ -10,7 +10,7 @@ parameters:
         - src
         - tests
     symfony:
-        container_xml_path: '%rootDir%/../../../var/cache/dev/App_KernelDevDebugContainer.xml'
+        container_xml_path: '%rootDir%/../../../var/cache/dev/VDOLog_Web_KernelDevDebugContainer.xml'
     doctrine:
         objectManagerLoader: tests/object-manager.php
 

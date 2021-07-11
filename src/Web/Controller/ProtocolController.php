@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace VDOLog\Web\Controller;
 
-use App\Entity\Game;
-use App\Entity\Protocol;
-use App\Form\ProtocolType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use VDOLog\Web\Entity\Game;
+use VDOLog\Web\Entity\Protocol;
+use VDOLog\Web\Form\ProtocolType;
 
 /**
  * @Route("/game/{game}/protocol")
@@ -20,7 +20,7 @@ class ProtocolController extends AbstractController
 {
     /**
      * @Route("/", name="protocol_index")
-     * @ParamConverter("game", class="App\Entity\Game", options={"id" = "game"})
+     * @ParamConverter("game", class="VDOLog\Web\Entity\Game", options={"id" = "game"})
      */
     public function index(Request $request, Game $game): Response
     {

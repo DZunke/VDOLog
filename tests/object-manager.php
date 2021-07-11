@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Kernel;
+use VDOLog\Web\Kernel;
 
 require dirname(__DIR__) . '/config/bootstrap.php';
 

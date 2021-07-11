@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Form;
+namespace VDOLog\Tests\Unit\Form;
 
-use App\Entity\Game;
-use App\Form\GameType;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Validator\Validation;
+use VDOLog\Web\Entity\Game;
+use VDOLog\Web\Form\GameType;
 
 final class GameTypeTest extends TypeTestCase
 {
