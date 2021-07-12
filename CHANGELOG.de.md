@@ -5,7 +5,6 @@ In der Version 2.0 wird der Fokus auf eine Erweiterung der Verwaltung
 einer Veranstaltung gelegt. Es soll weitere Möglichkeiten geben die aktuellen
 Umstände der Veranstaltung zu dokumentieren und anzuzeigen.
 
-* Änderung der Lizensierung von MIT auf GPLv3
 * Aktualisierung auf Version 5.3 des Symfony Framework
 * Erstellung einer Docker Umgebung
 
