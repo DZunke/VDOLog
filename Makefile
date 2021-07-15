@@ -60,6 +60,9 @@ lint-php: ## linting php files
 	 if find src -name "*.php" -exec php -l {} \; | grep -v "No syntax errors detected"; then exit 1; fi
 	 if find tests -name "*.php" -exec php -l {} \; | grep -v "No syntax errors detected"; then exit 1; fi
 
+lint-js: ## execute eslint to lint js files
+	./node_modules/.bin/eslint assets
+
 lint-doctrine: ## linting doctrine scheme
 	 php bin/console doctrine:schema:validate --skip-sync
 
