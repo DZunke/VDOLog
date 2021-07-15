@@ -1,25 +1,35 @@
 parameters:
-    locale: 'de'
+  locale: 'de'
 
 services:
-    _defaults:
-        autowire: true
-        autoconfigure: true
-        bind:
-            $projectDir: '%kernel.project_dir%'
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    bind:
+      $projectDir: '%kernel.project_dir%'
 
-    _instanceof:
-        Twig\Extension\ExtensionInterface:
-            tags: [ 'twig.extension' ]
+  _instanceof:
+    Twig\Extension\ExtensionInterface:
+      tags: [ 'twig.extension' ]
 
-    App\:
-        resource: '../src/*'
-        exclude: '../src/{Entity,Model,Kernel.php}'
+  VDOLog\Core\Application\:
+    resource: '../src/Core/Application/*'
 
-    App\Controller\:
-        resource: '../src/Controller'
-        tags: [ 'controller.service_arguments' ]
+  VDOLog\Web\:
+    resource: '../src/Web/*'
+    exclude: '../src/Web/{Model,Kernel.php}'
 
-    App\Model\ApplicationConfiguration:
-        arguments:
-            - ['%kernel.project_dir%/config/phpdesktop/settings.json', '%kernel.project_dir%/../settings.json']
+  VDOLog\Web\Controller\:
+    resource: '../src/Web/Controller'
+    tags: [ 'controller.service_arguments' ]
+
+  VDOLog\Web\Model\ApplicationConfiguration:
+    arguments:
+      - [ '%kernel.project_dir%/config/phpdesktop/settings.json', '%kernel.project_dir%/../settings.json' ]
+
+
+  VDOLog\Core\Domain\GameRepository: '@VDOLog\Core\Infrastructure\Doctrine\DoctrineGameRepository'
+  VDOLog\Core\Domain\ProtocolRepository: '@VDOLog\Core\Infrastructure\Doctrine\DoctrineProtocolRepository'
+
+  VDOLog\Core\Infrastructure\Doctrine\:
+    resource: '../src/Core/Infrastructure/Doctrine/*'

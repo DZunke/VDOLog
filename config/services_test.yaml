@@ -3,5 +3,5 @@ services:
         autowire: true
         autoconfigure: true
 
-    App\Tests\Specifications\:
+    VDOLog\Tests\Specifications\:
         resource: '../tests/Specifications/*'

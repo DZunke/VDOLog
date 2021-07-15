@@ -60,4 +60,7 @@ lint-php: ## linting php files
 	 if find src -name "*.php" -exec php -l {} \; | grep -v "No syntax errors detected"; then exit 1; fi
 	 if find tests -name "*.php" -exec php -l {} \; | grep -v "No syntax errors detected"; then exit 1; fi
 
-build: lint-php check-cs static-analysis phpunit feature-tests
+lint-doctrine: ## linting doctrine scheme
+	 php bin/console doctrine:schema:validate --skip-sync
+
+build: lint-php check-cs static-analysis phpunit lint-doctrine feature-tests

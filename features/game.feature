@@ -23,25 +23,26 @@ Feature:
 
     Scenario: Game form allows to create a new game
         Given I am on "/game/new"
-        When I fill in "game_name" with "FooGame"
+        When I fill in "create_game_name" with "FooGame"
         And I press "Speichern"
         Then I should be on "/"
         And I should see "FooGame" in the "table" element
         And I should see "Das Spiel mit dem Namen \"FooGame\" wurde erfolgreich gespeichert."
-        
+
     Scenario: A game could not be created with empty name
         And I am on "/game/new"
         And I press "Speichern"
         Then I should be on "/game/new"
         And I should see "Dieser Wert sollte nicht leer sein."
 
-    Scenario: A game could only be created once
+    Scenario: A game could only be created more than once
         Given There is a game named "UniqueGameName"
         And I am on "/game/new"
-        When I fill in "game_name" with "UniqueGameName"
+        When I fill in "create_game_name" with "UniqueGameName"
         And I press "Speichern"
-        Then I should be on "/game/new"
-        And I should see "Dieser Wert wird bereits verwendet."
+        Then I should be on "/"
+        And I should see "UniqueGameName" in the "table" element
+        And I should see "Das Spiel mit dem Namen \"UniqueGameName\" wurde erfolgreich gespeichert."
 
     Scenario: A game could be deleted
         Given There is a game named "DeletionFooGame"

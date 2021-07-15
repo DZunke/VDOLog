@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Specifications;
+namespace VDOLog\Tests\Specifications;
 
-use App\Entity\Game;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Mink\Element\NodeElement;
@@ -13,6 +12,7 @@ use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use InvalidArgumentException;
 use Symfony\Component\Routing\RouterInterface;
+use VDOLog\Core\Domain\Game;
 
 use function array_key_exists;
 use function assert;
