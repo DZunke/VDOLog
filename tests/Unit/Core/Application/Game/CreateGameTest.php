@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VDOLog\Tests\Unit\Application\Game;
+namespace VDOLog\Tests\Unit\Core\Application\Game;
 
 use Assert\InvalidArgumentException;
 use Symfony\Component\Form\Test\TypeTestCase;

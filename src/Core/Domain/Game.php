@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use VDOLog\Core\Domain\Game\TimeFrame;
 
 /**
  * @UniqueEntity("name")
@@ -18,6 +19,8 @@ class Game
     private string $id;
     private string $name = '';
 
+    private TimeFrame $timeFrame;
+
     /** @var Collection<int,Protocol> */
     private Collection $protocol;
     private DateTimeImmutable $createdAt;
@@ -26,6 +29,7 @@ class Game
     public function __construct()
     {
         $this->id        = Uuid::uuid4()->toString();
+        $this->timeFrame = TimeFrame::createFromDate(new DateTimeImmutable());
         $this->protocol  = new ArrayCollection();
         $this->createdAt = new DateTimeImmutable();
     }
@@ -74,5 +78,10 @@ class Game
     public function setClosedAt(?DateTimeImmutable $closedAt): void
     {
         $this->closedAt = $closedAt;
+    }
+
+    public function getTimeFrame(): TimeFrame
+    {
+        return $this->timeFrame;
     }
 }

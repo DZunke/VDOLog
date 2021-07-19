@@ -25,10 +25,15 @@
 </head>
 
 <body class="antialiased">
-<div class="wrapper" data-controller="loader" data-loader-template-id="screen-loader-template">
+<div class="wrapper" data-controller="loader notification" data-loader-template-id="screen-loader-template" data-notification-ask-permission-button="ask_permission_button" data-notification-icon-url="{{ app.request.getSchemeAndHttpHost() ~ asset('images/hertha_96x96.png') }}">
     <header class="navbar navbar-expand-md navbar-light d-print-none">
         <div class="container-xl">
             <div class="navbar-nav flex-row order-md-last">
+                <div class="nav-item dropdown d-none d-md-flex me-3">
+                    <a type="button" id="ask_permission_button" class="no-loader nav-link px-0 text-red" data-action="click->notification#askPermission" title="Push Notification Status">
+                        <i class="fas fa-bell"></i>
+                    </a>
+                </div>
                 <div class="nav-item dropdown d-none d-md-flex me-3">
                     <a type="button" class="nav-link px-0" data-controller="refresh" data-action="click->refresh#refresh" title="Aktuelle Seite aktualisieren">
                         <i class="fas fa-sync"></i>

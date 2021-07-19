@@ -2,27 +2,27 @@
 
 declare(strict_types=1);
 
-namespace VDOLog\Tests\Unit\Application\Game;
+namespace VDOLog\Tests\Unit\Core\Application\Game;
 
 use Assert\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
-use VDOLog\Core\Application\Game\LockGame;
+use VDOLog\Core\Application\Game\DeleteGame;
 
-final class LockGameTest extends TestCase
+final class DeleteGameTest extends TestCase
 {
-    public function testCreationWillFailWithoutId(): void
+    public function testMessageCouldNotBeDeletedWithoutAnId(): void
     {
         self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage('A valid game id must be given');
+        self::expectExceptionMessage('To delete a game a valid id must be given');
 
-        new LockGame('foo');
+        new DeleteGame('foo');
     }
 
     public function testMessageCouldBeCreated(): void
     {
         $id      = Uuid::uuid4()->toString();
-        $message = new LockGame($id);
+        $message = new DeleteGame($id);
 
         self::assertSame($message->getId(), $id);
     }
