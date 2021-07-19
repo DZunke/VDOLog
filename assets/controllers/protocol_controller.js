@@ -5,27 +5,30 @@ export default class extends Controller {
   connect() {
     const that = this;
 
-    this.focusguard();
+    this.constructor.focusguard();
 
-    document.querySelectorAll('input[type="text"], textarea').forEach((elem) => {
-      elem.addEventListener('keydown', (e) => {
-        if (e.ctrlKey && e.keyCode === 13) { // STRG + Enter
-          that.submit();
-        }
+    document.querySelectorAll('input[type="text"], textarea')
+      .forEach((elem) => {
+        elem.addEventListener('keydown', (e) => {
+          if (e.ctrlKey && e.keyCode === 13) { // STRG + Enter
+            that.submit();
+          }
 
-        if (e.ctrlKey && e.keyCode === 67) { // STRG + C
-          that.reset();
-        }
+          if (e.ctrlKey && e.keyCode === 67) { // STRG + C
+            that.reset();
+          }
+        });
       });
-    });
   }
 
   static focusguard() {
-    document.querySelector('input[tabindex="1"]').focus();
+    document.querySelector('input[tabindex="1"]')
+      .focus();
   }
 
   submit() {
-    document.querySelector(this.formQuery).submit();
+    document.querySelector(this.formQuery)
+      .submit();
   }
 
   reset() {
@@ -34,23 +37,28 @@ export default class extends Controller {
     const removeElement = document.getElementById('protocol-add-child-info');
     if (removeElement !== null) {
       removeElement.remove();
-      document.getElementById('protocol-add-child-reset').remove();
-      document.querySelectorAll('.protocol-add-child-highlite').forEach((elem) => {
-        elem.classList.remove('protocol-add-child-highlite');
-      });
+      document.getElementById('protocol-add-child-reset')
+        .remove();
+      document.querySelectorAll('.protocol-add-child-highlite')
+        .forEach((elem) => {
+          elem.classList.remove('protocol-add-child-highlite');
+        });
     }
 
-    document.querySelectorAll('input, textarea').forEach((elem) => {
-      elem.val('');
-    });
-    document.querySelectorAll('span.invalid-feedback').forEach((elem) => {
-      elem.remove();
-    });
-    document.querySelectorAll('.is-invalid').forEach((elem) => {
-      elem.classList.remove('is-invalid');
-    });
+    document.querySelectorAll('input, textarea')
+      .forEach((elem) => {
+        elem.setAttribute('value', '');
+      });
+    document.querySelectorAll('span.invalid-feedback')
+      .forEach((elem) => {
+        elem.remove();
+      });
+    document.querySelectorAll('.is-invalid')
+      .forEach((elem) => {
+        elem.classList.remove('is-invalid');
+      });
 
-    this.focusguard();
+    this.constructor.focusguard();
   }
 
   addChildEntry($event) {
@@ -77,7 +85,9 @@ export default class extends Controller {
     $idFormElement.value = $id;
 
     if ($highliteClass !== undefined && $highliteClass !== '') {
-      $element.closest(`.${$highliteClass}`).classList.add('protocol-add-child-highlite');
+      $element.closest(`.${$highliteClass}`)
+        .classList
+        .add('protocol-add-child-highlite');
     }
 
     const formAppendingModeInfo = document.createElement('p');
@@ -101,7 +111,7 @@ export default class extends Controller {
 
     $idFormElement.parentElement.append(formAppendingCancelButton);
 
-    this.focusguard();
+    this.constructor.focusguard();
   }
 
   get formQuery() {
