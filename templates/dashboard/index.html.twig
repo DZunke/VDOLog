@@ -15,7 +15,10 @@
                             <thead>
                                 <tr>
                                     <th>Spiel</th>
-                                    <th>Erstellt am</th>
+                                    <th>Beginn Arbeitstag</th>
+                                    <th>Beginn Einlassphase</th>
+                                    <th>Veranstaltungsbeginn</th>
+                                    <th>Veranstaltungsende</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -23,7 +26,10 @@
                             {% for game in games %}
                                 <tr>
                                     <td>{{ game.name }}</td>
-                                    <td>{{ game.createdAt|format_datetime('short', 'none') }}</td>
+                                    <td>{{ game.timeFrame.eventStartsAt|format_datetime('short', 'short') }}</td>
+                                    <td>{{ game.timeFrame.getOptionAsDateTime('spectator_entry_start')|format_datetime('short', 'short') }}</td>
+                                    <td>{{ game.timeFrame.getOptionAsDateTime('event_act_begin')|format_datetime('short', 'short') }}</td>
+                                    <td>{{ game.timeFrame.getOptionAsDateTime('event_act_end')|format_datetime('short', 'short') }}</td>
                                     <td class="text-end">
                                         <a href="{{ path('protocol_index', {'game': game.id}) }}"  title="Das Protokoll zum Spiel öffnen" class="btn btn-primary btn-sm"><i class="fas fa-clipboard-check"></i>&nbsp;Funkprotokoll</a>
                                         <span class="dropdown">

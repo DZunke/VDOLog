@@ -20,6 +20,7 @@ final class EditGameHandler implements MessageHandlerInterface
     {
         $game = $this->gameRepository->get($message->getId());
         $game->setName($message->getName());
+        $game->setTimeFrame($message->getTimeFrame());
 
         $this->gameRepository->save($game);
     }

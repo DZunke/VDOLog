@@ -14,7 +14,15 @@ final class CreateGameTypeTest extends TypeTestCase
 {
     public function testSubmitValidData(): void
     {
-        $formData = ['name' => 'test game'];
+        $formData = [
+            'name' => 'test game',
+            'timeFrame' => [
+                'eventStartsAt' => '2020-11-12 12:15:17',
+                'optSpectatorEntry' => '+1 hour',
+                'optEventActBegin' => '+1 hour',
+                'optEventActEnd' => '+1 hour',
+            ],
+        ];
         $obj      = new CreateGameDto();
 
         $form = $this->factory->create(CreateGameType::class, $obj);
@@ -26,7 +34,15 @@ final class CreateGameTypeTest extends TypeTestCase
 
     public function testSubmitInvalidData(): void
     {
-        $formData = ['name' => ''];
+        $formData = [
+            'name' => '',
+            'timeFrame' => [
+                'eventStartsAt' => '2020-11-12 12:15:17',
+                'optSpectatorEntry' => '+1 hour',
+                'optEventActBegin' => '+1 hour',
+                'optEventActEnd' => '+1 hour',
+            ],
+        ];
         $obj      = new CreateGameDto();
 
         $form = $this->factory->create(CreateGameType::class, $obj);

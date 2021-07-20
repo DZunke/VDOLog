@@ -84,4 +84,9 @@ class Game
     {
         return $this->timeFrame;
     }
+
+    public function setTimeFrame(TimeFrame $timeFrame): void
+    {
+        $this->timeFrame = $timeFrame;
+    }
 }

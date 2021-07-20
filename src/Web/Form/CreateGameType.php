@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use VDOLog\Web\Form\Dto\CreateGameDto;
+use VDOLog\Web\Form\Game\TimeFrameType;
 
 class CreateGameType extends AbstractType
 {
@@ -26,6 +27,8 @@ class CreateGameType extends AbstractType
                 ],
             ]
         );
+
+        $builder->add('timeFrame', TimeFrameType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
