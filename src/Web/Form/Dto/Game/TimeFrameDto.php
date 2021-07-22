@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace VDOLog\Web\Form\Dto\Game;
 
+use Assert\Assertion;
 use DateTimeImmutable;
 use VDOLog\Core\Domain\Game\TimeFrame;
 
 class TimeFrameDto
 {
     public DateTimeImmutable $eventStartsAt;
-    public string $optSpectatorEntry = '+2 hours';
-    public string $optEventActBegin  = '+4 hours +30 minutes';
-    public string $optEventActEnd    = '+7 hours +15 minutes';
+    public ?string $optSpectatorEntry = '+2 hours';
+    public ?string $optEventActBegin  = '+4 hours +30 minutes';
+    public ?string $optEventActEnd    = '+7 hours +15 minutes';
 
     public function __construct()
     {
@@ -32,6 +33,10 @@ class TimeFrameDto
 
     public function toTimeFrame(): TimeFrame
     {
+        Assertion::string($this->optSpectatorEntry);
+        Assertion::string($this->optEventActBegin);
+        Assertion::string($this->optEventActEnd);
+
         $timeFrame = TimeFrame::createFromDate($this->eventStartsAt);
         $timeFrame->setOption(TimeFrame::OPT_SPECTATOR_ENTRY, $this->optSpectatorEntry);
         $timeFrame->setOption(TimeFrame::OPT_EVENT_ACT_BEGIN, $this->optEventActBegin);

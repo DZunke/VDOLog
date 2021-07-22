@@ -9,8 +9,10 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotNull;
 use VDOLog\Web\Form\Dto\Game\TimeFrameDto;
+use VDOLog\Web\Validator\DateTimeRelativeString;
 
 final class TimeFrameType extends AbstractType
 {
@@ -44,6 +46,10 @@ final class TimeFrameType extends AbstractType
             [
                 'label' => 'Beginn Einlassphase',
                 'help' => 'Relativ zum Beginn des Arbeitstages',
+                'constraints' => [
+                    new NotBlank(),
+                    new DateTimeRelativeString(),
+                ],
             ]
         );
 
@@ -53,6 +59,10 @@ final class TimeFrameType extends AbstractType
             [
                 'label' => 'Veranstaltungsbeginn',
                 'help' => 'Relativ zum Beginn des Arbeitstages',
+                'constraints' => [
+                    new NotBlank(),
+                    new DateTimeRelativeString(),
+                ],
             ]
         );
 
@@ -62,6 +72,10 @@ final class TimeFrameType extends AbstractType
             [
                 'label' => 'Veranstaltungsende',
                 'help' => 'Relativ zum Beginn des Arbeitstages',
+                'constraints' => [
+                    new NotBlank(),
+                    new DateTimeRelativeString(),
+                ],
             ]
         );
     }
