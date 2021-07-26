@@ -23,6 +23,12 @@
                 <cascade-remove/>
             </cascade>
         </one-to-many>
+
+        <one-to-many field="reminder" target-entity="VDOLog\Core\Domain\Game\Reminder" mapped-by="game">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
     </entity>
 
 </doctrine-mapping>

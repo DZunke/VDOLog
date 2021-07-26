@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="VDOLog\Core\Domain\Game\Reminder">
+        <id name="id" type="guid">
+            <generator strategy="NONE"/>
+        </id>
+
+        <field name="title" type="text"/>
+        <field name="message" type="text"/>
+        <field name="remindAt" type="text"/>
+        <field name="createdAt" type="datetime_immutable"/>
+        <field name="seenAt" type="datetime_immutable" nullable="true"/>
+        <field name="sentAt" type="datetime_immutable" nullable="true"/>
+
+        <many-to-one field="game" target-entity="VDOLog\Core\Domain\Game" inversed-by="reminder" fetch="EXTRA_LAZY"/>
+    </entity>
+
+</doctrine-mapping>
