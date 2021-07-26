@@ -5,6 +5,8 @@ export default class extends Controller {
 
   notificationsEnabled = false;
 
+  xhrPollingTimeout = 30000; // Every 30 seconds
+
   defaultNotifcicationOptions = {
     body: '',
     icon: this.iconUrl,
@@ -35,8 +37,9 @@ export default class extends Controller {
       that.fetchNotifications();
 
       window.setInterval(() => {
-        // that.fetchNotifications();
-      }, 5000);
+        that.fetchNotifications();
+        that.fetchReminder();
+      }, this.xhrPollingTimeout);
     }
   }
 
@@ -52,6 +55,22 @@ export default class extends Controller {
 
         data.messages.forEach((value) => {
           that.sendNotification('Offene ToDos', value);
+        });
+      });
+  }
+
+  async fetchReminder() {
+    const that = this;
+
+    await fetch('https://vdolog.local:8081/game/reminder/remind')
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.messages.length === 0) {
+          return;
+        }
+
+        data.messages.forEach((value) => {
+          that.sendNotification('Erinnerung', value);
         });
       });
   }

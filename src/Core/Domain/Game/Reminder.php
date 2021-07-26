@@ -91,4 +91,9 @@ class Reminder
     {
         return $this->createdAt;
     }
+
+    public function getRemindAtAsDate(): DateTimeImmutable
+    {
+        return $this->game->getTimeFrame()->getEventStartsAt()->modify($this->remindAt);
+    }
 }
