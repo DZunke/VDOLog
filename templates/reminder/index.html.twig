@@ -6,6 +6,9 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Erinnerungen für die Veranstaltung {{ game.name }}</h3>
+                    <div class="card-options">
+                        <a href="{{ path('reminder_new', {'game': game.id}) }}" class="btn btn-success btn-sm" title="Neue Erinnerung"><i class="fas fa-plus"></i>&nbsp;Neue Erinnerung</a>
+                    </div>
                 </div>
                 <div>
                     <table class="table table-vcenter card-table">

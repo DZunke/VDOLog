@@ -7,6 +7,8 @@ export default class extends Controller {
 
   xhrPollingTimeout = 30000; // Every 30 seconds
 
+  lastCheckDate = null;
+
   defaultNotifcicationOptions = {
     body: '',
     icon: this.iconUrl,
@@ -28,6 +30,8 @@ export default class extends Controller {
     this.featureEnabled = true;
     const that = this;
 
+    this.lastCheckDate = (new Date()).toISOString();
+
     if (Notification.permission === 'default') {
       this.askPermission();
     }
@@ -35,10 +39,11 @@ export default class extends Controller {
     if (Notification.permission === 'granted') {
       this.activatePermissionButton();
       that.fetchNotifications();
+      that.fetchReminder();
 
       window.setInterval(() => {
-        that.fetchNotifications();
-        that.fetchReminder();
+        // that.fetchNotifications();
+        // that.fetchReminder();
       }, this.xhrPollingTimeout);
     }
   }
@@ -62,15 +67,16 @@ export default class extends Controller {
   async fetchReminder() {
     const that = this;
 
-    await fetch('https://vdolog.local:8081/game/reminder/remind')
+    await fetch('https://vdolog.local:8081/game/reminder/remind/' + that.lastCheckDate)
       .then((response) => response.json())
       .then((data) => {
+        that.lastCheckDate = (new Date()).toISOString();
         if (data.messages.length === 0) {
           return;
         }
 
         data.messages.forEach((value) => {
-          that.sendNotification('Erinnerung', value);
+          that.sendNotification(value.title, value.message);
         });
       });
   }

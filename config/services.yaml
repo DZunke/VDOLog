@@ -31,6 +31,7 @@ services:
       - [ '%kernel.project_dir%/config/phpdesktop/settings.json', '%kernel.project_dir%/../settings.json' ]
 
   VDOLog\Core\Domain\GameRepository: '@VDOLog\Core\Infrastructure\Doctrine\DoctrineGameRepository'
+  VDOLog\Core\Domain\Game\ReminderRepository: '@VDOLog\Core\Infrastructure\Doctrine\DoctrineReminderRepository'
   VDOLog\Core\Domain\ProtocolRepository: '@VDOLog\Core\Infrastructure\Doctrine\DoctrineProtocolRepository'
 
   VDOLog\Core\Infrastructure\Doctrine\:
