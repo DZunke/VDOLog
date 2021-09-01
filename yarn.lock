@@ -978,10 +978,10 @@
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
 
-"@symfony/webpack-encore@^1.0.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@symfony/webpack-encore/-/webpack-encore-1.5.0.tgz#4ecdc03dbbf6a151c4a3ce8130416cd012c12245"
-  integrity sha512-Bfq99dUwDPH9BN777CADY9xJOLbowrNHwHSi3w8TjmhcOSqchgcWjdlT0AqXlbB3wUqXwpw9Tz6anQAMrC6+xA==
+"@symfony/webpack-encore@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@symfony/webpack-encore/-/webpack-encore-1.6.0.tgz#807716e27dea9ddf4a94b76e567f217639052055"
+  integrity sha512-vxGWG9vrNSqQG4DFmuuaaxSPeC9EkNGM5SdxkA3srpT+4LKDsZ24eHnUY7+uANS8sfvXE8NS430yVqHaLJyPXA==
   dependencies:
     "@babel/core" "^7.7.0"
     "@babel/plugin-syntax-dynamic-import" "^7.0.0"
@@ -1611,8 +1611,9 @@ bootstrap@^4.6.0:
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.6.0.tgz#97b9f29ac98f98dfa43bf7468262d84392552fd7"
   integrity sha512-Io55IuQY3kydzHtbGvQya3H+KorS/M9rSNyfCGCg9WZ4pyT/lCxIlpJgG1GXW/PswzC84Tr2fBYi+7+jFVQQBw==
 
-"bootstrap@github:twbs/bootstrap#232e392c9126fcb1dbe13c963e7edcdbd62cfeb8":
+bootstrap@twbs/bootstrap#232e392c9126fcb1dbe13c963e7edcdbd62cfeb8:
   version "5.0.0-beta3"
+  uid "232e392c9126fcb1dbe13c963e7edcdbd62cfeb8"
   resolved "https://codeload.github.com/twbs/bootstrap/tar.gz/232e392c9126fcb1dbe13c963e7edcdbd62cfeb8"
 
 brace-expansion@^1.1.7:
