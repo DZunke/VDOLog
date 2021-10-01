@@ -16,7 +16,7 @@
     },
     "dependencies": {
         "@symfony/stimulus-bridge": "^2.0.0",
-        "@symfony/webpack-encore": "^1.0.0",
+        "@symfony/webpack-encore": "^1.6.1",
         "@tabler/core": "^1.0.0-beta",
         "bootstrap": "^4.6.0",
         "core-js": "^3.0.0",
