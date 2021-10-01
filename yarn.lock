@@ -1611,8 +1611,9 @@ bootstrap@^4.6.0:
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.6.0.tgz#97b9f29ac98f98dfa43bf7468262d84392552fd7"
   integrity sha512-Io55IuQY3kydzHtbGvQya3H+KorS/M9rSNyfCGCg9WZ4pyT/lCxIlpJgG1GXW/PswzC84Tr2fBYi+7+jFVQQBw==
 
-"bootstrap@github:twbs/bootstrap#232e392c9126fcb1dbe13c963e7edcdbd62cfeb8":
+bootstrap@twbs/bootstrap#232e392c9126fcb1dbe13c963e7edcdbd62cfeb8:
   version "5.0.0-beta3"
+  uid "232e392c9126fcb1dbe13c963e7edcdbd62cfeb8"
   resolved "https://codeload.github.com/twbs/bootstrap/tar.gz/232e392c9126fcb1dbe13c963e7edcdbd62cfeb8"
 
 brace-expansion@^1.1.7:
@@ -4802,10 +4803,10 @@ sass-loader@^12.1.0:
     klona "^2.0.4"
     neo-async "^2.6.2"
 
-sass@^1.32.6:
-  version "1.35.2"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.35.2.tgz#b732314fcdaf7ef8d0f1698698adc378043cb821"
-  integrity sha512-jhO5KAR+AMxCEwIH3v+4zbB2WB0z67V1X0jbapfVwQQdjHZUGUyukpnoM6+iCMfsIUC016w9OPKQ5jrNOS9uXw==
+sass@^1.42.1:
+  version "1.42.1"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.42.1.tgz#5ab17bebc1cb1881ad2e0c9a932c66ad64e441e2"
+  integrity sha512-/zvGoN8B7dspKc5mC6HlaygyCBRvnyzzgD5khiaCfglWztY99cYoiTUksVx11NlnemrcfH5CEaCpsUKoW0cQqg==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
 
