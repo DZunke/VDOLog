@@ -12,9 +12,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use VDOLog\Core\Application\Game\DeleteGame;
+use VDOLog\Core\Application\Game\DeleteReminder;
 use VDOLog\Core\Domain\Game;
 use VDOLog\Web\Form\Dto\Game\NewReminderDto;
 use VDOLog\Web\Form\Game\NewReminderType;
+
+use function assert;
+use function is_string;
 
 /**
  * @Route("/game")
@@ -58,6 +63,34 @@ final class ReminderController extends AbstractController
         }
 
         return $this->render('reminder/new.html.twig', ['game' => $game, 'form' => $form->createView()]);
+    }
+
+    /**
+     * @Route("/{game}/reminder/edit/{id}", name="reminder_edit")
+     */
+    public function edit(Request $request, MessageBusInterface $messageBus, Game\Reminder $reminder): Response
+    {
+    }
+
+    /**
+     * @Route("/{game}/reminder/delete/{id}", name="reminder_delete")
+     */
+    public function delete(Request $request, MessageBusInterface $messageBus, Game\Reminder $reminder): Response
+    {
+        $token = $request->request->get('_token', '');
+        assert(is_string($token));
+        if ($this->isCsrfTokenValid('delete' . $reminder->getId(), $token)) {
+            $messageBus->dispatch(new DeleteReminder($reminder));
+
+            $this->addFlash(
+                'success',
+                'Die Erinnerung mit dem Titel "' . $reminder->getTitle() . '" wurde erfolgreich gelöscht.'
+            );
+
+            return $this->redirectToRoute('dashboard');
+        }
+
+        return $this->render('reminder/delete.html.twig', ['reminder' => $reminder]);
     }
 
     /**

@@ -84,6 +84,11 @@ class Game implements EventStore
         return new ArrayCollection($this->reminder->toArray());
     }
 
+    public function removeReminder(Reminder $reminder): void
+    {
+        $this->reminder->removeElement($reminder);
+    }
+
     public function getCreatedAt(): DateTimeImmutable
     {
         return $this->createdAt;
