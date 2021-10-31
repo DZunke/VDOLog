@@ -20,6 +20,8 @@ final class CreateGameHandler implements MessageHandlerInterface
     public function __invoke(CreateGame $message): void
     {
         $game = Game::create($message->getName());
+        $game->setTimeFrame($message->getTimeFrame());
+
         $this->gameRepository->save($game);
     }
 }

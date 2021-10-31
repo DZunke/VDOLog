@@ -1,15 +1,35 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 <div class="row row-cards">
-    <div class="col-6">
-        {{ form_start(form, {'attr': {'class': 'card'}}) }}
-        <div class="card-body">
-            {{ form_widget(form) }}
-        </div>
-        <div class="card-footer text-end">
-            <div class="d-flex">
-                <a href="{{ path('dashboard') }}" class="btn btn-link">Abbrechen</a>
-                <button type="submit" data-check-form="game" class="btn btn-primary ms-auto">Speichern</button>
+    <div class="col-md-6">
+        <div class="row row-cards">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        {{ form_row(form.name) }}
+                    </div>
+                    <div class="card-footer text-end">
+                        <div class="d-flex">
+                            <a href="{{ path('dashboard') }}" class="btn btn-link">Abbrechen</a>
+                            <button type="submit" data-check-form="game" class="btn btn-primary ms-auto">Speichern</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        {{ form_end(form) }}
+    </div>
+    <div class="col-md-6">
+        <div class="row row-cards">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        {{ form_row(form.timeFrame.eventStartsAt) }}<br/>
+                        {{ form_row(form.timeFrame.optSpectatorEntry) }}<br/>
+                        {{ form_row(form.timeFrame.optEventActBegin) }}<br/>
+                        {{ form_row(form.timeFrame.optEventActEnd) }}<br/>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+{{ form_end(form) }}

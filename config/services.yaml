@@ -12,6 +12,9 @@ services:
     Twig\Extension\ExtensionInterface:
       tags: [ 'twig.extension' ]
 
+    Doctrine\Common\EventSubscriber:
+      tags: [ 'doctrine.event_subscriber' ]
+
   VDOLog\Core\Application\:
     resource: '../src/Core/Application/*'
 
@@ -27,8 +30,8 @@ services:
     arguments:
       - [ '%kernel.project_dir%/config/phpdesktop/settings.json', '%kernel.project_dir%/../settings.json' ]
 
-
   VDOLog\Core\Domain\GameRepository: '@VDOLog\Core\Infrastructure\Doctrine\DoctrineGameRepository'
+  VDOLog\Core\Domain\Game\ReminderRepository: '@VDOLog\Core\Infrastructure\Doctrine\DoctrineReminderRepository'
   VDOLog\Core\Domain\ProtocolRepository: '@VDOLog\Core\Infrastructure\Doctrine\DoctrineProtocolRepository'
 
   VDOLog\Core\Infrastructure\Doctrine\:

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="row row-cards">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Erinnerungen für die Veranstaltung {{ game.name }}</h3>
+                    <div class="card-options">
+                        <a href="{{ path('reminder_new', {'game': game.id}) }}" class="btn btn-success btn-sm" title="Neue Erinnerung"><i class="fas fa-plus"></i>&nbsp;Neue Erinnerung</a>
+                    </div>
+                </div>
+                <div>
+                    <table class="table table-vcenter card-table">
+                        <thead>
+                        <tr>
+                            <th>Titel</th>
+                            <th>Erinnerungszeit</th>
+                            <th>Gesendet</th>
+                            <th>Gelesen</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for reminder in game.reminder %}
+                            <tr>
+                                <td>{{ reminder.title }}</td>
+                                <td>{{ reminder.remindAtAsDate|format_datetime('short', 'short') }}</td>
+                                <td>{{ reminder.sent is not null ? 'Ja' : 'Nein' }}</td>
+                                <td>{{ reminder.seen is not null ? 'Ja' : 'Nein' }}</td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="1">Keine Erinerungen gefunden</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

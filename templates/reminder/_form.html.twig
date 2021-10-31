@@ -1,0 +1,19 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+<div class="row row-cards">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                {{ form_row(form.title) }}
+                {{ form_row(form.message) }}
+                {{ form_row(form.remindAt) }}
+            </div>
+            <div class="card-footer text-end">
+                <div class="d-flex">
+                    <a href="{{ path('reminder_index', {'game': game.id}) }}" class="btn btn-link">Abbrechen</a>
+                    <button type="submit" data-check-form="new_reminder" class="btn btn-primary ms-auto">Speichern</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}

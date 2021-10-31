@@ -35,7 +35,6 @@ class ApplicationConfiguration
         }
 
         Assertion::string($existingConfigFile, 'Any of the config files have to exist');
-        assert(is_string($existingConfigFile));
 
         $configFileContent = file_get_contents($existingConfigFile);
         assert(is_string($configFileContent));

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VDOLog\Tests\Unit\Application\Protocol;
+namespace VDOLog\Tests\Unit\Core\Application\Protocol;
 
 use Assert\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;

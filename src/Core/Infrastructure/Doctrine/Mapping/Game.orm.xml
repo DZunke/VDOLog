@@ -13,12 +13,20 @@
         <field name="createdAt" type="datetime_immutable"/>
         <field name="closedAt" type="datetime_immutable" nullable="true"/>
 
+        <embedded name="timeFrame" class="VDOLog\Core\Domain\Game\TimeFrame" column-prefix="timeframe_" />
+
         <one-to-many field="protocol" target-entity="VDOLog\Core\Domain\Protocol" mapped-by="game">
             <order-by>
                 <order-by-field name="createdAt"/>
             </order-by>
             <cascade>
                 <cascade-remove/>
+            </cascade>
+        </one-to-many>
+
+        <one-to-many field="reminder" target-entity="VDOLog\Core\Domain\Game\Reminder" mapped-by="game">
+            <cascade>
+                <cascade-all/>
             </cascade>
         </one-to-many>
     </entity>
