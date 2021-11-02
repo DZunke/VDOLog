@@ -55,7 +55,7 @@ final class DoctrineEventStoreHandler implements EventSubscriber
     }
 
     /**
-     * @param array<string,object> $entities
+     * @param array<int, object> $entities
      */
     private function collectEventStoreEvents(array $entities): void
     {

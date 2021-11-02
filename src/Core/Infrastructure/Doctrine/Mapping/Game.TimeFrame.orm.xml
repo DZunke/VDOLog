@@ -6,7 +6,7 @@
 
     <embeddable name="VDOLog\Core\Domain\Game\TimeFrame">
         <field name="eventStartsAt" type="datetime_immutable" />
-        <field name="timeframeOptions" type="json_array" />
+        <field name="timeframeOptions" type="json" />
     </embeddable>
 
 </doctrine-mapping>

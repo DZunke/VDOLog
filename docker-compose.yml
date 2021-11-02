@@ -1,4 +1,14 @@
 services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: vdolog
+      POSTGRES_PASSWORD: admin1234
+      POSTGRES_DB: vdolog
+    ports:
+      - "5432:5432"
+
   php:
     build:
       context: .
@@ -9,6 +19,8 @@ services:
     env_file:
       - .env
     user: 1000:1000
+    depends_on:
+      - db
 
   nginx:
     image: nginx:stable-alpine

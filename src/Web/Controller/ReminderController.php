@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use VDOLog\Core\Application\Game\DeleteGame;
 use VDOLog\Core\Application\Game\DeleteReminder;
 use VDOLog\Core\Domain\Game;
 use VDOLog\Web\Form\Dto\Game\NewReminderDto;
@@ -70,6 +69,7 @@ final class ReminderController extends AbstractController
      */
     public function edit(Request $request, MessageBusInterface $messageBus, Game\Reminder $reminder): Response
     {
+        return new Response('NOT IMPLEMENTED', Response::HTTP_NOT_IMPLEMENTED);
     }
 
     /**

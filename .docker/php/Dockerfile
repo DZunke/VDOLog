@@ -9,7 +9,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt update -q \
     git \
     zip unzip
 
-RUN install-php-extensions gd intl opcache bcmath zip
+RUN install-php-extensions gd intl opcache bcmath zip pgsql pdo pdo_pgsql
 
 WORKDIR /usr/src/app
 
