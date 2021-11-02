@@ -66,4 +66,4 @@ lint-js: ## execute eslint to lint js files
 lint-doctrine: ## linting doctrine scheme
 	 php bin/console doctrine:schema:validate --skip-sync
 
-build: lint-php check-cs static-analysis phpunit lint-doctrine feature-tests
+build: lint-php check-cs static-analysis phpunit lint-doctrine lint-js feature-tests

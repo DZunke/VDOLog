@@ -14,7 +14,7 @@ export default class extends Controller {
     icon: this.iconUrl,
   };
 
-  defaultNotificationOnClickAtion = function () {
+  defaultNotificationOnClickAction = () => {
     window.focus();
     this.close();
   };
@@ -67,7 +67,7 @@ export default class extends Controller {
   async fetchReminder() {
     const that = this;
 
-    await fetch('https://vdolog.local:8081/game/reminder/remind/' + that.lastCheckDate)
+    await fetch(`https://vdolog.local:8081/game/reminder/remind/${that.lastCheckDate}`)
       .then((response) => response.json())
       .then((data) => {
         that.lastCheckDate = (new Date()).toISOString();
@@ -131,7 +131,7 @@ export default class extends Controller {
     const notificationOptions = { ...this.defaultNotifcicationOptions };
     notificationOptions.body = message;
     const notification = new Notification(title, notificationOptions);
-    notification.onclick = this.defaultNotificationOnClickAtion;
+    notification.onclick = this.defaultNotificationOnClickAction;
   }
 
   activatePermissionButton() {
