@@ -4,7 +4,7 @@
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\ErrorHandler\Debug;
-use VDOLog\Web\Kernel;
+use VDOLog\CLI\Kernel;
 
 set_time_limit(0);
 

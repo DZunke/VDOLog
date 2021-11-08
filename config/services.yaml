@@ -26,6 +26,10 @@ services:
     resource: '../src/Web/Controller'
     tags: [ 'controller.service_arguments' ]
 
+  VDOLog\CLI\Command\:
+    resource: '../src/CLI/Command'
+    tags: [ 'console.command' ]
+
   VDOLog\Web\Model\ApplicationConfiguration:
     arguments:
       - [ '%kernel.project_dir%/config/phpdesktop/settings.json', '%kernel.project_dir%/../settings.json' ]

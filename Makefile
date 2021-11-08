@@ -40,14 +40,10 @@ fix-cs: ## auto-fix coding standards
 	vendor/bin/phpcbf -n
 
 db-create: ## creates a fresh database
-	php bin/console doctrine:database:drop --force -q
-	php bin/console doctrine:database:create -q
-	php bin/console doctrine:schema:create -q
+	php bin/console vdo:initialize-application -f
 
 feature-tests: ## executing behat tests
-	APP_ENV=test php bin/console doctrine:database:drop --force -q
-	APP_ENV=test php bin/console doctrine:database:create -q
-	APP_ENV=test php bin/console doctrine:schema:create -q
+	APP_ENV=test php bin/console vdo:initialize-application -f
 	APP_ENV=test vendor/bin/behat -f progress
 
 static-analysis: ## runs static analysis
