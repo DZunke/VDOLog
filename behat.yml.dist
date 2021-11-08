@@ -2,6 +2,7 @@ default:
     suites:
         default:
             contexts:
+                - VDOLog\Tests\Specifications\SecurityContext
                 - VDOLog\Tests\Specifications\GameContext
                 - VDOLog\Tests\Specifications\ProtocolContext
                 - Behat\MinkExtension\Context\MinkContext

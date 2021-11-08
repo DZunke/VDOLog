@@ -37,6 +37,10 @@ services:
   VDOLog\Core\Domain\GameRepository: '@VDOLog\Core\Infrastructure\Doctrine\DoctrineGameRepository'
   VDOLog\Core\Domain\Game\ReminderRepository: '@VDOLog\Core\Infrastructure\Doctrine\DoctrineReminderRepository'
   VDOLog\Core\Domain\ProtocolRepository: '@VDOLog\Core\Infrastructure\Doctrine\DoctrineProtocolRepository'
+  VDOLog\Core\Domain\UserRepository: '@VDOLog\Core\Infrastructure\Doctrine\DoctrineUserRepository'
 
   VDOLog\Core\Infrastructure\Doctrine\:
     resource: '../src/Core/Infrastructure/Doctrine/*'
+
+  Symfony\Component\PasswordHasher\Hasher\SodiumPasswordHasher: ~
+

@@ -2,6 +2,9 @@ Feature:
     In order to manage a game
     I want to be able to handle game creation
 
+    Background:
+        Given I am authenticated as "admin@vdolog.de" using "admin1234"
+
     Scenario: Startpage contents an overview of all created games
         Given I am on "/"
         Then I should see "Übersicht der Spiele"

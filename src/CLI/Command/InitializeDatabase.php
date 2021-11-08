@@ -13,6 +13,9 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Messenger\MessageBusInterface;
+use VDOLog\Core\Application\User\CreateUser;
+use VDOLog\Core\Domain\Common\EMail;
 
 use function assert;
 use function count;
@@ -22,7 +25,8 @@ final class InitializeDatabase extends Command
     private SymfonyStyle $io;
 
     public function __construct(
-        private Connection $connection
+        private Connection $connection,
+        private MessageBusInterface $bus,
     ) {
         parent::__construct();
     }
@@ -59,6 +63,7 @@ final class InitializeDatabase extends Command
         }
 
         $this->createSchema();
+        $this->initializeAdminUser();
 
         $this->io->success('Initialization Finished Successfully');
 
@@ -94,5 +99,16 @@ final class InitializeDatabase extends Command
         $application->run($input, new NullOutput());
 
         $this->io->comment('Existing Schema dropped');
+    }
+
+    private function initializeAdminUser(): void
+    {
+        $message = new CreateUser(
+            new EMail($_ENV['APP_DEFAULT_USER']),
+            $_ENV['APP_DEFAULT_PASSWORD']
+        );
+        $message->asAdmin();
+
+        $this->bus->dispatch($message);
     }
 }

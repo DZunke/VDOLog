@@ -1,0 +1,33 @@
+{% extends 'simple.html.twig' %}
+
+{% block content %}
+
+    <div class="page page-center">
+        <div class="container-tight py-4">
+            <div class="text-center mb-4">
+                <a href="."><img src="{{ app.request.getSchemeAndHttpHost() ~ asset('images/hertha_96x96.png') }}" height="60" alt=""></a>
+            </div>
+            <form class="card card-md" action="{{ path('vdo_login') }}" method="POST" autocomplete="off">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">{{ app_config.title }}</h2>
+                    <div class="mb-3">
+                        <label class="form-label">E-Mail-Adresse</label>
+                        <input name="email" type="email" class="form-control{% if error_message is not empty %} is-invalid{% endif %}" value="{{ last_username }}" placeholder="E-Mail-Adresse" />
+                        {% if error_message is not empty %}
+                            <div class="invalid-feedback">{{ error_message.message }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">Passwort</label>
+                        <input name="password" type="password" class="form-control" placeholder="Passwort" autocomplete="off"/>
+                    </div>
+                    <div class="form-footer">
+                        <button type="submit" class="btn btn-primary w-100">Anmelden</button>
+                    </div>
+                </div>
+            </form>
+            <div class="text-center text-muted mt-3">Zugang über berechtigte Personen beantragen</div>
+        </div>
+    </div>
+
+{% endblock %}

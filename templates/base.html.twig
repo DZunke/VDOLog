@@ -14,7 +14,7 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <link rel="icon" href="/{{ app_config.favIcon }}" type="image/x-icon"/>
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+    <link rel="shortcut icon" type="image/x-icon" href="/{{ app_config.favIcon }}"/>
     <title>{% block title %}{{ app_config.title }}{% endblock %}</title>
 
     {% block stylesheets %}
@@ -24,7 +24,7 @@
     {% endblock %}
 </head>
 
-<body class="antialiased">
+<body class="antialiased" data-controller="loader" data-loader-template-id="screen-loader-template">
 <div class="wrapper" data-controller="loader notification" data-loader-template-id="screen-loader-template" data-notification-ask-permission-button="ask_permission_button" data-notification-icon-url="{{ app.request.getSchemeAndHttpHost() ~ asset('images/hertha_96x96.png') }}">
     <header class="navbar navbar-expand-md navbar-light d-print-none">
         <div class="container-xl">
@@ -32,6 +32,11 @@
                 <div class="nav-item dropdown d-none d-md-flex me-3">
                     <a type="button" id="ask_permission_button" class="no-loader nav-link px-0 text-red" data-action="click->notification#askPermission" title="Push Notification Status">
                         <i class="fas fa-bell"></i>
+                    </a>
+                </div>
+                <div class="nav-item dropdown d-none d-md-flex me-3">
+                    <a type="button" class="nav-link px-0" href="{{ path('vdo_logout') }}" title="Abmelden">
+                        <i class="fas fa-power-off"></i>
                     </a>
                 </div>
                 <div class="nav-item dropdown d-none d-md-flex me-3">
