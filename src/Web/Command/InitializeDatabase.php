@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VDOLog\CLI\Command;
+namespace VDOLog\Web\Command;
 
 use Doctrine\DBAL\Connection;
 use Symfony\Component\Console\Application;
