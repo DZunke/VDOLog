@@ -9,6 +9,7 @@ use VDOLog\Core\Application\Game\CreateGame;
 use VDOLog\Core\Application\Game\CreateGameHandler;
 use VDOLog\Core\Domain\Game;
 use VDOLog\Core\Domain\GameRepository;
+use VDOLog\Core\Domain\User\CurrentUserProvider;
 
 final class CreateGameHandlerTest extends TestCase
 {
@@ -20,7 +21,10 @@ final class CreateGameHandlerTest extends TestCase
         $messageMock = self::createMock(CreateGame::class);
         $messageMock->expects(self::once())->method('getName')->willReturn('foo');
 
-        $handler = new CreateGameHandler($repositoryMock);
+        $currentUserMock = self::createMock(CurrentUserProvider::class);
+        $currentUserMock->expects(self::once())->method('hasCurrentUser')->willReturn(false);
+
+        $handler = new CreateGameHandler($repositoryMock, $currentUserMock);
         $handler($messageMock);
     }
 }

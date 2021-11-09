@@ -23,4 +23,7 @@
         <many-to-one field="parent" target-entity="VDOLog\Core\Domain\Protocol" inversed-by="children" />
     </entity>
 
+    <many-to-one field="createdBy" target-entity="VDOLog\Core\Domain\User" fetch="EXTRA_LAZY">
+        <join-column nullable="true" />
+    </many-to-one>
 </doctrine-mapping>

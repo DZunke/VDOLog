@@ -9,9 +9,12 @@ use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Ramsey\Uuid\Uuid;
+use VDOLog\Core\Domain\User\UserCreatable;
 
 class Protocol
 {
+    use UserCreatable;
+
     private string $id;
     private Game $game;
     private ?Protocol $parent;

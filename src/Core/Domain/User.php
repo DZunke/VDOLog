@@ -9,11 +9,13 @@ use VDOLog\Core\Domain\Common\EMail;
 use VDOLog\Core\Domain\Common\Event\EventStore;
 use VDOLog\Core\Domain\Common\Event\EventStoreable;
 use VDOLog\Core\Domain\User\Event\UserCreated;
+use VDOLog\Core\Domain\User\UserCreatable;
 use VDOLog\Core\Helper\Assertion;
 
 final class User implements EventStore
 {
     use EventStoreable;
+    use UserCreatable;
 
     private string $id;
     private EMail $email;

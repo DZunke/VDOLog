@@ -14,6 +14,7 @@ use VDOLog\Core\Domain\Common\Event\EventStoreable;
 use VDOLog\Core\Domain\Game\Event\GameCreated;
 use VDOLog\Core\Domain\Game\Reminder;
 use VDOLog\Core\Domain\Game\TimeFrame;
+use VDOLog\Core\Domain\User\UserCreatable;
 
 /**
  * @UniqueEntity("name")
@@ -21,6 +22,7 @@ use VDOLog\Core\Domain\Game\TimeFrame;
 class Game implements EventStore
 {
     use EventStoreable;
+    use UserCreatable;
 
     private string $id;
     private string $name = '';

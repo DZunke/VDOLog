@@ -8,16 +8,15 @@ use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 use VDOLog\Core\Domain\GameRepository;
 use VDOLog\Core\Domain\Protocol;
 use VDOLog\Core\Domain\ProtocolRepository;
+use VDOLog\Core\Domain\User\CurrentUserProvider;
 
 final class AddProtocolHandler implements MessageHandlerInterface
 {
-    private ProtocolRepository $protocolRepository;
-    private GameRepository $gameRepository;
-
-    public function __construct(ProtocolRepository $protocolRepository, GameRepository $gameRepository)
-    {
-        $this->protocolRepository = $protocolRepository;
-        $this->gameRepository     = $gameRepository;
+    public function __construct(
+        private ProtocolRepository $protocolRepository,
+        private GameRepository $gameRepository,
+        private CurrentUserProvider $currentUserProvider
+    ) {
     }
 
     public function __invoke(AddProtocol $message): void
@@ -30,6 +29,10 @@ final class AddProtocolHandler implements MessageHandlerInterface
 
         if ($message->getParent() !== null) {
             $protocol->setParent($message->getParent());
+        }
+
+        if ($this->currentUserProvider->hasCurrentUser()) {
+            $protocol->setCreatedBy($this->currentUserProvider->getCurrentUser());
         }
 
         $this->protocolRepository->save($protocol);

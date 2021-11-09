@@ -11,13 +11,11 @@ use VDOLog\Core\Domain\UserRepository;
 
 final class CreateUserHandler implements MessageHandlerInterface
 {
-    private UserRepository $userRepository;
-    private SodiumPasswordHasher $passwordHasher;
-
-    public function __construct(UserRepository $userRepository, SodiumPasswordHasher $passwordHasher)
-    {
-        $this->userRepository = $userRepository;
-        $this->passwordHasher = $passwordHasher;
+    public function __construct(
+        private UserRepository $userRepository,
+        private SodiumPasswordHasher $passwordHasher,
+        private User\CurrentUserProvider $currentUserProvider
+    ) {
     }
 
     public function __invoke(CreateUser $message): void
@@ -26,6 +24,10 @@ final class CreateUserHandler implements MessageHandlerInterface
 
         if ($message->isAdmin()) {
             $user->markAdmin();
+        }
+
+        if ($this->currentUserProvider->hasCurrentUser()) {
+            $user->setCreatedBy($this->currentUserProvider->getCurrentUser());
         }
 
         $this->userRepository->save($user);
