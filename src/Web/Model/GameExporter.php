@@ -27,8 +27,10 @@ class GameExporter
         $data[] = ['Sender', 'Empfänger', 'Uhrzeit', 'Inhalt'];
         foreach ($game->getProtocol() as $protocol) {
             $data[] = [
-                'sender' => $protocol->getSender() ?? '10',
-                'recipent' => $protocol->getRecipent() ?? (strlen($protocol->getSender()) === 0 ? 'alle' : '10'),
+                'sender' => strlen($protocol->getSender()) > 0 ? $protocol->getSender() : '10',
+                'recipent' => strlen($protocol->getRecipent()) > 0
+                    ? $protocol->getRecipent()
+                    : (strlen($protocol->getSender()) === 0 ? 'alle' : '10'),
                 'createdAt' => $protocol->getCreatedAt(),
                 'content' => $protocol->getContent(),
             ];

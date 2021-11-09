@@ -20,6 +20,7 @@ final class Assertion extends BaseAssertion
         ?string $propertyPath = null
     ): bool {
         try {
+            self::string($value);
             new DateTime($value);
         } catch (Throwable) {
             $message = sprintf(
@@ -27,7 +28,12 @@ final class Assertion extends BaseAssertion
                 self::stringify($value)
             );
 
-            throw self::createException($value, $message, self::INVALID_RELATIVE_DATETIME_STRING, $propertyPath);
+            throw self::createException(
+                $value,
+                $message,
+                self::INVALID_RELATIVE_DATETIME_STRING,
+                $propertyPath
+            );
         }
 
         return true;

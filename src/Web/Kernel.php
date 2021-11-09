@@ -8,8 +8,11 @@ use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
+
+use function assert;
 
 class Kernel extends BaseKernel
 {
@@ -26,7 +29,10 @@ class Kernel extends BaseKernel
                 continue;
             }
 
-            yield new $class();
+            $bundle = new $class();
+            assert($bundle instanceof BundleInterface);
+
+            yield $bundle;
         }
     }
 
