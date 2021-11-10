@@ -95,4 +95,9 @@ class User implements EventStore
     {
         return $this->displayName;
     }
+
+    public function changeCredentials(string $password): void
+    {
+        $this->password = $password;
+    }
 }

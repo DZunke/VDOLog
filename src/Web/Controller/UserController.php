@@ -13,7 +13,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use VDOLog\Core\Application\User\DeleteUser;
 use VDOLog\Core\Domain\User;
 use VDOLog\Core\Domain\UserRepository;
+use VDOLog\Web\Form\ChangePasswordType;
 use VDOLog\Web\Form\CreateUserType;
+use VDOLog\Web\Form\Dto\ChangePasswordDto;
 use VDOLog\Web\Form\Dto\CreateUserDto;
 use VDOLog\Web\Form\Dto\EditUserDto;
 use VDOLog\Web\Form\EditUserType;
@@ -126,5 +128,31 @@ final class UserController extends AbstractController
         }
 
         return $this->render('user/delete.html.twig', ['user' => $user]);
+    }
+
+    /**
+     * @Route("/{id}/change_password", name="user_change_password")
+     */
+    public function password(User $user, Request $request, MessageBusInterface $messageBus): Response
+    {
+        $dto  = ChangePasswordDto::fromObject($user);
+        $form = $this->createForm(ChangePasswordType::class, $dto);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $messageBus->dispatch($dto->toCommand());
+
+            $this->addFlash(
+                'success',
+                'Der/Die NutzerIn mit der E-Mail-Adresse "' . $user->getEmail() . '" wurde erfolgreich bearbeitet.'
+            );
+
+            return $this->redirectToRoute('user_list');
+        }
+
+        return $this->render(
+            'user/change_password.html.twig',
+            ['user' => $user, 'form' => $form->createView()]
+        );
     }
 }
