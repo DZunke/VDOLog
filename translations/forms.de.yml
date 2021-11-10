@@ -1,0 +1,8 @@
+#############
+## Users
+#########
+
+user.email: E-Mail-Adresse
+user.first: Passwort
+user.second: Passwort Wiederholung
+user.isAdmin: Administrator

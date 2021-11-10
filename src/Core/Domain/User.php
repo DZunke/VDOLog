@@ -12,7 +12,7 @@ use VDOLog\Core\Domain\User\Event\UserCreated;
 use VDOLog\Core\Domain\User\UserCreatable;
 use VDOLog\Core\Helper\Assertion;
 
-final class User implements EventStore
+class User implements EventStore
 {
     use EventStoreable;
     use UserCreatable;

@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace VDOLog\Core\Infrastructure\Doctrine;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use InvalidArgumentException;
 use VDOLog\Core\Domain\User;
 use VDOLog\Core\Domain\UserRepository;
+use VDOLog\Core\Helper\Assertion;
 
 class DoctrineUserRepository implements UserRepository
 {
@@ -26,6 +29,13 @@ class DoctrineUserRepository implements UserRepository
         }
 
         return $user;
+    }
+
+    public function findAll(): Collection
+    {
+        $users = $this->em->getRepository(User::class)->findAll();
+
+        return new ArrayCollection($users);
     }
 
     public function findByEmail(string $email): ?User

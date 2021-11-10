@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+<div class="row row-cards">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Registrierte NutzerInnen</h3>
+                <div class="card-options">
+                    <a href="{{ path('user_create') }}" class="btn btn-success btn-sm" title="Neue/r NutzerIn"><i class="fas fa-plus"></i>&nbsp;Neue/r NutzerIn</a>
+                </div>
+            </div>
+            <div>
+                <table class="table table-vcenter card-table">
+                    <thead>
+                    <tr>
+                        <th>E-Mail</th>
+                        <th>Letzte Anmeldung</th>
+                        <th>Admin</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                            <tr>
+                            <td>{{ user.email }}</td>
+                            <td></td>
+                            <td>{{ user.isAdmin|yes_no }}</td>
+                            <td class="text-end"></td>
+                            </tr>
+                        {% else %}
+                            <tr><td colspan="4">Keine Einträge</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
