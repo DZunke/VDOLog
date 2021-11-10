@@ -53,6 +53,12 @@ class CreateUserType extends AbstractType
         );
 
         $builder->add(
+            'displayName',
+            TextType::class,
+            ['required' => false]
+        );
+
+        $builder->add(
             'isAdmin',
             CheckboxType::class,
             ['required' => false]

@@ -105,7 +105,8 @@ final class InitializeDatabase extends Command
     {
         $message = new CreateUser(
             new EMail($_ENV['APP_DEFAULT_USER']),
-            $_ENV['APP_DEFAULT_PASSWORD']
+            $_ENV['APP_DEFAULT_PASSWORD'],
+            'Administrator'
         );
         $message->asAdmin();
 

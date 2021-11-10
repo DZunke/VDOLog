@@ -21,6 +21,7 @@ final class CreateUserHandler implements MessageHandlerInterface
     public function __invoke(CreateUser $message): void
     {
         $user = User::create($message->getEMail(), $this->passwordHasher->hash($message->getPlainTextPassword()));
+        $user->setDisplayName($message->getDisplayName());
 
         if ($message->isAdmin()) {
             $user->markAdmin();

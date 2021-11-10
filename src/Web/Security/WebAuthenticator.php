@@ -16,14 +16,14 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
+use VDOLog\Core\Domain\UserRepository;
 
 class WebAuthenticator extends AbstractAuthenticator
 {
-    private RouterInterface $router;
-
-    public function __construct(RouterInterface $router)
-    {
-        $this->router = $router;
+    public function __construct(
+        private RouterInterface $router,
+        private UserRepository $userRepository
+    ) {
     }
 
     public function supports(Request $request): ?bool
@@ -44,6 +44,9 @@ class WebAuthenticator extends AbstractAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
+        $email = (string) $request->request->get('email');
+        $this->userRepository->updateLastLogin($email);
+
         return new RedirectResponse($this->router->generate('dashboard'));
     }
 

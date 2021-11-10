@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace VDOLog\Core\Domain;
 
+use DateTimeImmutable;
 use Ramsey\Uuid\Uuid;
 use VDOLog\Core\Domain\Common\EMail;
 use VDOLog\Core\Domain\Common\Event\EventStore;
@@ -20,6 +21,8 @@ class User implements EventStore
     private string $id;
     private EMail $email;
     private string $password;
+    private string $displayName = '';
+    private ?DateTimeImmutable $lastLogin;
     private bool $isAdmin = false;
 
     public function __construct(string $uuid, EMail $email, string $password)
@@ -62,5 +65,25 @@ class User implements EventStore
     public function getPassword(): string
     {
         return $this->password;
+    }
+
+    public function setLastLogin(DateTimeImmutable $lastLogin): void
+    {
+        $this->lastLogin = $lastLogin;
+    }
+
+    public function getLastLogin(): ?DateTimeImmutable
+    {
+        return $this->lastLogin;
+    }
+
+    public function setDisplayName(string $displayName): void
+    {
+        $this->displayName = $displayName;
+    }
+
+    public function getDisplayName(): string
+    {
+        return $this->displayName;
     }
 }

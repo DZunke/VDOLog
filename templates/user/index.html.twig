@@ -16,6 +16,7 @@
                     <thead>
                     <tr>
                         <th>E-Mail</th>
+                        <th>Anzeigename</th>
                         <th>Letzte Anmeldung</th>
                         <th>Admin</th>
                         <th></th>
@@ -25,7 +26,8 @@
                         {% for user in users %}
                             <tr>
                             <td>{{ user.email }}</td>
-                            <td></td>
+                            <td>{{ user.displayName ?: 'Keine Angabe' }}</td>
+                            <td>{{ user.lastLogin == null ? 'Niemals' : user.lastLogin|format_datetime('short', 'short') }}</td>
                             <td>{{ user.isAdmin|yes_no }}</td>
                             <td class="text-end"></td>
                             </tr>

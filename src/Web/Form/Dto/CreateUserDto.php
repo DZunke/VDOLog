@@ -12,10 +12,11 @@ class CreateUserDto
     public string $email;
     public string $password;
     public ?bool $isAdmin;
+    public string $displayName = '';
 
     public function toCommand(): CreateUser
     {
-        $command = new CreateUser(new EMail($this->email), $this->password);
+        $command = new CreateUser(new EMail($this->email), $this->password, $this->displayName);
         if ($this->isAdmin === true) {
             $command->asAdmin();
         }

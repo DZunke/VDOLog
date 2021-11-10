@@ -11,11 +11,13 @@ class CreateUser
     private EMail $email;
     private string $plainTextPassword;
     private bool $isAdmin = false;
+    private string $displayName;
 
-    public function __construct(EMail $email, string $plainTextPassword)
+    public function __construct(EMail $email, string $plainTextPassword, string $displayName = '')
     {
         $this->email             = $email;
         $this->plainTextPassword = $plainTextPassword;
+        $this->displayName       = $displayName;
     }
 
     public function asAdmin(): void
@@ -36,5 +38,10 @@ class CreateUser
     public function getPlainTextPassword(): string
     {
         return $this->plainTextPassword;
+    }
+
+    public function getDisplayName(): string
+    {
+        return $this->displayName;
     }
 }

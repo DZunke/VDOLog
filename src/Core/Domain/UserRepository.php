@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace VDOLog\Core\Domain;
 
-use Doctrine\Common\Collections\Collection;
+use DateTimeImmutable;
 
 interface UserRepository
 {
@@ -12,10 +12,12 @@ interface UserRepository
 
     public function findByEmail(string $email): ?User;
 
-    /** @return Collection<int, User> */
-    public function findAll(): Collection;
+    /** @return iterable<int, User> */
+    public function findAll(): iterable;
 
     public function save(User $user): void;
 
     public function delete(string $id): void;
+
+    public function updateLastLogin(string $email, ?DateTimeImmutable $lastLogin = null): void;
 }

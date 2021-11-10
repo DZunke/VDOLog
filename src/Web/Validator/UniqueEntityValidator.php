@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace VDOLog\Web\Validator;
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -7,6 +9,8 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
+use function assert;
+use function class_exists;
 use function count;
 use function is_string;
 
@@ -16,6 +20,7 @@ final class UniqueEntityValidator extends ConstraintValidator
     {
     }
 
+    /** @inheritDoc */
     public function validate($value, Constraint $constraint): void
     {
         if (! $constraint instanceof UniqueEntity) {
@@ -27,7 +32,9 @@ final class UniqueEntityValidator extends ConstraintValidator
         }
 
         $entityClass = $constraint->entityClass;
-        $repository  = $this->em->getRepository($entityClass);
+        assert(class_exists($entityClass));
+
+        $repository = $this->em->getRepository($entityClass);
 
         $result = $repository->findBy([$constraint->field => $value]);
         if (count($result) === 0) {
