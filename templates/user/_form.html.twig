@@ -6,12 +6,15 @@
                 <div class="card">
                     <div class="card-body">
                         {{ form_row(form.email, {'attr': {'autocomplete': 'off'}}) }}
-                        {{ form_row(form.password.first, {'attr': {'autocomplete': 'new-password'}}) }}
-                        {{ form_row(form.password.second, {'attr': {'autocomplete': 'new-password'}}) }}
+
+                        {% if form.password is defined %}
+                            {{ form_row(form.password.first, {'attr': {'autocomplete': 'new-password'}}) }}
+                            {{ form_row(form.password.second, {'attr': {'autocomplete': 'new-password'}}) }}
+                        {% endif %}
                     </div>
                     <div class="card-footer text-end">
                         <div class="d-flex">
-                            <a href="{{ path('dashboard') }}" class="btn btn-link">Abbrechen</a>
+                            <a href="{{ path('user_list') }}" class="btn btn-link">Abbrechen</a>
                             <button type="submit" data-check-form="game" class="btn btn-primary ms-auto">Speichern</button>
                         </div>
                     </div>

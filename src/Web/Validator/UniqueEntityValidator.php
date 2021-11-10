@@ -12,7 +12,9 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use function assert;
 use function class_exists;
 use function count;
+use function dump;
 use function is_string;
+use function strlen;
 
 final class UniqueEntityValidator extends ConstraintValidator
 {
@@ -34,9 +36,21 @@ final class UniqueEntityValidator extends ConstraintValidator
         $entityClass = $constraint->entityClass;
         assert(class_exists($entityClass));
 
-        $repository = $this->em->getRepository($entityClass);
+        $qb = $this->em->createQueryBuilder();
+        $qb->from($entityClass, 'e');
+        $qb->select('e');
+        $qb->andWhere($qb->expr()->eq('e.' . $constraint->field, $qb->expr()->literal($value)));
 
-        $result = $repository->findBy([$constraint->field => $value]);
+        if (strlen($constraint->ignoreEntryIdField) > 0) {
+            $idField = $constraint->ignoreEntryIdField;
+            $givenId = $this->context->getRoot()->getNormData()->$idField;
+
+            $qb->andWhere($qb->expr()->neq('e.id', $qb->expr()->literal($givenId)));
+        }
+
+        dump($qb->getQuery());
+
+        $result = $qb->getQuery()->getResult();
         if (count($result) === 0) {
             return;
         }

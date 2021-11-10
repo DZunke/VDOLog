@@ -6,19 +6,16 @@ namespace VDOLog\Web\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\NotCompromisedPassword;
 use VDOLog\Core\Domain\User;
-use VDOLog\Web\Form\Dto\CreateUserDto;
+use VDOLog\Web\Form\Dto\EditUserDto;
 use VDOLog\Web\Validator\UniqueEntity;
 
-class CreateUserType extends AbstractType
+class EditUserType extends AbstractType
 {
     /** @inheritDoc */
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -34,20 +31,8 @@ class CreateUserType extends AbstractType
                     new UniqueEntity([
                         'entityClass' => User::class,
                         'field' => 'email',
+                        'ignoreEntryIdField' => 'id',
                     ]),
-                ],
-            ]
-        );
-
-        $builder->add(
-            'password',
-            RepeatedType::class,
-            [
-                'empty_data' => '',
-                'type' => PasswordType::class,
-                'constraints' => [
-                    new NotBlank(),
-                    new NotCompromisedPassword(),
                 ],
             ]
         );
@@ -68,7 +53,7 @@ class CreateUserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => CreateUserDto::class,
+            'data_class' => EditUserDto::class,
             'label_format' => 'user.%name%',
             'translation_domain' => 'forms',
         ]);

@@ -18,6 +18,11 @@ final class EMail implements Stringable
         $this->email = $email;
     }
 
+    public function equals(EMail $email): bool
+    {
+        return $this->email === (string) $email;
+    }
+
     public function __toString(): string
     {
         return $this->email;

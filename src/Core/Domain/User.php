@@ -47,6 +47,15 @@ class User implements EventStore
         $this->isAdmin = true;
     }
 
+    public function changeEMail(EMail $mail): void
+    {
+        if ($this->email->equals($mail)) {
+            return;
+        }
+
+        $this->email = $mail;
+    }
+
     public function getId(): string
     {
         return $this->id;

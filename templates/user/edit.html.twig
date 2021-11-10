@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="page-title">
+        <h1>NutzerIn "{{ user.email }}" bearbeiten</h1>
+    </div>
+
+    {% include 'user/_form.html.twig' %}
+{% endblock %}

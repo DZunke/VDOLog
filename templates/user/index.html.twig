@@ -29,7 +29,12 @@
                             <td>{{ user.displayName ?: 'Keine Angabe' }}</td>
                             <td>{{ user.lastLogin == null ? 'Niemals' : user.lastLogin|format_datetime('short', 'short') }}</td>
                             <td>{{ user.isAdmin|yes_no }}</td>
-                            <td class="text-end"></td>
+                            <td class="text-end">
+                                <a href="{{ path('user_edit', {'id': user.id}) }}"  title="NutzerIn '{{  user.email }}' bearbeiten" class="btn btn-sm btn-icon btn-yellow"><i class="fas fa-pencil-alt"></i>&nbsp;Bearbeiten</a>
+                                {% if app.user.domainUser.id != user.id %}
+                                    <a href="{{ path('user_delete', {'id': user.id}) }}"  title="NutzerIn '{{  user.email }}' löschen" class="btn btn-sm btn-icon btn-red"><i class="fas fa-trash-alt"></i>&nbsp;Löschen</a>
+                                {% endif %}
+                            </td>
                             </tr>
                         {% else %}
                             <tr><td colspan="4">Keine Einträge</td></tr>
