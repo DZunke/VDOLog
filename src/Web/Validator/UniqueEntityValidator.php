@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace VDOLog\Web\Validator;
 
 use Doctrine\ORM\EntityManagerInterface;
+use ReflectionClass;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -13,6 +14,7 @@ use function assert;
 use function class_exists;
 use function count;
 use function dump;
+use function is_object;
 use function is_string;
 use function strlen;
 
@@ -43,9 +45,14 @@ final class UniqueEntityValidator extends ConstraintValidator
 
         if (strlen($constraint->ignoreEntryIdField) > 0) {
             $idField = $constraint->ignoreEntryIdField;
-            $givenId = $this->context->getRoot()->getNormData()->$idField;
+            $objData = $this->context->getRoot()->getNormData();
+            assert(is_object($objData));
 
-            $qb->andWhere($qb->expr()->neq('e.id', $qb->expr()->literal($givenId)));
+            $reflection = new ReflectionClass($objData::class);
+            if ($reflection->hasProperty($idField)) {
+                $givenId = $reflection->getProperty($idField)->getValue($objData);
+                $qb->andWhere($qb->expr()->neq('e.id', $qb->expr()->literal($givenId)));
+            }
         }
 
         dump($qb->getQuery());
