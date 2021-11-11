@@ -29,9 +29,16 @@
     <header class="navbar navbar-expand-md navbar-light d-print-none">
         <div class="container-xl">
             <div class="navbar-nav flex-row order-md-last">
+                {% if app.user.domainUser.notificationsEnabled %}
+                    <div class="nav-item dropdown d-none d-md-flex me-3">
+                        <a type="button" id="ask_permission_button" class="no-loader nav-link px-0 text-red" data-action="click->notification#askPermission" title="Browserbenachrichtigungs Status">
+                            <i class="fas fa-bell"></i>
+                        </a>
+                    </div>
+                {% endif %}
                 <div class="nav-item dropdown d-none d-md-flex me-3">
-                    <a type="button" id="ask_permission_button" class="no-loader nav-link px-0 text-red" data-action="click->notification#askPermission" title="Push Notification Status">
-                        <i class="fas fa-bell"></i>
+                    <a href="{{ path('user_profile') }}" class="nav-link px-0" title="NutzerInnenprofil aufrufen">
+                        <i class="fas fa-user-alt"></i>
                     </a>
                 </div>
                 <div class="nav-item dropdown d-none d-md-flex me-3">

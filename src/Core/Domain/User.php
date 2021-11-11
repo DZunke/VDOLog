@@ -23,7 +23,8 @@ class User implements EventStore
     private string $password;
     private string $displayName = '';
     private ?DateTimeImmutable $lastLogin;
-    private bool $isAdmin = false;
+    private bool $isAdmin             = false;
+    private bool $enableNotifications = false;
 
     public function __construct(string $uuid, EMail $email, string $password)
     {
@@ -99,5 +100,20 @@ class User implements EventStore
     public function changeCredentials(string $password): void
     {
         $this->password = $password;
+    }
+
+    public function receiveNotifications(): void
+    {
+        $this->enableNotifications = true;
+    }
+
+    public function disableNotifications(): void
+    {
+        $this->enableNotifications = false;
+    }
+
+    public function notificationsEnabled(): bool
+    {
+        return $this->enableNotifications;
     }
 }

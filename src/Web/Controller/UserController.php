@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use VDOLog\Core\Application\User\ChangePassword;
 use VDOLog\Core\Application\User\DeleteUser;
 use VDOLog\Core\Domain\User;
 use VDOLog\Core\Domain\UserRepository;
@@ -18,7 +19,9 @@ use VDOLog\Web\Form\CreateUserType;
 use VDOLog\Web\Form\Dto\ChangePasswordDto;
 use VDOLog\Web\Form\Dto\CreateUserDto;
 use VDOLog\Web\Form\Dto\EditUserDto;
+use VDOLog\Web\Form\Dto\UserProfileDto;
 use VDOLog\Web\Form\EditUserType;
+use VDOLog\Web\Form\UserProfileType;
 
 use function assert;
 use function is_string;
@@ -153,6 +156,39 @@ final class UserController extends AbstractController
         return $this->render(
             'user/change_password.html.twig',
             ['user' => $user, 'form' => $form->createView()]
+        );
+    }
+
+    /**
+     * @Route("/profile", name="user_profile")
+     */
+    public function profile(
+        User\CurrentUserProvider $currentUserProvider,
+        Request $request,
+        MessageBusInterface $messageBus
+    ): Response {
+        $dto  = UserProfileDto::fromObject($currentUserProvider->getCurrentUser());
+        $form = $this->createForm(UserProfileType::class, $dto);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $messageBus->dispatch($dto->toUpdateProfileCommand());
+            $passwordChangeCommand = $dto->toChangePasswordCommand();
+            if ($passwordChangeCommand instanceof ChangePassword) {
+                $messageBus->dispatch($passwordChangeCommand);
+            }
+
+            $this->addFlash(
+                'success',
+                'Ihr Profil wurde erfolgreich aktualisiert'
+            );
+
+            return $this->redirectToRoute('user_profile');
+        }
+
+        return $this->render(
+            'user/profile.html.twig',
+            ['form' => $form->createView()]
         );
     }
 }

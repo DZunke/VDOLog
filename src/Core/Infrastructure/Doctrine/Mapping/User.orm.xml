@@ -18,6 +18,7 @@
         <field name="isAdmin" type="boolean"/>
         <field name="displayName" type="string"/>
         <field name="lastLogin" type="datetime_immutable" nullable="true"/>
+        <field name="enableNotifications" type="boolean"/>
 
         <many-to-one field="createdBy" target-entity="VDOLog\Core\Domain\User" fetch="EXTRA_LAZY">
             <join-column nullable="true"/>
