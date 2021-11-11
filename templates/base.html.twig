@@ -25,7 +25,7 @@
 </head>
 
 <body class="antialiased" data-controller="loader" data-loader-template-id="screen-loader-template">
-<div class="wrapper" data-controller="loader notification" data-loader-template-id="screen-loader-template" data-notification-ask-permission-button="ask_permission_button" data-notification-icon-url="{{ app.request.getSchemeAndHttpHost() ~ asset('images/hertha_96x96.png') }}">
+<div class="wrapper" data-controller="notification" data-notification-ask-permission-button="ask_permission_button" data-notification-icon-url="{{ app.request.getSchemeAndHttpHost() ~ asset('images/hertha_96x96.png') }}">
     <header class="navbar navbar-expand-md navbar-light d-print-none">
         <div class="container-xl">
             <div class="navbar-nav flex-row order-md-last">
@@ -67,7 +67,7 @@
                             <div class="col-12">
                                 <div class="alert alert-{{ label }} alert-dismissible" role="alert">
                                     <div class="d-flex"><div class="text-muted">{{ message }}</div></div>
-                                    <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+                                    <a class="btn-close no-loader" data-bs-dismiss="alert" aria-label="close"></a>
                                 </div>
                             </div>
                         </div>
