@@ -20,10 +20,14 @@ export default class extends Controller {
   };
 
   connect() {
+    if (document.getElementById(this.askPermissionButton) === null) {
+      this.featureEnabled = false;
+      return;
+    }
+
     if (!('Notification' in window)) {
       this.featureEnabled = false;
-      document.getElementById(this.askPermissionButton)
-        .remove();
+      document.getElementById(this.askPermissionButton).remove();
       return;
     }
 

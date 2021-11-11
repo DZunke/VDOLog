@@ -6,7 +6,10 @@ export default class extends Controller {
   connect() {
     const that = this;
 
-    window.onbeforeunload = () => that.check();
+    window.onbeforeunload = (e) => {
+      const $srcElement = e.target.activeElement;
+      that.check($srcElement);
+    };
     window.onpageshow = () => that.unload();
   }
 
