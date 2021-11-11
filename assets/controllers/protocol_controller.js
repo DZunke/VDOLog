@@ -5,7 +5,7 @@ export default class extends Controller {
   connect() {
     const that = this;
 
-    this.constructor.focusguard();
+    this.focusguard();
 
     document.querySelectorAll('input[type="text"], textarea')
       .forEach((elem) => {
@@ -21,14 +21,16 @@ export default class extends Controller {
       });
   }
 
-  static focusguard() {
+  focusguard() { // eslint-disable-line class-methods-use-this
     document.querySelector('input[tabindex="1"]')
       .focus();
   }
 
   submit() {
-    document.querySelector(this.formQuery)
-      .submit();
+    const form = document.querySelector(this.formQuery);
+    if (form.reportValidity()) {
+      form.submit();
+    }
   }
 
   reset() {
@@ -58,7 +60,7 @@ export default class extends Controller {
         elem.classList.remove('is-invalid');
       });
 
-    this.constructor.focusguard();
+    this.focusguard();
   }
 
   addChildEntry($event) {
@@ -100,7 +102,7 @@ export default class extends Controller {
     const formAppendingCancelButton = document.createElement('button');
     formAppendingCancelButton.id = 'protocol-add-child-reset';
     formAppendingCancelButton.type = 'button';
-    formAppendingCancelButton.className = 'btn btn-block btn-secondary';
+    formAppendingCancelButton.className = 'btn btn-secondary';
     formAppendingCancelButton.tabIndex = 4;
     formAppendingCancelButton.innerText = 'Abbrechen';
 
@@ -109,9 +111,10 @@ export default class extends Controller {
       this.reset();
     });
 
-    $idFormElement.parentElement.append(formAppendingCancelButton);
+    const $buttonElement = $idFormElement.parentElement.getElementsByClassName('protocol-form-buttons')[0];
+    $buttonElement.prepend(formAppendingCancelButton);
 
-    this.constructor.focusguard();
+    this.focusguard();
   }
 
   get formQuery() {
