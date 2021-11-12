@@ -1,4 +1,5 @@
 <?php
+// phpcs:disable
 
 declare(strict_types=1);
 
@@ -12,6 +13,7 @@ use VDOLog\Core\Domain\GameRepository;
 
 final class ReminderCreation implements EventSubscriberInterface
 {
+    /** @phpstan-ignore-next-line */
     private GameRepository $gameRepository;
 
     public function __construct(GameRepository $gameRepository)
@@ -37,6 +39,6 @@ final class ReminderCreation implements EventSubscriberInterface
             $game->getTimeFrame()->getOption(TimeFrame::OPT_SPECTATOR_ENTRY)
         ));
 
-        $this->gameRepository->save($game);
+        // $this->gameRepository->save($game);
     }
 }
