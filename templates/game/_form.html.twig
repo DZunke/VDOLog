@@ -5,7 +5,10 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        {{ form_row(form.name) }}
+                        {{ form_row(form.name) }}<br/>
+                        {% if form.location is defined %}
+                            {{ form_row(form.location) }}
+                        {% endif %}
                     </div>
                     <div class="card-footer text-end">
                         <div class="d-flex">

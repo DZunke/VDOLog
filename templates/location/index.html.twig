@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+<div class="row row-cards">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Standorte</h3>
+                <div class="card-options">
+                    <a href="{{ path('location_create') }}" class="btn btn-success btn-sm" title="Neuer Standort"><i class="fas fa-plus"></i>&nbsp;Neuer Standort</a>
+                </div>
+            </div>
+            <div>
+                <table class="table table-vcenter card-table">
+                    <thead>
+                    <tr>
+                        <th>Bezeichnung</th>
+                        <th>Zugangsscanner</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for location in locations %}
+                            <tr>
+                                <td>{{ location.name }}</td>
+                                <td>{{ location.accessScanners|length }}</td>
+                                <td class="text-end">
+                                    <a href="{{ path('location_edit', {'id': location.id}) }}"  title="Standoprt '{{  location.name }}' bearbeiten" class="btn btn-sm btn-icon btn-yellow"><i class="fas fa-pencil-alt"></i>&nbsp;Bearbeiten</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr><td colspan="3">Keine Einträge</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

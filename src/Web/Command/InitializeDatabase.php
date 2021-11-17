@@ -91,7 +91,7 @@ final class InitializeDatabase extends Command
 
     private function clearExistingSchema(): void
     {
-        $input       = new ArrayInput(['command' => 'doctrine:schema:drop', '--force' => true, '-q' => true]);
+        $input       = new ArrayInput(['command' => 'doctrine:schema:drop', '--force' => true, '-q' => true, '--full-database' => true]);
         $application = $this->getApplication();
         assert($application instanceof Application);
 

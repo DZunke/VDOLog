@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace VDOLog\Web\Form\Dto;
 
 use VDOLog\Core\Application\Game\CreateGame;
+use VDOLog\Core\Domain\Location;
 use VDOLog\Web\Form\Dto\Game\TimeFrameDto;
 
 final class CreateGameDto
 {
     public string $name;
+    public ?Location $location = null;
     public TimeFrameDto $timeFrame;
 
     public function __construct()
@@ -19,6 +21,11 @@ final class CreateGameDto
 
     public function toCommand(): CreateGame
     {
-        return new CreateGame($this->name, $this->timeFrame->toTimeFrame());
+        $command = new CreateGame($this->name, $this->timeFrame->toTimeFrame());
+        if ($this->location !== null) {
+            $command->withLocation($this->location);
+        }
+
+        return $command;
     }
 }

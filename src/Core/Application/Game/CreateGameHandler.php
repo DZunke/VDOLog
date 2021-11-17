@@ -22,6 +22,10 @@ final class CreateGameHandler implements MessageHandlerInterface
         $game = Game::create($message->getName());
         $game->setTimeFrame($message->getTimeFrame());
 
+        if ($message->getLocation() !== null) {
+            $game->setLocation($message->getLocation());
+        }
+
         if ($this->currentUserProvider->hasCurrentUser()) {
             $game->setCreatedBy($this->currentUserProvider->getCurrentUser());
         }

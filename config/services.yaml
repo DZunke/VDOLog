@@ -34,6 +34,7 @@ services:
   VDOLog\Core\Domain\Game\ReminderRepository: '@VDOLog\Core\Infrastructure\Doctrine\DoctrineReminderRepository'
   VDOLog\Core\Domain\ProtocolRepository: '@VDOLog\Core\Infrastructure\Doctrine\DoctrineProtocolRepository'
   VDOLog\Core\Domain\UserRepository: '@VDOLog\Core\Infrastructure\Doctrine\DoctrineUserRepository'
+  VDOLog\Core\Domain\LocationRepository: '@VDOLog\Core\Infrastructure\Doctrine\DoctrineLocationRepository'
   VDOLog\Core\Domain\User\CurrentUserProvider: '@VDOLog\Web\Security\CurrentDomainUserProvider'
 
   VDOLog\Core\Infrastructure\Doctrine\:

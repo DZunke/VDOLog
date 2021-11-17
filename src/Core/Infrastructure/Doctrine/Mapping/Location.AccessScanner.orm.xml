@@ -3,9 +3,14 @@
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <embeddable name="VDOLog\Core\Domain\Game\TimeFrame">
-        <field name="eventStartsAt" type="datetime_immutable" />
-        <field name="timeframeOptions" type="json" />
-    </embeddable>
+    <entity name="VDOLog\Core\Domain\Location\AccessScanner">
+        <id name="id" type="guid">
+            <generator strategy="NONE"/>
+        </id>
+
+        <field name="name"/>
+
+        <many-to-one field="location" target-entity="VDOLog\Core\Domain\Location" inversed-by="accessScanners" fetch="EXTRA_LAZY"/>
+    </entity>
 
 </doctrine-mapping>

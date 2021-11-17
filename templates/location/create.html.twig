@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="page-title">
+        <h1>Standort erstellen</h1>
+    </div>
+
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'autocomplete': 'off'}}) }}
+    <div class="row row-cards">
+        <div class="col-md-6">
+            <div class="row row-cards">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            {{ form_row(form.name, {'attr': {'autocomplete': 'off'}}) }}
+                        </div>
+                        <div class="card-footer text-end">
+                            <div class="d-flex">
+                                <a href="{{ path('location_list') }}" class="btn btn-link">Abbrechen</a>
+                                <button type="submit" data-check-form="location" class="btn btn-primary ms-auto">Speichern</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row row-cards">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            {{ form_row(form.accessScanners) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}

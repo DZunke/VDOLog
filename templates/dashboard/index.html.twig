@@ -15,6 +15,7 @@
                             <thead>
                                 <tr>
                                     <th>Spiel</th>
+                                    <th>Standort</th>
                                     <th>Beginn Arbeitstag</th>
                                     <th>Beginn Einlassphase</th>
                                     <th>Veranstaltungsbeginn</th>
@@ -26,13 +27,14 @@
                             {% for game in games %}
                                 <tr>
                                     <td>{{ game.name }}</td>
+                                    <td>{{ game.location ?: 'Keine Angabe' }}</td>
                                     <td>{{ game.timeFrame.eventStartsAt|format_datetime('short', 'short') }}</td>
                                     <td>{{ game.timeFrame.getOptionAsDateTime('spectator_entry_start')|format_datetime('short', 'short') }}</td>
                                     <td>{{ game.timeFrame.getOptionAsDateTime('event_act_begin')|format_datetime('short', 'short') }}</td>
                                     <td>{{ game.timeFrame.getOptionAsDateTime('event_act_end')|format_datetime('short', 'short') }}</td>
                                     <td class="text-end">
                                         <a href="{{ path('protocol_index', {'game': game.id}) }}"  title="Das Protokoll zum Spiel öffnen" class="btn btn-primary btn-sm"><i class="fas fa-clipboard-check"></i>&nbsp;Funkprotokoll</a>
-                                        <a href="{{ path('reminder_index', {'game': game.id}) }}"  title="Erinnerungen ansehen" class="btn btn-azure btn-sm"><i class="fas fa-bell"></i>&nbsp;Erinnerungen</a>
+                                        <!-- <a href="{{ path('reminder_index', {'game': game.id}) }}"  title="Erinnerungen ansehen" class="btn btn-azure btn-sm"><i class="fas fa-bell"></i>&nbsp;Erinnerungen</a> -->
                                         <span class="dropdown">
                                             <button class="btn btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Aktionen</button>
                                             <div class="dropdown-menu dropdown-menu-right">

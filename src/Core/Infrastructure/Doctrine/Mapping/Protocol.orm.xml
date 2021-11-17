@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
-                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
-                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
-                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="VDOLog\Core\Domain\Protocol">
         <id name="id" type="guid">
@@ -21,9 +20,9 @@
             </cascade>
         </one-to-many>
         <many-to-one field="parent" target-entity="VDOLog\Core\Domain\Protocol" inversed-by="children" />
-    </entity>
 
-    <many-to-one field="createdBy" target-entity="VDOLog\Core\Domain\User" fetch="EXTRA_LAZY">
-        <join-column nullable="true" />
-    </many-to-one>
+        <many-to-one field="createdBy" target-entity="VDOLog\Core\Domain\User" fetch="EXTRA_LAZY">
+            <join-column nullable="true" />
+        </many-to-one>
+    </entity>
 </doctrine-mapping>

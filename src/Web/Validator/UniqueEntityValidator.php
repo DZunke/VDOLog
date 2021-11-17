@@ -13,7 +13,6 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use function assert;
 use function class_exists;
 use function count;
-use function dump;
 use function is_object;
 use function is_string;
 use function strlen;
@@ -50,12 +49,15 @@ final class UniqueEntityValidator extends ConstraintValidator
 
             $reflection = new ReflectionClass($objData::class);
             if ($reflection->hasProperty($idField)) {
-                $givenId = $reflection->getProperty($idField)->getValue($objData);
-                $qb->andWhere($qb->expr()->neq('e.id', $qb->expr()->literal($givenId)));
+                $property = $reflection->getProperty($idField);
+                $property->setAccessible(true);
+                $givenId = $property->getValue($objData);
+
+                if (strlen($givenId) > 0) {
+                    $qb->andWhere($qb->expr()->neq('e.id', $qb->expr()->literal($givenId)));
+                }
             }
         }
-
-        dump($qb->getQuery());
 
         $result = $qb->getQuery()->getResult();
         if (count($result) === 0) {

@@ -8,6 +8,7 @@ use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Ramsey\Uuid\Uuid;
+use RuntimeException;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use VDOLog\Core\Domain\Common\Event\EventStore;
 use VDOLog\Core\Domain\Common\Event\EventStoreable;
@@ -27,6 +28,7 @@ class Game implements EventStore
     private string $id;
     private string $name = '';
 
+    private ?Location $location = null;
     private TimeFrame $timeFrame;
 
     /** @var Collection<int,Protocol> */
@@ -68,6 +70,20 @@ class Game implements EventStore
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function getLocation(): ?Location
+    {
+        return $this->location;
+    }
+
+    public function setLocation(Location $location): void
+    {
+        if ($this->location !== null) {
+            throw new RuntimeException('changing the location of the event is not possible');
+        }
+
+        $this->location = $location;
     }
 
     /**

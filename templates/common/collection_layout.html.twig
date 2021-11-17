@@ -1,0 +1,38 @@
+{% use "@CollectionJs/form_div_layout.html.twig" %}
+
+{% block collection_js_add_button %}
+    <button type="button" class="btn btn-sm btn-success collection-js-{{ collection_id }}-add-btn">
+        <i class="fas fa-plus"></i>&nbsp;{{ 'action.add_new_item'|trans({}, 'forms') }}
+    </button>
+{% endblock collection_js_add_button %}
+
+{% block collection_js_accordion_item %}
+    <div class="col-12 mb-3">
+        {{ form_widget(form, {'attr': {'class': 'col-12'}}) }}
+        <div class="mt-2">
+            {{ block('collection_js_actions') }}
+        </div>
+    </div>
+{% endblock collection_js_accordion_item %}
+
+{% block collection_js_actions %}
+    <div class="btn-group-sm collection-js-actions" role="group" aria-label="Actions">
+        {% apply spaceless %}
+            {% if form_parent(form).vars.allow_move_up %}
+                <button type="button" class="btn collection-js-{{ form_parent(form).vars.collection_id }}-elem-up" title="{{ 'action.move_item_up'|trans({}, 'forms') }}">
+                    <i class="fa fa-arrow-up"></i>
+                </button>
+            {% endif %}
+            {% if form_parent(form).vars.allow_move_down %}
+                <button type="button" class="btn collection-js-{{ form_parent(form).vars.collection_id }}-elem-down" title="{{ 'action.move_item_down'|trans({}, 'forms') }}">
+                    <i class="fa fa-arrow-down"></i>
+                </button>
+            {% endif %}
+            {% if form_parent(form).vars.allow_delete %}
+                <button type="button" class="btn btn-sm btn-danger collection-js-{{ form_parent(form).vars.collection_id }}-elem-remove" title="{{ 'action.remove_item'|trans({}, 'forms') }}">
+                    <i class="fas fa-trash-alt"></i>&nbsp;{{ 'action.remove_item'|trans({}, 'forms') }}
+                </button>
+            {% endif %}
+        {% endapply %}
+    </div>
+{% endblock collection_js_actions %}

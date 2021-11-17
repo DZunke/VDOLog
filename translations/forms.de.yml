@@ -1,4 +1,13 @@
 #############
+## Generics
+#########
+
+action.remove_item: Entfernen
+action.add_new_item: Hinzufügen
+action.move_item_up: Nach Oben
+action.move_item_down: Nach Unten
+
+#############
 ## Users
 #########
 
@@ -8,3 +17,19 @@ user.second: Passwort Wiederholung
 user.isAdmin: Administrator
 user.displayName: Anzeigename
 user.enableNotifications: Browserbenachrichtigungen erhalten
+
+#############
+## Locations
+#########
+location.name: Name
+location.accessScanners: Zugangskontrollen
+location.access_scanner.name: Bezeichnung
+
+#############
+## Events (Game)
+#########
+
+game.name: Bezeichnung
+game.location: Standort (optional)
+game.select.location: Einen Standort auswählen ...
+game.location.change_disabled: Eine Änderung des Standortes ist nicht möglich

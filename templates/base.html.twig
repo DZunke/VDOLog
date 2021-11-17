@@ -58,6 +58,7 @@
                         <li class="nav-item"><a href="{{ path('dashboard') }}" class="nav-link"><i class="fas fa-home"></i>&nbsp;Übersicht</a></li>
                         {% if is_granted('ROLE_ADMIN') %}
                             <li class="nav-item"><a href="{{ path('user_list') }}" class="nav-link"><i class="fas fa-users"></i>&nbsp;NutzerInnen</a></li>
+                            <li class="nav-item"><a href="{{ path('location_list') }}" class="nav-link"><i class="fas fa-map-marker-alt"></i>&nbsp;Standorte</a></li>
                         {% endif %}
                         {% block additional_menu %}{% endblock %}
                     </ul>

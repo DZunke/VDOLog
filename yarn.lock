@@ -1038,6 +1038,11 @@
   resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-1.41.2.tgz#effccbb261539b68609cc7dc660a058683170ee1"
   integrity sha512-X6cQmMC24hiwg0p2BzasvU3IeCCdOk0f/9d6gNNtJM4lzG2TCloTns1bVvU5MAFkITGukxUqjPFE3Ecd6kGsfw==
 
+"@tienvx/ux-collection-js@file:vendor/tienvx/ux-collection-js/src/Resources/assets":
+  version "1.0.0"
+  dependencies:
+    symfony-collection-js "4.2.0-js-only"
+
 "@trysound/sax@0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@trysound/sax/-/sax-0.2.0.tgz#cccaab758af56761eb7bf37af6f03f326dd798ad"
@@ -5160,6 +5165,11 @@ svgo@^2.3.0:
     csso "^4.2.0"
     nanocolors "^0.1.12"
     stable "^0.1.8"
+
+symfony-collection-js@4.2.0-js-only:
+  version "4.2.0-js-only"
+  resolved "https://registry.yarnpkg.com/symfony-collection-js/-/symfony-collection-js-4.2.0-js-only.tgz#702e509012c84943c47fb674d7803829cb6f2550"
+  integrity sha512-GbwxzbM9VOYUI7H5B8QPlb8luW+fkjxSYBEy5HD9skLgjoE0EQkt+SaSLxxaiWdeQubAtOJyk1GUyjzjYtTIng==
 
 table@^6.0.9:
   version "6.7.2"

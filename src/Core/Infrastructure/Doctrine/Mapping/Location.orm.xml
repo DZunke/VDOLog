@@ -3,23 +3,29 @@
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="VDOLog\Core\Domain\User" table="users">
-        <unique-constraints>
-            <unique-constraint columns="email" name="unique_idx"/>
-        </unique-constraints>
-
+    <entity name="VDOLog\Core\Domain\Location">
         <id name="id" type="guid">
             <generator strategy="NONE"/>
         </id>
 
-        <field name="email" type="email"/>
-        <field name="password" type="string"/>
-        <field name="isAdmin" type="boolean"/>
-        <field name="displayName" type="string"/>
-        <field name="lastLogin" type="datetime_immutable" nullable="true"/>
-        <field name="enableNotifications" type="boolean"/>
+        <field name="name"/>
+
+        <one-to-many field="accessScanners" target-entity="VDOLog\Core\Domain\Location\AccessScanner"
+                     mapped-by="location" index-by="id" orphan-removal="true">
+            <order-by>
+                <order-by-field name="name"/>
+            </order-by>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+
+        </one-to-many>
 
         <many-to-one field="createdBy" target-entity="VDOLog\Core\Domain\User" fetch="EXTRA_LAZY">
+            <join-column nullable="true"/>
+        </many-to-one>
+
+        <many-to-one field="editedBy" target-entity="VDOLog\Core\Domain\User" fetch="EXTRA_LAZY">
             <join-column nullable="true"/>
         </many-to-one>
     </entity>

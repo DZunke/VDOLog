@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
-                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
-                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
-                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="VDOLog\Core\Domain\Game">
         <id name="id" type="guid">
@@ -14,6 +13,9 @@
         <field name="closedAt" type="datetime_immutable" nullable="true"/>
 
         <embedded name="timeFrame" class="VDOLog\Core\Domain\Game\TimeFrame" column-prefix="timeframe_" />
+
+        <many-to-one field="location" target-entity="VDOLog\Core\Domain\Location" fetch="EXTRA_LAZY" />
+        <many-to-one field="createdBy" target-entity="VDOLog\Core\Domain\User" fetch="EXTRA_LAZY" />
 
         <one-to-many field="protocol" target-entity="VDOLog\Core\Domain\Protocol" mapped-by="game">
             <order-by>
@@ -29,10 +31,6 @@
                 <cascade-all/>
             </cascade>
         </one-to-many>
-
-        <many-to-one field="createdBy" target-entity="VDOLog\Core\Domain\User" fetch="EXTRA_LAZY">
-            <join-column nullable="true" />
-        </many-to-one>
     </entity>
 
 </doctrine-mapping>

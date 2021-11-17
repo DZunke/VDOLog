@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace VDOLog\Web\Form;
 
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Tienvx\UX\CollectionJs\Form\CollectionJsType;
 use VDOLog\Core\Domain\Location;
-use VDOLog\Web\Form\Dto\EditGameDto;
-use VDOLog\Web\Form\Game\TimeFrameType;
+use VDOLog\Web\Form\Dto\LocationDto;
+use VDOLog\Web\Form\Location\AccessScannerType;
+use VDOLog\Web\Validator\UniqueEntity;
 
-class EditGameType extends AbstractType
+final class LocationType extends AbstractType
 {
     /** @inheritDoc */
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -24,33 +25,34 @@ class EditGameType extends AbstractType
             TextType::class,
             [
                 'empty_data' => '',
-                'required' => true,
                 'constraints' => [
                     new NotBlank(),
+                    new UniqueEntity([
+                        'entityClass' => Location::class,
+                        'field' => 'name',
+                        'ignoreEntryIdField' => 'id',
+                    ]),
                 ],
             ]
         );
 
         $builder->add(
-            'location',
-            EntityType::class,
+            'accessScanners',
+            CollectionJsType::class,
             [
-                'class' => Location::class,
-                'choice_label' => 'name',
-                'placeholder' => 'game.select.location',
-                'disabled' => true,
-                'help' => 'game.location.change_disabled',
+                'entry_type' => AccessScannerType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'call_post_add_on_init' => true,
             ]
         );
-
-        $builder->add('timeFrame', TimeFrameType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => EditGameDto::class,
-            'label_format' => 'game.%name%',
+            'data_class' => LocationDto::class,
+            'label_format' => 'location.%name%',
             'translation_domain' => 'forms',
         ]);
     }
