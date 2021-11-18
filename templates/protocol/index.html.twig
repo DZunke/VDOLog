@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block second_level_menu %}
+{% include 'layout/game_second_level_menu.html.twig' %}
+{% endblock %}
+
 {% block content %}
     <div {% if game.closedAt is null %}data-controller="protocol" data-protocol-form-query="form[name='protocol']"{% endif %}>
         <div class="row row-cards">

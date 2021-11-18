@@ -26,46 +26,10 @@
 
 <body class="antialiased" data-controller="loader" data-loader-template-id="screen-loader-template">
 <div class="wrapper" data-controller="notification" data-notification-ask-permission-button="ask_permission_button" data-notification-icon-url="{{ app.request.getSchemeAndHttpHost() ~ asset('images/hertha_96x96.png') }}">
-    <header class="navbar navbar-expand-md navbar-light d-print-none">
-        <div class="container-xl">
-            <div class="navbar-nav flex-row order-md-last">
-                {% if app.user.domainUser.notificationsEnabled %}
-                    <div class="nav-item dropdown d-none d-md-flex me-3">
-                        <a type="button" id="ask_permission_button" class="no-loader nav-link px-0 text-red" data-action="click->notification#askPermission" title="Browserbenachrichtigungs Status">
-                            <i class="fas fa-bell"></i>
-                        </a>
-                    </div>
-                {% endif %}
-                <div class="nav-item dropdown d-none d-md-flex me-3">
-                    <a href="{{ path('user_profile') }}" class="nav-link px-0" title="NutzerInnenprofil aufrufen">
-                        <i class="fas fa-user-alt"></i>
-                    </a>
-                </div>
-                <div class="nav-item dropdown d-none d-md-flex me-3">
-                    <a type="button" class="nav-link px-0" href="{{ path('vdo_logout') }}" title="Abmelden">
-                        <i class="fas fa-power-off"></i>
-                    </a>
-                </div>
-                <div class="nav-item dropdown d-none d-md-flex me-3">
-                    <a type="button" class="nav-link px-0" data-controller="refresh" data-action="click->refresh#refresh" title="Aktuelle Seite aktualisieren">
-                        <i class="fas fa-sync"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar-menu">
-                <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a href="{{ path('dashboard') }}" class="nav-link"><i class="fas fa-home"></i>&nbsp;Übersicht</a></li>
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <li class="nav-item"><a href="{{ path('user_list') }}" class="nav-link"><i class="fas fa-users"></i>&nbsp;NutzerInnen</a></li>
-                            <li class="nav-item"><a href="{{ path('location_list') }}" class="nav-link"><i class="fas fa-map-marker-alt"></i>&nbsp;Standorte</a></li>
-                        {% endif %}
-                        {% block additional_menu %}{% endblock %}
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <header class="navbar navbar-expand-md navbar-dark d-print-none">
+        {% embed 'layout/first_level_menu.html.twig' %}{% endembed %}
     </header>
+    {% block second_level_menu %}{% endblock %}
     <div class="page-wrapper">
         <div class="{% block page_layout %}container-xl{% endblock %}">
             {% block flash_messages %}
