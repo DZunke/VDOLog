@@ -50,7 +50,7 @@ class GameExits
             ],
         ]);
 
-        $maxValue = count($data) > 0 ? (int) max($data) : 0;
+        $maxValue = count($data) > 0 ? max($data) : 0;
         $chart->setOptions([
             'aspectRatio' => 3.5,
             'legend' => ['display' => false],
