@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="VDOLog\Core\Domain\Game\AccessScanPoint">
+        <id name="id" type="guid">
+            <generator strategy="NONE"/>
+        </id>
+
+        <field name="time" type="datetime_immutable" />
+        <field name="entrances" type="integer" />
+        <field name="exits" type="integer" />
+
+        <many-to-one field="accessScanner" target-entity="VDOLog\Core\Domain\Location\AccessScanner" />
+        <many-to-one field="game" target-entity="VDOLog\Core\Domain\Game" inversed-by="accessScanPoints">
+            <join-column nullable="false" />
+        </many-to-one>
+    </entity>
+
+</doctrine-mapping>

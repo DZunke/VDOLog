@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use InvalidArgumentException;
 use VDOLog\Core\Domain\Location;
+use VDOLog\Core\Domain\Location\AccessScanner;
 use VDOLog\Core\Domain\LocationRepository;
 
 class DoctrineLocationRepository implements LocationRepository
@@ -45,5 +46,15 @@ class DoctrineLocationRepository implements LocationRepository
         }
 
         $this->em->flush();
+    }
+
+    public function getAccessScanner(string $accessScannerId): AccessScanner
+    {
+        $accessScanner = $this->em->getRepository(AccessScanner::class)->find($accessScannerId);
+        if ($accessScanner === null) {
+            throw new InvalidArgumentException('Scanner does not exist');
+        }
+
+        return $accessScanner;
     }
 }

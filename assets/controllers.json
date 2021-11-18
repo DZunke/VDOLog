@@ -1,5 +1,11 @@
 {
     "controllers": {
+        "@symfony/ux-chartjs": {
+            "chart": {
+                "enabled": true,
+                "fetch": "eager"
+            }
+        },
         "@tienvx/ux-collection-js": {
             "collection": {
                 "enabled": true,

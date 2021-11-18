@@ -3,3 +3,4 @@ doctrine:
     url: ':/tmp/test.db'
     memory: true
     driver: 'pdo_sqlite'
+    logging: false

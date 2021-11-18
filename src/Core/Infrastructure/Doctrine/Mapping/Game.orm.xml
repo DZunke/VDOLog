@@ -31,6 +31,13 @@
                 <cascade-all/>
             </cascade>
         </one-to-many>
+
+        <one-to-many field="accessScanPoints" target-entity="VDOLog\Core\Domain\Game\AccessScanPoint" mapped-by="game">
+            <order-by><order-by-field name="time" /></order-by>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
     </entity>
 
 </doctrine-mapping>

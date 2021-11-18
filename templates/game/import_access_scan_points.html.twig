@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="page-title">
+        <h1>Zutrittstatistik Importieren</h1>
+    </div>
+
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    <div class="row row-cards">
+        <div class="col-md-6">
+            <div class="row row-cards">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            {{ form_row(form.csv) }}<br/>
+                        </div>
+                        <div class="card-footer text-end">
+                            <div class="d-flex">
+                                <a href="{{ path('game_statistics', {'id': game.id}) }}" class="btn btn-link">Abbrechen</a>
+                                <button type="submit" class="btn btn-primary ms-auto">Speichern</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace VDOLog\Core\Domain;
 
 use Doctrine\Common\Collections\Collection;
+use VDOLog\Core\Domain\Location\AccessScanner;
 
 interface LocationRepository
 {
@@ -14,4 +15,6 @@ interface LocationRepository
 
     /** @return Collection<int,Location> */
     public function findAll(): Collection;
+
+    public function getAccessScanner(string $accessScannerId): AccessScanner;
 }

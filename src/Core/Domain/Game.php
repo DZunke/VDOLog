@@ -7,14 +7,17 @@ namespace VDOLog\Core\Domain;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use InvalidArgumentException;
 use Ramsey\Uuid\Uuid;
 use RuntimeException;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use VDOLog\Core\Domain\Common\Event\EventStore;
 use VDOLog\Core\Domain\Common\Event\EventStoreable;
+use VDOLog\Core\Domain\Game\AccessScanPoint;
 use VDOLog\Core\Domain\Game\Event\GameCreated;
 use VDOLog\Core\Domain\Game\Reminder;
 use VDOLog\Core\Domain\Game\TimeFrame;
+use VDOLog\Core\Domain\Location\AccessScanner;
 use VDOLog\Core\Domain\User\UserCreatable;
 
 /**
@@ -35,16 +38,20 @@ class Game implements EventStore
     private Collection $protocol;
     /** @var Collection<int,Reminder> */
     private Collection $reminder;
+    /** @var Collection<int,AccessScanPoint> */
+    private Collection $accessScanPoints;
+
     private DateTimeImmutable $createdAt;
     private ?DateTimeImmutable $closedAt = null;
 
     public function __construct()
     {
-        $this->id        = Uuid::uuid4()->toString();
-        $this->timeFrame = TimeFrame::createFromDate(new DateTimeImmutable());
-        $this->protocol  = new ArrayCollection();
-        $this->reminder  = new ArrayCollection();
-        $this->createdAt = new DateTimeImmutable();
+        $this->id               = Uuid::uuid4()->toString();
+        $this->timeFrame        = TimeFrame::createFromDate(new DateTimeImmutable());
+        $this->protocol         = new ArrayCollection();
+        $this->reminder         = new ArrayCollection();
+        $this->accessScanPoints = new ArrayCollection();
+        $this->createdAt        = new DateTimeImmutable();
     }
 
     public static function create(string $name): Game
@@ -105,6 +112,74 @@ class Game implements EventStore
     public function removeReminder(Reminder $reminder): void
     {
         $this->reminder->removeElement($reminder);
+    }
+
+    /**
+     * @return array<AccessScanPoint>
+     */
+    public function getAccessScanPoints(): array
+    {
+        return $this->accessScanPoints->toArray();
+    }
+
+    public function createAccessScanPoint(
+        DateTimeImmutable $time,
+        int $entrances,
+        int $exits,
+        ?AccessScanner $accessScanner = null
+    ): void {
+        if ($accessScanner !== null && $this->location === null) {
+            throw new InvalidArgumentException('Game has no location so there could be no access scanner');
+        }
+
+        if (
+            $accessScanner !== null
+            && $this->location !== null
+            && $this->location->getAccessScannerByName($accessScanner->getName()) === null
+        ) {
+            throw new InvalidArgumentException(
+                'Access scanner "' . $accessScanner->getName() . '" does not exist for game'
+            );
+        }
+
+        $scanPoint = AccessScanPoint::create($this, $time);
+        $scanPoint->setEntrances($entrances);
+        $scanPoint->setExits($exits);
+        if ($accessScanner !== null) {
+            $scanPoint->setAccessScanner($accessScanner);
+        }
+
+        $this->accessScanPoints->add($scanPoint);
+    }
+
+    public function getEntranceSum(?AccessScanner $accessScanner = null): int
+    {
+        /** @var Collection<int,AccessScanPoint> $accessPoints */
+        $accessPoints = $this->accessScanPoints->filter(
+            static fn (AccessScanPoint $accessScanPoint) => $accessScanPoint->isFromAccessScanner($accessScanner)
+        );
+
+        $sum = 0;
+        foreach ($accessPoints as $accessPoint) {
+            $sum += $accessPoint->getEntrances();
+        }
+
+        return $sum;
+    }
+
+    public function getExitsSum(?AccessScanner $accessScanner = null): int
+    {
+        /** @var Collection<int,AccessScanPoint> $accessPoints */
+        $accessPoints = $this->accessScanPoints->filter(
+            static fn (AccessScanPoint $accessScanPoint) => $accessScanPoint->isFromAccessScanner($accessScanner)
+        );
+
+        $sum = 0;
+        foreach ($accessPoints as $accessPoint) {
+            $sum += $accessPoint->getExits();
+        }
+
+        return $sum;
     }
 
     public function getCreatedAt(): DateTimeImmutable

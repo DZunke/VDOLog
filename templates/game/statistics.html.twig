@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block second_level_menu %}
+    {% include 'layout/game_second_level_menu.html.twig' %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="page-header d-print-none">
+        <div class="row align-items-center">
+            <div class="col">
+                <h2 class="page-title">Statistiken</h2>
+            </div>
+            {% if is_granted('ROLE_ADMIN') %}
+                <div class="col-auto ms-auto d-print-none">
+                    <div class="btn-list">
+                        <a href="{{ path('game_import_access_scan_points',  {'id': game.id}) }}" class="btn btn-primary d-none d-sm-inline-block">Zugänge Importieren</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row row-deck row-cards mt-3">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header border-0">
+                    <div class="card-title">Zutrittstatistik</div>
+                </div>
+                <div class="position-relative">
+                    <div class="position-absolute top-0 left-0 px-3 mt-1 w-50">
+                        <div class="row g-2">
+                            <div class="col">
+                                <div>Gesamte Zutritte: {{ game.entranceSum }}</div>
+                                <!-- <div class="text-muted">10% weniger als beim letzten Spiel</div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chart-entrance-statistic" style="min-height: 200px">{{ render_chart(entrance_chart) }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header border-0">
+                    <div class="card-title">Austrittstatistik</div>
+                </div>
+                <div class="position-relative">
+                    <div class="position-absolute top-0 left-0 px-3 mt-1 w-50">
+                        <div class="row g-2">
+                            <div class="col">
+                                <div>Gesamte Austritte: {{ game.exitsSum }}</div>
+                                <!-- <div class="text-muted">10% weniger als beim letzten Spiel</div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chart-exits-statistic" style="min-height: 200px">{{ render_chart(exists_chart) }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
