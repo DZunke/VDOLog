@@ -27,7 +27,7 @@
         "symfony/css-selector": "5.3.*",
         "symfony/dotenv": "*",
         "symfony/expression-language": "*",
-        "symfony/flex": "^1.1",
+        "symfony/flex": "^2.1",
         "symfony/form": "*",
         "symfony/framework-bundle": "*",
         "symfony/http-client": "5.3.*",
