@@ -12,7 +12,7 @@ final class AccessScanPointCreateHandler implements MessageHandlerInterface
 {
     public function __construct(
         private GameRepository $gameRepository,
-        private LocationRepository $locationRepository
+        private LocationRepository $locationRepository,
     ) {
     }
 
@@ -29,7 +29,7 @@ final class AccessScanPointCreateHandler implements MessageHandlerInterface
             $message->getTime(),
             $message->getEntrances(),
             $message->getExits(),
-            $accessScanner
+            $accessScanner,
         );
 
         $this->gameRepository->save($game);

@@ -28,7 +28,7 @@ class EditGameType extends AbstractType
                 'constraints' => [
                     new NotBlank(),
                 ],
-            ]
+            ],
         );
 
         $builder->add(
@@ -40,7 +40,7 @@ class EditGameType extends AbstractType
                 'placeholder' => 'game.select.location',
                 'disabled' => true,
                 'help' => 'game.location.change_disabled',
-            ]
+            ],
         );
 
         $builder->add('timeFrame', TimeFrameType::class);

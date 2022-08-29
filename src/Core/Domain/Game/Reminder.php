@@ -11,29 +11,17 @@ use VDOLog\Core\Helper\Assertion;
 
 class Reminder
 {
-    private string $id;
-    private string $title;
-    private string $message;
-    private string $remindAt;
-
-    private Game $game;
-
     private DateTimeImmutable $createdAt;
-    private ?DateTimeImmutable $sentAt;
-    private ?DateTimeImmutable $seenAt;
+    private DateTimeImmutable|null $sentAt;
+    private DateTimeImmutable|null $seenAt;
 
-    public function __construct(string $id, Game $game, string $title, string $message, string $remindAt)
+    public function __construct(private string $id, private Game $game, private string $title, private string $message, private string $remindAt)
     {
         Assertion::uuid($id);
         Assertion::notBlank($title);
         Assertion::notBlank($message);
         Assertion::relativeDateTimeString($remindAt);
 
-        $this->id        = $id;
-        $this->game      = $game;
-        $this->title     = $title;
-        $this->message   = $message;
-        $this->remindAt  = $remindAt;
         $this->createdAt = new DateTimeImmutable();
     }
 

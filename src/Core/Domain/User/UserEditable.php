@@ -15,7 +15,7 @@ trait UserEditable
         $this->editedBy = $user;
     }
 
-    public function getEditedBy(): ?User
+    public function getEditedBy(): User|null
     {
         return $this->editedBy;
     }

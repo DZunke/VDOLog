@@ -21,9 +21,7 @@ class ApplicationConfiguration
     private string $footerImageTitle;
     private string $favIcon;
 
-    /**
-     * @param string[] $phpdesktopConfigs
-     */
+    /** @param string[] $phpdesktopConfigs */
     public function __construct(array $phpdesktopConfigs)
     {
         $existingConfigFile = null;
@@ -42,9 +40,7 @@ class ApplicationConfiguration
         $this->loadPHPDesktopConfig(json_decode($configFileContent, true));
     }
 
-    /**
-     * @param array<string,array<string,string>> $array
-     */
+    /** @param array<string,array<string,string>> $array */
     private function loadPHPDesktopConfig(array $array): void
     {
         $this->title            = $array['main_window']['title'];

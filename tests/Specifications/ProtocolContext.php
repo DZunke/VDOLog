@@ -15,18 +15,14 @@ use function assert;
 
 final class ProtocolContext extends BaseContext implements Context
 {
-    private RouterInterface $router;
     private MinkContext $minkContext;
     private GameContext $gameContext;
 
-    public function __construct(RouterInterface $router)
+    public function __construct(private RouterInterface $router)
     {
-        $this->router = $router;
     }
 
-    /**
-     * @BeforeScenario
-     */
+    /** @BeforeScenario */
     public function gatherContexts(BeforeScenarioScope $scope): void
     {
         $minkContext = $this->getContext($scope, MinkContext::class);
@@ -40,9 +36,7 @@ final class ProtocolContext extends BaseContext implements Context
         $this->gameContext = $gameContext;
     }
 
-    /**
-     * @Given I am on the protocol page of game named :gameName
-     */
+    /** @Given I am on the protocol page of game named :gameName */
     public function iAmOnTheProtocolPageOfGameNamed(string $gameName): void
     {
         $game = $this->gameContext->getGame($gameName);
@@ -50,13 +44,11 @@ final class ProtocolContext extends BaseContext implements Context
         $this->minkContext->visit($this->router->generate('protocol_index', ['game' => $game->getId()]));
     }
 
-    /**
-     * @Then I should see protocol parent entry from :sender to :recipent with content :content
-     */
+    /** @Then I should see protocol parent entry from :sender to :recipent with content :content */
     public function iShouldSeeProtocolParentEntryFromToWithContent(
         string $sender,
         string $recipent,
-        string $content
+        string $content,
     ): void {
         $protocolEntries = $this->minkContext->getSession()->getPage()->findAll('css', '.protocol-entry');
         foreach ($protocolEntries as $protocolEntry) {
@@ -81,7 +73,7 @@ final class ProtocolContext extends BaseContext implements Context
         }
 
         throw new Exception(
-            'Missing protocol message from "' . $sender . '" to "' . $recipent . '" with content "' . $content . '"'
+            'Missing protocol message from "' . $sender . '" to "' . $recipent . '" with content "' . $content . '"',
         );
     }
 }

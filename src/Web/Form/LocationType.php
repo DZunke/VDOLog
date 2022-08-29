@@ -33,7 +33,7 @@ final class LocationType extends AbstractType
                         'ignoreEntryIdField' => 'id',
                     ]),
                 ],
-            ]
+            ],
         );
 
         $builder->add(
@@ -44,7 +44,7 @@ final class LocationType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
                 'call_post_add_on_init' => true,
-            ]
+            ],
         );
     }
 

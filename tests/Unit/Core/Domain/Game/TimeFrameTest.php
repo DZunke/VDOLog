@@ -30,7 +30,7 @@ final class TimeFrameTest extends TestCase
 
         self::assertSame(
             $date->format('Y-m-d') . ' 15:45:00',
-            $optEventActEnd->format('Y-m-d H:i:s')
+            $optEventActEnd->format('Y-m-d H:i:s'),
         );
     }
 

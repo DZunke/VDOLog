@@ -8,15 +8,8 @@ use DateTimeImmutable;
 
 class AccessScanPoint
 {
-    private DateTimeImmutable $time;
-    private int $entrances;
-    private int $exits;
-
-    public function __construct(DateTimeImmutable $time, int $entrances, int $exits)
+    public function __construct(private DateTimeImmutable $time, private int $entrances, private int $exits)
     {
-        $this->time      = $time;
-        $this->entrances = $entrances;
-        $this->exits     = $exits;
     }
 
     public function getTime(): DateTimeImmutable

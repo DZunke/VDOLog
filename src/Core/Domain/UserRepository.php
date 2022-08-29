@@ -10,7 +10,7 @@ interface UserRepository
 {
     public function get(string $id): User;
 
-    public function findByEmail(string $email): ?User;
+    public function findByEmail(string $email): User|null;
 
     /** @return iterable<int, User> */
     public function findAll(): iterable;
@@ -19,5 +19,5 @@ interface UserRepository
 
     public function delete(string $id): void;
 
-    public function updateLastLogin(string $email, ?DateTimeImmutable $lastLogin = null): void;
+    public function updateLastLogin(string $email, DateTimeImmutable|null $lastLogin = null): void;
 }

@@ -13,7 +13,7 @@ class CreateReminder
         private Game $game,
         private string $title,
         private string $message,
-        private string $remindAt
+        private string $remindAt,
     ) {
         Assertion::notBlank($title);
         Assertion::notBlank($message);

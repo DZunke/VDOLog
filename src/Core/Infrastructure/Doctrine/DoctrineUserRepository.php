@@ -14,11 +14,8 @@ use VDOLog\Core\Domain\UserRepository;
 
 class DoctrineUserRepository implements UserRepository
 {
-    private EntityManagerInterface $em;
-
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(private EntityManagerInterface $em)
     {
-        $this->em = $em;
     }
 
     public function get(string $id): User
@@ -39,7 +36,7 @@ class DoctrineUserRepository implements UserRepository
         return new ArrayCollection($users);
     }
 
-    public function findByEmail(string $email): ?User
+    public function findByEmail(string $email): User|null
     {
         return $this->em->getRepository(User::class)->findOneBy(['email' => $email]);
     }
@@ -61,7 +58,7 @@ class DoctrineUserRepository implements UserRepository
         $this->em->flush();
     }
 
-    public function updateLastLogin(string $email, ?DateTimeImmutable $lastLogin = null): void
+    public function updateLastLogin(string $email, DateTimeImmutable|null $lastLogin = null): void
     {
         if ($lastLogin === null) {
             $lastLogin = new DateTimeImmutable();

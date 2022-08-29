@@ -36,7 +36,7 @@ class CreateUserType extends AbstractType
                         'field' => 'email',
                     ]),
                 ],
-            ]
+            ],
         );
 
         $builder->add(
@@ -49,19 +49,19 @@ class CreateUserType extends AbstractType
                     new NotBlank(),
                     new NotCompromisedPassword(),
                 ],
-            ]
+            ],
         );
 
         $builder->add(
             'displayName',
             TextType::class,
-            ['empty_data' => '', 'required' => false]
+            ['empty_data' => '', 'required' => false],
         );
 
         $builder->add(
             'isAdmin',
             CheckboxType::class,
-            ['required' => false]
+            ['required' => false],
         );
     }
 

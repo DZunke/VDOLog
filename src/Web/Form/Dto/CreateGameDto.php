@@ -11,7 +11,7 @@ use VDOLog\Web\Form\Dto\Game\TimeFrameDto;
 final class CreateGameDto
 {
     public string $name;
-    public ?Location $location = null;
+    public Location|null $location = null;
     public TimeFrameDto $timeFrame;
 
     public function __construct()

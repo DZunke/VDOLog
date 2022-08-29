@@ -13,7 +13,7 @@ final class EditGameDto
 {
     private string $id;
     public string $name;
-    public ?Location $location;
+    public Location|null $location;
     public TimeFrameDto $timeFrame;
 
     public function __construct(Game $game)

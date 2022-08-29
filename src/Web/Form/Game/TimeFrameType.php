@@ -39,7 +39,7 @@ final class TimeFrameType extends AbstractType
                 'constraints' => [
                     new NotNull(),
                 ],
-            ]
+            ],
         );
 
         $builder->add(
@@ -52,7 +52,7 @@ final class TimeFrameType extends AbstractType
                     new NotBlank(),
                     new DateTimeRelativeString(),
                 ],
-            ]
+            ],
         );
 
         $builder->add(
@@ -65,7 +65,7 @@ final class TimeFrameType extends AbstractType
                     new NotBlank(),
                     new DateTimeRelativeString(),
                 ],
-            ]
+            ],
         );
 
         $builder->add(
@@ -78,7 +78,7 @@ final class TimeFrameType extends AbstractType
                     new NotBlank(),
                     new DateTimeRelativeString(),
                 ],
-            ]
+            ],
         );
     }
 }

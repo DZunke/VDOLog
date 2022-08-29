@@ -8,16 +8,10 @@ use VDOLog\Core\Domain\Common\EMail;
 
 class CreateUser
 {
-    private EMail $email;
-    private string $plainTextPassword;
     private bool $isAdmin = false;
-    private string $displayName;
 
-    public function __construct(EMail $email, string $plainTextPassword, string $displayName = '')
+    public function __construct(private EMail $email, private string $plainTextPassword, private string $displayName = '')
     {
-        $this->email             = $email;
-        $this->plainTextPassword = $plainTextPassword;
-        $this->displayName       = $displayName;
     }
 
     public function asAdmin(): void

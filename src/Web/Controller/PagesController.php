@@ -14,25 +14,18 @@ use function file_get_contents;
 
 use const DIRECTORY_SEPARATOR;
 
-/**
- * @Route("/pages")
- */
+/** @Route("/pages") */
 final class PagesController extends AbstractController
 {
-    private string $projectDir;
-
-    public function __construct(string $projectDir)
+    public function __construct(private string $projectDir)
     {
-        $this->projectDir = $projectDir;
     }
 
-    /**
-     * @Route("/changelog", name="changelog")
-     */
+    /** @Route("/changelog", name="changelog") */
     public function changelog(Request $request): Response
     {
         $changelog = file_get_contents(
-            $this->projectDir . DIRECTORY_SEPARATOR . 'CHANGELOG.' . $request->getDefaultLocale() . '.md'
+            $this->projectDir . DIRECTORY_SEPARATOR . 'CHANGELOG.' . $request->getDefaultLocale() . '.md',
         );
 
         $currentChangelogPath = $this->projectDir . DIRECTORY_SEPARATOR . 'CHANGELOG.' . $request->getLocale() . '.md';
@@ -42,7 +35,7 @@ final class PagesController extends AbstractController
 
         return $this->render(
             'pages/changelog.html.twig',
-            ['changelog' => $changelog]
+            ['changelog' => $changelog],
         );
     }
 }

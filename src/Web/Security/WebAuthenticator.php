@@ -21,11 +21,11 @@ class WebAuthenticator extends AbstractAuthenticator
 {
     public function __construct(
         private RouterInterface $router,
-        private UserRepository $userRepository
+        private UserRepository $userRepository,
     ) {
     }
 
-    public function supports(Request $request): ?bool
+    public function supports(Request $request): bool|null
     {
         return $request->getPathInfo() === '/login' && $request->isMethod(Request::METHOD_POST);
     }
@@ -37,11 +37,11 @@ class WebAuthenticator extends AbstractAuthenticator
 
         return new Passport(
             new UserBadge($email),
-            new PasswordCredentials($password)
+            new PasswordCredentials($password),
         );
     }
 
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): Response|null
     {
         $email = (string) $request->request->get('email');
         $this->userRepository->updateLastLogin($email);
@@ -49,7 +49,7 @@ class WebAuthenticator extends AbstractAuthenticator
         return new RedirectResponse($this->router->generate('dashboard'));
     }
 
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): Response|null
     {
         $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
         $request->getSession()->set(Security::LAST_USERNAME, (string) $request->request->get('email'));

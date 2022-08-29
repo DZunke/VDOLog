@@ -12,10 +12,10 @@ final class AddProtocolDto
 {
     private string $gameId;
 
-    public string $content   = '';
-    public ?Protocol $parent = null;
-    public string $sender    = '';
-    public string $recipent  = '';
+    public string $content       = '';
+    public Protocol|null $parent = null;
+    public string $sender        = '';
+    public string $recipent      = '';
 
     public function __construct(Game $game)
     {

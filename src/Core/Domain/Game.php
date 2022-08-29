@@ -20,9 +20,7 @@ use VDOLog\Core\Domain\Game\TimeFrame;
 use VDOLog\Core\Domain\Location\AccessScanner;
 use VDOLog\Core\Domain\User\UserCreatable;
 
-/**
- * @UniqueEntity("name")
- */
+/** @UniqueEntity("name") */
 class Game implements EventStore
 {
     use EventStoreable;
@@ -31,7 +29,7 @@ class Game implements EventStore
     private string $id;
     private string $name = '';
 
-    private ?Location $location = null;
+    private Location|null $location = null;
     private TimeFrame $timeFrame;
 
     /** @var Collection<int,Protocol> */
@@ -42,7 +40,7 @@ class Game implements EventStore
     private Collection $accessScanPoints;
 
     private DateTimeImmutable $createdAt;
-    private ?DateTimeImmutable $closedAt = null;
+    private DateTimeImmutable|null $closedAt = null;
 
     public function __construct()
     {
@@ -79,7 +77,7 @@ class Game implements EventStore
         $this->name = $name;
     }
 
-    public function getLocation(): ?Location
+    public function getLocation(): Location|null
     {
         return $this->location;
     }
@@ -93,17 +91,13 @@ class Game implements EventStore
         $this->location = $location;
     }
 
-    /**
-     * @return Collection<int,Protocol>
-     */
+    /** @return Collection<int,Protocol> */
     public function getProtocol(): Collection
     {
         return new ArrayCollection($this->protocol->toArray());
     }
 
-    /**
-     * @return Collection<int,Reminder>
-     */
+    /** @return Collection<int,Reminder> */
     public function getReminder(): Collection
     {
         return new ArrayCollection($this->reminder->toArray());
@@ -114,9 +108,7 @@ class Game implements EventStore
         $this->reminder->removeElement($reminder);
     }
 
-    /**
-     * @return array<AccessScanPoint>
-     */
+    /** @return array<AccessScanPoint> */
     public function getAccessScanPoints(): array
     {
         return $this->accessScanPoints->toArray();
@@ -126,7 +118,7 @@ class Game implements EventStore
         DateTimeImmutable $time,
         int $entrances,
         int $exits,
-        ?AccessScanner $accessScanner = null
+        AccessScanner|null $accessScanner = null,
     ): void {
         if ($accessScanner !== null && $this->location === null) {
             throw new InvalidArgumentException('Game has no location so there could be no access scanner');
@@ -138,7 +130,7 @@ class Game implements EventStore
             && $this->location->getAccessScannerByName($accessScanner->getName()) === null
         ) {
             throw new InvalidArgumentException(
-                'Access scanner "' . $accessScanner->getName() . '" does not exist for game'
+                'Access scanner "' . $accessScanner->getName() . '" does not exist for game',
             );
         }
 
@@ -152,7 +144,7 @@ class Game implements EventStore
         $this->accessScanPoints->add($scanPoint);
     }
 
-    public function getEntranceSum(?AccessScanner $accessScanner = null): int
+    public function getEntranceSum(AccessScanner|null $accessScanner = null): int
     {
         /** @var Collection<int,AccessScanPoint> $accessPoints */
         $accessPoints = $this->accessScanPoints->filter(
@@ -167,7 +159,7 @@ class Game implements EventStore
         return $sum;
     }
 
-    public function getExitsSum(?AccessScanner $accessScanner = null): int
+    public function getExitsSum(AccessScanner|null $accessScanner = null): int
     {
         /** @var Collection<int,AccessScanPoint> $accessPoints */
         $accessPoints = $this->accessScanPoints->filter(
@@ -187,12 +179,12 @@ class Game implements EventStore
         return $this->createdAt;
     }
 
-    public function getClosedAt(): ?DateTimeImmutable
+    public function getClosedAt(): DateTimeImmutable|null
     {
         return $this->closedAt;
     }
 
-    public function setClosedAt(?DateTimeImmutable $closedAt): void
+    public function setClosedAt(DateTimeImmutable|null $closedAt): void
     {
         $this->closedAt = $closedAt;
     }

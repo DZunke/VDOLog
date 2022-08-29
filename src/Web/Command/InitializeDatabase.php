@@ -39,7 +39,7 @@ final class InitializeDatabase extends Command
             'force',
             'f',
             InputOption::VALUE_NONE,
-            'Will force the creation by deleting an existing database first'
+            'Will force the creation by deleting an existing database first',
         );
     }
 
@@ -106,7 +106,7 @@ final class InitializeDatabase extends Command
         $message = new CreateUser(
             new EMail($_ENV['APP_DEFAULT_USER']),
             $_ENV['APP_DEFAULT_PASSWORD'],
-            'Administrator'
+            'Administrator',
         );
         $message->asAdmin();
 

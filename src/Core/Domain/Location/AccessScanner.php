@@ -10,18 +10,10 @@ use VDOLog\Core\Domain\Location;
 
 class AccessScanner
 {
-    private string $id;
-    private Location $location;
-    private string $name;
-
-    public function __construct(string $id, Location $location, string $name)
+    public function __construct(private string $id, private Location $location, private string $name)
     {
         Assertion::uuid($id);
         Assertion::notBlank($name);
-
-        $this->id       = $id;
-        $this->location = $location;
-        $this->name     = $name;
     }
 
     public static function create(Location $location, string $name): AccessScanner

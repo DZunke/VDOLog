@@ -11,11 +11,8 @@ use VDOLog\Core\Domain\GameRepository;
 
 class DoctrineGameRepository implements GameRepository
 {
-    private EntityManagerInterface $em;
-
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(private EntityManagerInterface $em)
     {
-        $this->em = $em;
     }
 
     public function get(string $id): Game

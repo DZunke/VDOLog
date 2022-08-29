@@ -36,14 +36,10 @@ use function is_string;
 use function ob_get_clean;
 use function ob_start;
 
-/**
- * @Route("/game")
- */
+/** @Route("/game") */
 class GameController extends AbstractController
 {
-    /**
-     * @Route("/new", name="game_new", methods={"GET","POST"})
-     */
+    /** @Route("/new", name="game_new", methods={"GET","POST"}) */
     public function new(Request $request, MessageBusInterface $messageBus): Response
     {
         $dto  = new CreateGameDto();
@@ -55,7 +51,7 @@ class GameController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Das Spiel mit dem Namen "' . $dto->name . '" wurde erfolgreich gespeichert.'
+                'Das Spiel mit dem Namen "' . $dto->name . '" wurde erfolgreich gespeichert.',
             );
 
             return $this->redirectToRoute('dashboard');
@@ -66,9 +62,7 @@ class GameController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="game_edit", methods={"GET","POST"})
-     */
+    /** @Route("/{id}/edit", name="game_edit", methods={"GET","POST"}) */
     public function edit(MessageBusInterface $messageBus, Request $request, Game $game): Response
     {
         $dto  = new EditGameDto($game);
@@ -80,7 +74,7 @@ class GameController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Das Spiel mit dem Namen "' . $dto->name . '" wurde erfolgreich gespeichert.'
+                'Das Spiel mit dem Namen "' . $dto->name . '" wurde erfolgreich gespeichert.',
             );
 
             return $this->redirectToRoute('dashboard', [
@@ -94,9 +88,7 @@ class GameController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/delete", name="game_delete", methods={"GET", "DELETE"})
-     */
+    /** @Route("/{id}/delete", name="game_delete", methods={"GET", "DELETE"}) */
     public function delete(MessageBusInterface $messageBus, Request $request, Game $game): Response
     {
         $token = $request->request->get('_token', '');
@@ -106,7 +98,7 @@ class GameController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Das Spiel mit dem Namen "' . $game->getName() . '" wurde erfolgreich gelöscht.'
+                'Das Spiel mit dem Namen "' . $game->getName() . '" wurde erfolgreich gelöscht.',
             );
 
             return $this->redirectToRoute('dashboard');
@@ -115,39 +107,33 @@ class GameController extends AbstractController
         return $this->render('game/delete.html.twig', ['game' => $game]);
     }
 
-    /**
-     * @Route("/{id}/lock", name="game_lock", methods={"GET"})
-     */
+    /** @Route("/{id}/lock", name="game_lock", methods={"GET"}) */
     public function lock(MessageBusInterface $messageBus, Game $game): Response
     {
         $messageBus->dispatch(new LockGame($game->getId()));
 
         $this->addFlash(
             'success',
-            'Das Spiel mit dem Namen "' . $game->getName() . '" wurde erfolgreich gesperrt.'
+            'Das Spiel mit dem Namen "' . $game->getName() . '" wurde erfolgreich gesperrt.',
         );
 
         return $this->redirectToRoute('dashboard');
     }
 
-    /**
-     * @Route("/{id}/unlock", name="game_unlock", methods={"GET"})
-     */
+    /** @Route("/{id}/unlock", name="game_unlock", methods={"GET"}) */
     public function unlock(MessageBusInterface $messageBus, Game $game): Response
     {
         $messageBus->dispatch(new UnlockGame($game->getId()));
 
         $this->addFlash(
             'success',
-            'Das Spiel mit dem Namen "' . $game->getName() . '" wurde erfolgreich entsperrt.'
+            'Das Spiel mit dem Namen "' . $game->getName() . '" wurde erfolgreich entsperrt.',
         );
 
         return $this->redirectToRoute('dashboard');
     }
 
-    /**
-     * @Route("/{id}/export", name="game_export", methods={"GET"})
-     */
+    /** @Route("/{id}/export", name="game_export", methods={"GET"}) */
     public function export(Game $game): StreamedResponse
     {
         $spreadsheet = (new GameExporter())->export($game);
@@ -163,9 +149,7 @@ class GameController extends AbstractController
         return $response;
     }
 
-    /**
-     * @Route("/{id}/statistics", name="game_statistics", methods={"GET"})
-     */
+    /** @Route("/{id}/statistics", name="game_statistics", methods={"GET"}) */
     public function statistics(Game $game, ChartBuilderInterface $chartBuilder): Response
     {
         return $this->render(
@@ -174,7 +158,7 @@ class GameController extends AbstractController
                 'game' => $game,
                 'entrance_chart' => GameEntrance::fromGame($chartBuilder, $game),
                 'exists_chart' => GameExits::fromGame($chartBuilder, $game),
-            ]
+            ],
         );
     }
 
@@ -217,13 +201,13 @@ class GameController extends AbstractController
                         $game->getId(),
                         $accessScanPoint->getTime(),
                         $accessScanPoint->getEntrances(),
-                        $accessScanPoint->getExits()
+                        $accessScanPoint->getExits(),
                     ));
                 }
 
                 $this->addFlash(
                     'success',
-                    'Die Einlasstatistiken wurden erfolgreich importiert.'
+                    'Die Einlasstatistiken wurden erfolgreich importiert.',
                 );
 
                 return $this->redirectToRoute('game_statistics', ['id' => $game->getId()]);
@@ -232,7 +216,7 @@ class GameController extends AbstractController
 
         return $this->render(
             'game/import_access_scan_points.html.twig',
-            ['game' => $game, 'form' => $form->createView()]
+            ['game' => $game, 'form' => $form->createView()],
         );
     }
 }

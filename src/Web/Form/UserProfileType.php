@@ -22,13 +22,13 @@ final class UserProfileType extends AbstractType
         $builder->add(
             'displayName',
             TextType::class,
-            ['empty_data' => '', 'required' => false]
+            ['empty_data' => '', 'required' => false],
         );
 
         $builder->add(
             'enableNotifications',
             CheckboxType::class,
-            ['required' => false]
+            ['required' => false],
         );
 
         $builder->add(
@@ -39,7 +39,7 @@ final class UserProfileType extends AbstractType
                 'constraints' => [
                     new NotCompromisedPassword(),
                 ],
-            ]
+            ],
         );
     }
 

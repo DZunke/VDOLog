@@ -34,19 +34,19 @@ class EditUserType extends AbstractType
                         'ignoreEntryIdField' => 'id',
                     ]),
                 ],
-            ]
+            ],
         );
 
         $builder->add(
             'displayName',
             TextType::class,
-            ['empty_data' => '', 'required' => false]
+            ['empty_data' => '', 'required' => false],
         );
 
         $builder->add(
             'isAdmin',
             CheckboxType::class,
-            ['required' => false]
+            ['required' => false],
         );
     }
 

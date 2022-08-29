@@ -17,7 +17,7 @@ class Protocol
 
     private string $id;
     private Game $game;
-    private ?Protocol $parent;
+    private Protocol|null $parent;
     /** @var Collection<int,Protocol> */
     private Collection $children;
     private string $content  = '';
@@ -51,19 +51,17 @@ class Protocol
         return $this->game;
     }
 
-    public function getParent(): ?Protocol
+    public function getParent(): Protocol|null
     {
         return $this->parent;
     }
 
-    public function setParent(?Protocol $parent): void
+    public function setParent(Protocol|null $parent): void
     {
         $this->parent = $parent;
     }
 
-    /**
-     * @return Collection<int,Protocol>
-     */
+    /** @return Collection<int,Protocol> */
     public function getChildren(): Collection
     {
         return new ArrayCollection($this->children->toArray());

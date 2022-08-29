@@ -18,11 +18,8 @@ use VDOLog\Web\Form\Dto\AddProtocolDto;
 
 final class ProtocolType extends AbstractType
 {
-    private ProtocolRepository $protocolRepository;
-
-    public function __construct(ProtocolRepository $protocolRepository)
+    public function __construct(private ProtocolRepository $protocolRepository)
     {
-        $this->protocolRepository = $protocolRepository;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -38,16 +35,16 @@ final class ProtocolType extends AbstractType
     {
         $builder->add('parent', HiddenType::class, ['required' => false]);
         $builder->get('parent')->addModelTransformer(new CallbackTransformer(
-            static function (?Protocol $protocol = null): ?string {
-                return $protocol !== null ? $protocol->getId() : null;
+            static function (Protocol|null $protocol = null): string|null {
+                return $protocol?->getId();
             },
-            function (?string $protocol = null): ?Protocol {
+            function (string|null $protocol = null): Protocol|null {
                 if ($protocol === null) {
                     return null;
                 }
 
                 return $this->protocolRepository->get($protocol);
-            }
+            },
         ));
 
         $builder->add(
@@ -57,7 +54,7 @@ final class ProtocolType extends AbstractType
                 'empty_data' => '',
                 'required' => false,
                 'attr' => ['placeholder' => 'Sender'],
-            ]
+            ],
         );
         $builder->add(
             'recipent',
@@ -66,7 +63,7 @@ final class ProtocolType extends AbstractType
                 'empty_data' => '',
                 'required' => false,
                 'attr' => ['placeholder' => 'Empfänger'],
-            ]
+            ],
         );
         $builder->add(
             'content',
@@ -76,7 +73,7 @@ final class ProtocolType extends AbstractType
                 'constraints' => [
                     new NotBlank(['message' => 'Ein Funkspruch ist niemals leer!']),
                 ],
-            ]
+            ],
         );
     }
 }

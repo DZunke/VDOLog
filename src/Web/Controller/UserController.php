@@ -34,24 +34,20 @@ final class UserController extends AbstractController
 {
     public function __construct(
         private UserRepository $userRepository,
-        private User\CurrentUserProvider $currentUserProvider
+        private User\CurrentUserProvider $currentUserProvider,
     ) {
     }
 
-    /**
-     * @Route("/", name="user_list")
-     */
+    /** @Route("/", name="user_list") */
     public function index(): Response
     {
         return $this->render(
             'user/index.html.twig',
-            ['users' => $this->userRepository->findAll()]
+            ['users' => $this->userRepository->findAll()],
         );
     }
 
-    /**
-     * @Route("/create", name="user_create")
-     */
+    /** @Route("/create", name="user_create") */
     public function create(Request $request, MessageBusInterface $messageBus): Response
     {
         $dto  = new CreateUserDto();
@@ -63,7 +59,7 @@ final class UserController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Der/Die NutzerIn mit der E-Mail-Adresse "' . $dto->email . '" wurde erfolgreich angelegt.'
+                'Der/Die NutzerIn mit der E-Mail-Adresse "' . $dto->email . '" wurde erfolgreich angelegt.',
             );
 
             return $this->redirectToRoute('user_list');
@@ -71,13 +67,11 @@ final class UserController extends AbstractController
 
         return $this->render(
             'user/create.html.twig',
-            ['form' => $form->createView()]
+            ['form' => $form->createView()],
         );
     }
 
-    /**
-     * @Route("/{id}/edit/", name="user_edit")
-     */
+    /** @Route("/{id}/edit/", name="user_edit") */
     public function edit(User $user, Request $request, MessageBusInterface $messageBus): Response
     {
         $dto  = EditUserDto::fromObject($user);
@@ -89,7 +83,7 @@ final class UserController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Der/Die NutzerIn mit der E-Mail-Adresse "' . $dto->email . '" wurde erfolgreich bearbeitet.'
+                'Der/Die NutzerIn mit der E-Mail-Adresse "' . $dto->email . '" wurde erfolgreich bearbeitet.',
             );
 
             return $this->redirectToRoute('user_list');
@@ -97,19 +91,17 @@ final class UserController extends AbstractController
 
         return $this->render(
             'user/edit.html.twig',
-            ['user' => $user, 'form' => $form->createView()]
+            ['user' => $user, 'form' => $form->createView()],
         );
     }
 
-    /**
-     * @Route("/{id}/delete", name="user_delete", methods={"GET", "DELETE"})
-     */
+    /** @Route("/{id}/delete", name="user_delete", methods={"GET", "DELETE"}) */
     public function delete(User $user, Request $request, MessageBusInterface $messageBus): Response
     {
         if ($this->currentUserProvider->getCurrentUser()->getId() === $user->getId()) {
             $this->addFlash(
                 'warning',
-                'Der/Die NutzerIn entspricht dem aktuell verwendeten Nutzer und kann nicht gelöscht werden'
+                'Der/Die NutzerIn entspricht dem aktuell verwendeten Nutzer und kann nicht gelöscht werden',
             );
 
             return $this->redirectToRoute('user_list');
@@ -124,7 +116,7 @@ final class UserController extends AbstractController
             $this->addFlash(
                 'success',
                 'Der/Die NutzerIn mit der E-Mail-Adresse "'
-                . $user->getEmail() . '" wurde erfolgreich gelöscht.'
+                . $user->getEmail() . '" wurde erfolgreich gelöscht.',
             );
 
             return $this->redirectToRoute('user_list');
@@ -133,9 +125,7 @@ final class UserController extends AbstractController
         return $this->render('user/delete.html.twig', ['user' => $user]);
     }
 
-    /**
-     * @Route("/{id}/change_password", name="user_change_password")
-     */
+    /** @Route("/{id}/change_password", name="user_change_password") */
     public function password(User $user, Request $request, MessageBusInterface $messageBus): Response
     {
         $dto  = ChangePasswordDto::fromObject($user);
@@ -147,7 +137,7 @@ final class UserController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Der/Die NutzerIn mit der E-Mail-Adresse "' . $user->getEmail() . '" wurde erfolgreich bearbeitet.'
+                'Der/Die NutzerIn mit der E-Mail-Adresse "' . $user->getEmail() . '" wurde erfolgreich bearbeitet.',
             );
 
             return $this->redirectToRoute('user_list');
@@ -155,17 +145,15 @@ final class UserController extends AbstractController
 
         return $this->render(
             'user/change_password.html.twig',
-            ['user' => $user, 'form' => $form->createView()]
+            ['user' => $user, 'form' => $form->createView()],
         );
     }
 
-    /**
-     * @Route("/profile", name="user_profile")
-     */
+    /** @Route("/profile", name="user_profile") */
     public function profile(
         User\CurrentUserProvider $currentUserProvider,
         Request $request,
-        MessageBusInterface $messageBus
+        MessageBusInterface $messageBus,
     ): Response {
         $dto  = UserProfileDto::fromObject($currentUserProvider->getCurrentUser());
         $form = $this->createForm(UserProfileType::class, $dto);
@@ -180,7 +168,7 @@ final class UserController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Ihr Profil wurde erfolgreich aktualisiert'
+                'Ihr Profil wurde erfolgreich aktualisiert',
             );
 
             return $this->redirectToRoute('user_profile');
@@ -188,7 +176,7 @@ final class UserController extends AbstractController
 
         return $this->render(
             'user/profile.html.twig',
-            ['form' => $form->createView()]
+            ['form' => $form->createView()],
         );
     }
 }

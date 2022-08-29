@@ -12,22 +12,14 @@ use VDOLog\Core\Helper\Assertion;
 
 class AccessScanPoint
 {
-    private string $id;
-    private Game $game;
-    private ?AccessScanner $accessScanner = null;
-
-    private DateTimeImmutable $time;
+    private AccessScanner|null $accessScanner = null;
 
     private int $entrances = 0;
     private int $exits     = 0;
 
-    public function __construct(string $id, Game $game, DateTimeImmutable $time)
+    public function __construct(private string $id, private Game $game, private DateTimeImmutable $time)
     {
         Assertion::uuid($id);
-
-        $this->id   = $id;
-        $this->game = $game;
-        $this->time = $time;
     }
 
     public static function create(Game $game, DateTimeImmutable $time): AccessScanPoint
@@ -45,12 +37,12 @@ class AccessScanPoint
         return $this->game;
     }
 
-    public function getAccessScanner(): ?AccessScanner
+    public function getAccessScanner(): AccessScanner|null
     {
         return $this->accessScanner;
     }
 
-    public function isFromAccessScanner(?AccessScanner $accessScanner = null): bool
+    public function isFromAccessScanner(AccessScanner|null $accessScanner = null): bool
     {
         if (! $accessScanner instanceof AccessScanner) {
             return $this->accessScanner === null;

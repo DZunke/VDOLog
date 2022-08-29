@@ -13,7 +13,7 @@ final class CreateGameHandler implements MessageHandlerInterface
 {
     public function __construct(
         private GameRepository $gameRepository,
-        private CurrentUserProvider $currentUserProvider
+        private CurrentUserProvider $currentUserProvider,
     ) {
     }
 

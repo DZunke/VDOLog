@@ -27,7 +27,7 @@ class CreateGameType extends AbstractType
                 'constraints' => [
                     new NotBlank(),
                 ],
-            ]
+            ],
         );
 
         $builder->add(
@@ -37,7 +37,7 @@ class CreateGameType extends AbstractType
                 'class' => Location::class,
                 'choice_label' => 'name',
                 'placeholder' => 'game.select.location',
-            ]
+            ],
         );
 
         $builder->add('timeFrame', TimeFrameType::class);

@@ -14,9 +14,7 @@ final class SecurityContext extends BaseContext implements Context
 {
     private MinkContext $minkContext;
 
-    /**
-     * @BeforeScenario
-     */
+    /** @BeforeScenario */
     public function gatherContexts(BeforeScenarioScope $scope): void
     {
         $minkContext = $this->getContext($scope, MinkContext::class);
@@ -25,9 +23,7 @@ final class SecurityContext extends BaseContext implements Context
         $this->minkContext = $minkContext;
     }
 
-    /**
-     * @Given /^I am authenticated as "([^"]*)" using "([^"]*)"$/
-     */
+    /** @Given /^I am authenticated as "([^"]*)" using "([^"]*)"$/ */
     public function iAmAuthenticatedAs(string $email, string $password): void
     {
         $this->minkContext->visit('/login');

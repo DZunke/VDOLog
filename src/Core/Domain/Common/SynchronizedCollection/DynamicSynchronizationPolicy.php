@@ -10,15 +10,8 @@ use function call_user_func;
 
 final class DynamicSynchronizationPolicy implements SynchronizationPolicy
 {
-    private Closure $addCallback;
-    private Closure $updateCallback;
-    private Closure $removeCallback;
-
-    public function __construct(Closure $addCallback, Closure $updateCallback, Closure $removeCallback)
+    public function __construct(private Closure $addCallback, private Closure $updateCallback, private Closure $removeCallback)
     {
-        $this->addCallback    = $addCallback;
-        $this->updateCallback = $updateCallback;
-        $this->removeCallback = $removeCallback;
     }
 
     public function handleAdd(mixed $newData): mixed

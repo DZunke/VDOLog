@@ -8,9 +8,7 @@ use VDOLog\Core\Domain\Game\Exception\GameNotFound;
 
 interface GameRepository
 {
-    /**
-     * @throws GameNotFound if the game with given id does not exist.
-     */
+    /** @throws GameNotFound if the game with given id does not exist. */
     public function get(string $id): Game;
 
     public function save(Game $game): void;

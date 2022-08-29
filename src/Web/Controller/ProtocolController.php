@@ -15,16 +15,11 @@ use VDOLog\Core\Domain\ProtocolRepository;
 use VDOLog\Web\Form\Dto\AddProtocolDto;
 use VDOLog\Web\Form\ProtocolType;
 
-/**
- * @Route("/game/{game}/protocol")
- */
+/** @Route("/game/{game}/protocol") */
 class ProtocolController extends AbstractController
 {
-    private ProtocolRepository $protocolRepository;
-
-    public function __construct(ProtocolRepository $protocolRepository)
+    public function __construct(private ProtocolRepository $protocolRepository)
     {
-        $this->protocolRepository = $protocolRepository;
     }
 
     /**

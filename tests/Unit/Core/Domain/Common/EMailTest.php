@@ -23,9 +23,7 @@ final class EMailTest extends TestCase
         self::assertSame($email, (string) $emailObj);
     }
 
-    /**
-     * @return array<int, array{'email': string, 'expected': bool}>
-     */
+    /** @return array<int, array{'email': string, 'expected': bool}> */
     public function provideEMailTests(): array
     {
         return [

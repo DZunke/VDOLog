@@ -12,11 +12,8 @@ use VDOLog\Core\Domain\Game\ReminderRepository;
 
 class DoctrineReminderRepository implements ReminderRepository
 {
-    private EntityManagerInterface $em;
-
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(private EntityManagerInterface $em)
     {
-        $this->em = $em;
     }
 
     /** @inheritDoc */

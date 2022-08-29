@@ -16,8 +16,8 @@ final class Assertion extends BaseAssertion
 
     public static function relativeDateTimeString(
         mixed $value,
-        ?string $message = null,
-        ?string $propertyPath = null
+        string|null $message = null,
+        string|null $propertyPath = null,
     ): bool {
         try {
             self::string($value);
@@ -25,14 +25,14 @@ final class Assertion extends BaseAssertion
         } catch (Throwable) {
             $message = sprintf(
                 self::generateMessage($message ?? 'Value "%s" is not a relative datetime string.'),
-                self::stringify($value)
+                self::stringify($value),
             );
 
             throw self::createException(
                 $value,
                 $message,
                 self::INVALID_RELATIVE_DATETIME_STRING,
-                $propertyPath
+                $propertyPath,
             );
         }
 

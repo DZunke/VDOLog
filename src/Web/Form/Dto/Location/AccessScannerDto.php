@@ -8,8 +8,8 @@ use VDOLog\Core\Domain\Location\AccessScanner;
 
 class AccessScannerDto
 {
-    public ?string $id  = null;
-    public string $name = '';
+    public string|null $id = null;
+    public string $name    = '';
 
     public static function fromAccessScanner(AccessScanner $accessScanner): AccessScannerDto
     {

@@ -20,7 +20,7 @@ final class AccessScannerType extends AbstractType
         $builder->add(
             'id',
             HiddenType::class,
-            ['empty_data' => '']
+            ['empty_data' => ''],
         );
 
         $builder->add(
@@ -29,7 +29,7 @@ final class AccessScannerType extends AbstractType
             [
                 'empty_data' => '',
                 'constraints' => [new NotBlank()],
-            ]
+            ],
         );
     }
 

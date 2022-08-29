@@ -14,9 +14,7 @@ trait EventStoreable
         $this->events[] = $event;
     }
 
-    /**
-     * @return DomainEvent[]
-     */
+    /** @return DomainEvent[] */
     public function flushEvents(): array
     {
         $events       = $this->events;

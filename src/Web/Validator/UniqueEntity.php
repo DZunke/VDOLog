@@ -15,9 +15,7 @@ final class UniqueEntity extends Constraint
     public string $field              = '';
     public string $ignoreEntryIdField = '';
 
-    /**
-     * @return string[]
-     */
+    /** @return string[] */
     public function getRequiredOptions(): array
     {
         return ['entityClass', 'field'];

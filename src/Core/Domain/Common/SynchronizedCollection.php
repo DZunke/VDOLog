@@ -17,17 +17,9 @@ use function reset;
 
 class SynchronizedCollection
 {
-    /** @var mixed[] */
-    private array $collection;
-    private SynchronizationPolicy $policy;
-
-    /**
-     * @param mixed[] $collection
-     */
-    public function __construct(array $collection, SynchronizationPolicy $policy)
+    /** @param mixed[] $collection */
+    public function __construct(private array $collection, private SynchronizationPolicy $policy)
     {
-        $this->collection = $collection;
-        $this->policy     = $policy;
     }
 
     /**
@@ -73,9 +65,7 @@ class SynchronizedCollection
         return new $this(array_values($copiedCollection), $this->policy);
     }
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     public function toArray(): array
     {
         return $this->collection;

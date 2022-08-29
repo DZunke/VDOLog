@@ -12,7 +12,7 @@ final class ChangePasswordHandler implements MessageHandlerInterface
 {
     public function __construct(
         private UserRepository $userRepository,
-        private SodiumPasswordHasher $passwordHasher
+        private SodiumPasswordHasher $passwordHasher,
     ) {
     }
 

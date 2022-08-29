@@ -19,21 +19,17 @@ class User implements EventStore
     use UserCreatable;
 
     private string $id;
-    private EMail $email;
-    private string $password;
     private string $displayName = '';
-    private ?DateTimeImmutable $lastLogin;
+    private DateTimeImmutable|null $lastLogin;
     private bool $isAdmin             = false;
     private bool $enableNotifications = false;
 
-    public function __construct(string $uuid, EMail $email, string $password)
+    public function __construct(string $uuid, private EMail $email, private string $password)
     {
         Assertion::uuid($uuid, 'An user must have an id');
         Assertion::notBlank($password, 'An user must have a password');
 
-        $this->id       = $uuid;
-        $this->email    = $email;
-        $this->password = $password;
+        $this->id = $uuid;
 
         $this->raiseEvent(new UserCreated($this));
     }
@@ -82,7 +78,7 @@ class User implements EventStore
         $this->lastLogin = $lastLogin;
     }
 
-    public function getLastLogin(): ?DateTimeImmutable
+    public function getLastLogin(): DateTimeImmutable|null
     {
         return $this->lastLogin;
     }

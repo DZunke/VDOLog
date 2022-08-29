@@ -8,20 +8,11 @@ use VDOLog\Core\Helper\Assertion;
 
 class CreateLocation
 {
-    private string $name;
-    /** @var string[] */
-    private array $accessScanners;
-
-    /**
-     * @param string[] $accessScanners
-     */
-    public function __construct(string $name, array $accessScanners)
+    /** @param string[] $accessScanners */
+    public function __construct(private string $name, private array $accessScanners)
     {
         Assertion::notBlank($name);
         Assertion::allString($accessScanners);
-
-        $this->name           = $name;
-        $this->accessScanners = $accessScanners;
     }
 
     public function getName(): string
@@ -29,9 +20,7 @@ class CreateLocation
         return $this->name;
     }
 
-    /**
-     * @return string[]
-     */
+    /** @return string[] */
     public function getAccessScanners(): array
     {
         return $this->accessScanners;

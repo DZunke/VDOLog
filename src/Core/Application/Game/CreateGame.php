@@ -10,16 +10,11 @@ use VDOLog\Core\Domain\Location;
 
 class CreateGame
 {
-    private string $name;
-    private TimeFrame $timeFrame;
-    private ?Location $location = null;
+    private Location|null $location = null;
 
-    public function __construct(string $name, TimeFrame $timeFrame)
+    public function __construct(private string $name, private TimeFrame $timeFrame)
     {
         Assertion::notBlank($name, 'A game must have a name');
-
-        $this->name      = $name;
-        $this->timeFrame = $timeFrame;
     }
 
     public function getName(): string
@@ -27,7 +22,7 @@ class CreateGame
         return $this->name;
     }
 
-    public function getLocation(): ?Location
+    public function getLocation(): Location|null
     {
         return $this->location;
     }

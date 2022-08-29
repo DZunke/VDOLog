@@ -13,7 +13,7 @@ class AccessScanPointCreate
         private DateTimeImmutable $time,
         private int $entrances = 0,
         private int $exits = 0,
-        private ?string $accessScannerId = null
+        private string|null $accessScannerId = null,
     ) {
     }
 
@@ -37,7 +37,7 @@ class AccessScanPointCreate
         return $this->exits;
     }
 
-    public function getAccessScannerId(): ?string
+    public function getAccessScannerId(): string|null
     {
         return $this->accessScannerId;
     }

@@ -9,15 +9,12 @@ use VDOLog\Core\Domain\Game;
 
 class NewReminderDto
 {
-    private Game $game;
-
     public string $title    = '';
     public string $message  = '';
     public string $remindAt = '';
 
-    public function __construct(Game $game)
+    public function __construct(private Game $game)
     {
-        $this->game = $game;
     }
 
     public function toCommand(): CreateReminder

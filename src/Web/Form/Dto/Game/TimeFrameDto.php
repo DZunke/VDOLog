@@ -11,9 +11,9 @@ use VDOLog\Core\Domain\Game\TimeFrame;
 class TimeFrameDto
 {
     public DateTimeImmutable $eventStartsAt;
-    public ?string $optSpectatorEntry = '+2 hours';
-    public ?string $optEventActBegin  = '+4 hours +30 minutes';
-    public ?string $optEventActEnd    = '+7 hours +15 minutes';
+    public string|null $optSpectatorEntry = '+2 hours';
+    public string|null $optEventActBegin  = '+4 hours +30 minutes';
+    public string|null $optEventActEnd    = '+7 hours +15 minutes';
 
     public function __construct()
     {

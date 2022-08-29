@@ -6,8 +6,6 @@ namespace VDOLog\Core\Domain\Common\Event;
 
 interface EventStore
 {
-    /**
-     * @return DomainEvent[]
-     */
+    /** @return DomainEvent[] */
     public function flushEvents(): array;
 }

@@ -18,9 +18,7 @@ class AccessScanPointCsvParser
 {
     private string $delimeter = ';';
 
-    /**
-     * @return AccessScanPoint[]
-     */
+    /** @return AccessScanPoint[] */
     public function parse(DateTimeImmutable $defaultDateTime, string $csvContent): array
     {
         $parsedEntries = [];
@@ -43,7 +41,7 @@ class AccessScanPointCsvParser
             $parsedEntries[] = new AccessScanPoint(
                 $defaultDateTime->setTime((int) $parsedTime[0], (int) $parsedTime[1]),
                 (int) str_replace(',', '', $columns[4]),
-                (int) str_replace(',', '', $columns[3])
+                (int) str_replace(',', '', $columns[3]),
             );
         }
 

@@ -8,16 +8,10 @@ use Assert\Assertion;
 
 class ChangePassword
 {
-    private string $id;
-    private string $plainPassword;
-
-    public function __construct(string $id, string $plainPassword)
+    public function __construct(private string $id, private string $plainPassword)
     {
         Assertion::uuid($id);
         Assertion::notBlank($plainPassword);
-
-        $this->id            = $id;
-        $this->plainPassword = $plainPassword;
     }
 
     public function getId(): string

@@ -30,7 +30,7 @@ final class ImportAccessScanPointsType extends AbstractType
                         ],
                     ]),
                 ],
-            ]
+            ],
         );
     }
 

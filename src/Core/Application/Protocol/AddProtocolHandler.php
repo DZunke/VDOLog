@@ -15,7 +15,7 @@ final class AddProtocolHandler implements MessageHandlerInterface
     public function __construct(
         private ProtocolRepository $protocolRepository,
         private GameRepository $gameRepository,
-        private CurrentUserProvider $currentUserProvider
+        private CurrentUserProvider $currentUserProvider,
     ) {
     }
 

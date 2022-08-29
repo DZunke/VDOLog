@@ -9,12 +9,8 @@ use VDOLog\Core\Domain\User;
 
 final class UserCreated extends DomainEvent
 {
-    private User $user;
-
-    public function __construct(User $user)
+    public function __construct(private User $user)
     {
-        $this->user = $user;
-
         parent::__construct();
     }
 

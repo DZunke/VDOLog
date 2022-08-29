@@ -9,20 +9,14 @@ use VDOLog\Core\Domain\Protocol;
 
 class AddProtocol
 {
-    private string $gameId;
-    private string $content;
-
-    private ?Protocol $parent;
+    private Protocol|null $parent;
     private string $sender   = '';
     private string $recipent = '';
 
-    public function __construct(string $gameId, string $content)
+    public function __construct(private string $gameId, private string $content)
     {
         Assertion::uuid($gameId, 'A game id must not be valid');
         Assertion::notBlank($content, 'A protocol entry must never be empty');
-
-        $this->gameId  = $gameId;
-        $this->content = $content;
     }
 
     public function getGameId(): string
@@ -35,12 +29,12 @@ class AddProtocol
         return $this->content;
     }
 
-    public function getParent(): ?Protocol
+    public function getParent(): Protocol|null
     {
         return $this->parent;
     }
 
-    public function setParent(?Protocol $parent): void
+    public function setParent(Protocol|null $parent): void
     {
         $this->parent = $parent;
     }

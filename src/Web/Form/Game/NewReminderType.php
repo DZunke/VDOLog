@@ -30,7 +30,7 @@ final class NewReminderType extends AbstractType
                 'label' => 'Titel',
                 'empty_data' => '',
                 'constraints' => [new NotBlank()],
-            ]
+            ],
         );
 
         $builder->add(
@@ -40,7 +40,7 @@ final class NewReminderType extends AbstractType
                 'label' => 'Nachricht',
                 'empty_data' => '',
                 'constraints' => [new NotBlank()],
-            ]
+            ],
         );
 
         $builder->add(
@@ -51,7 +51,7 @@ final class NewReminderType extends AbstractType
                 'help' => 'Relativ zum Veranstaltungsbeginn',
                 'empty_data' => '',
                 'constraints' => [new NotBlank(), new DateTimeRelativeString()],
-            ]
+            ],
         );
     }
 }

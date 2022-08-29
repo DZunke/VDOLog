@@ -28,7 +28,7 @@ final class ChangePasswordType extends AbstractType
                     new NotBlank(),
                     new NotCompromisedPassword(),
                 ],
-            ]
+            ],
         );
     }
 

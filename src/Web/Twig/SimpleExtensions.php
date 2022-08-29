@@ -9,9 +9,7 @@ use Twig\TwigFilter;
 
 final class SimpleExtensions extends AbstractExtension
 {
-    /**
-     * @return TwigFilter[]
-     */
+    /** @return TwigFilter[] */
     public function getFilters(): array
     {
         return [
@@ -19,7 +17,7 @@ final class SimpleExtensions extends AbstractExtension
         ];
     }
 
-    public function formatBoolean(?bool $value): string
+    public function formatBoolean(bool|null $value): string
     {
         return (bool) $value === false ? 'Nein' : 'Ja';
     }

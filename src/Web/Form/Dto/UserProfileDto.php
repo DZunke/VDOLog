@@ -14,16 +14,13 @@ use function strlen;
 
 class UserProfileDto
 {
-    public string $id;
-    public string $displayName        = '';
-    public ?string $changePassword    = null;
-    public ?bool $enableNotifications = false;
+    public string $displayName            = '';
+    public string|null $changePassword    = null;
+    public bool|null $enableNotifications = false;
 
-    private function __construct(string $id)
+    private function __construct(public string $id)
     {
         Assertion::uuid($id);
-
-        $this->id = $id;
     }
 
     public static function fromObject(User $user): UserProfileDto
@@ -40,7 +37,7 @@ class UserProfileDto
         return new UpdateProfile($this->id, $this->displayName, (bool) $this->enableNotifications);
     }
 
-    public function toChangePasswordCommand(): ?ChangePassword
+    public function toChangePasswordCommand(): ChangePassword|null
     {
         if (! is_string($this->changePassword) || strlen($this->changePassword) === 0) {
             return null;

@@ -15,7 +15,7 @@ final class UpdateLocationHandler implements MessageHandlerInterface
 {
     public function __construct(
         private LocationRepository $locationRepository,
-        private CurrentUserProvider $currentUserProvider
+        private CurrentUserProvider $currentUserProvider,
     ) {
     }
 

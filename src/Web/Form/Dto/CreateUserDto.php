@@ -11,7 +11,7 @@ class CreateUserDto
 {
     public string $email;
     public string $password;
-    public ?bool $isAdmin;
+    public bool|null $isAdmin;
     public string $displayName = '';
 
     public function toCommand(): CreateUser

@@ -14,16 +14,11 @@ use VDOLog\Core\Domain\LocationRepository;
 
 class DoctrineLocationRepository implements LocationRepository
 {
-    private EntityManagerInterface $em;
-
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(private readonly EntityManagerInterface $em)
     {
-        $this->em = $em;
     }
 
-    /**
-     * @return Collection<int,Location>
-     */
+    /** @return Collection<int,Location> */
     public function findAll(): Collection
     {
         return new ArrayCollection($this->em->getRepository(Location::class)->findAll());

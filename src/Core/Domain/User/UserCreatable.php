@@ -15,7 +15,7 @@ trait UserCreatable
         $this->createdBy = $user;
     }
 
-    public function getCreatedBy(): ?User
+    public function getCreatedBy(): User|null
     {
         return $this->createdBy;
     }

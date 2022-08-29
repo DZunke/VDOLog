@@ -15,14 +15,11 @@ use function array_merge;
 
 final class DoctrineEventStoreHandler implements EventSubscriber
 {
-    private EventDispatcherInterface $eventDispatcher;
-
     /** @var DomainEvent[] */
     private array $eventStoreCollection = [];
 
-    public function __construct(EventDispatcherInterface $eventDispatcher)
+    public function __construct(private EventDispatcherInterface $eventDispatcher)
     {
-        $this->eventDispatcher = $eventDispatcher;
     }
 
     /** @inheritDoc */
@@ -54,9 +51,7 @@ final class DoctrineEventStoreHandler implements EventSubscriber
         }
     }
 
-    /**
-     * @param array<int, object> $entities
-     */
+    /** @param array<int, object> $entities */
     private function collectEventStoreEvents(array $entities): void
     {
         foreach ($entities as $entity) {

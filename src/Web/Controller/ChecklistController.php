@@ -8,14 +8,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/checklist")
- */
+/** @Route("/checklist") */
 class ChecklistController extends AbstractController
 {
-    /**
-     * @Route("/notify", name="check_notifications")
-     */
+    /** @Route("/notify", name="check_notifications") */
     public function check(): JsonResponse
     {
         return $this->json(['messages' => []]);

@@ -14,11 +14,8 @@ use function assert;
 
 final class CurrentDomainUserProvider implements CurrentUserProvider
 {
-    private TokenStorageInterface $tokenStorage;
-
-    public function __construct(TokenStorageInterface $tokenStorage)
+    public function __construct(private TokenStorageInterface $tokenStorage)
     {
-        $this->tokenStorage = $tokenStorage;
     }
 
     public function hasCurrentUser(): bool

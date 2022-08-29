@@ -9,12 +9,10 @@ use VDOLog\Core\Domain\User;
 
 class ChangePasswordDto
 {
-    public string $id;
     public string $password;
 
-    private function __construct(string $id)
+    private function __construct(public string $id)
     {
-        $this->id = $id;
     }
 
     public static function fromObject(User $user): ChangePasswordDto

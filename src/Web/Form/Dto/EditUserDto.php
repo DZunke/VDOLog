@@ -11,17 +11,14 @@ use VDOLog\Core\Helper\Assertion;
 
 class EditUserDto
 {
-    public string $id;
     public string $email;
     public string $password;
-    public ?bool $isAdmin;
+    public bool|null $isAdmin;
     public string $displayName = '';
 
-    private function __construct(string $id)
+    private function __construct(public string $id)
     {
         Assertion::uuid($id);
-
-        $this->id = $id;
     }
 
     public static function fromObject(User $user): EditUserDto

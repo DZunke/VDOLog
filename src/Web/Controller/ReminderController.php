@@ -20,16 +20,11 @@ use VDOLog\Web\Form\Game\NewReminderType;
 use function assert;
 use function is_string;
 
-/**
- * @Route("/game")
- */
+/** @Route("/game") */
 final class ReminderController extends AbstractController
 {
-    private Game\ReminderRepository $reminderRepository;
-
-    public function __construct(Game\ReminderRepository $reminderRepository)
+    public function __construct(private Game\ReminderRepository $reminderRepository)
     {
-        $this->reminderRepository = $reminderRepository;
     }
 
     /**
@@ -55,7 +50,7 @@ final class ReminderController extends AbstractController
             $messageBus->dispatch($dto->toCommand());
             $this->addFlash(
                 'success',
-                'Eine neue Erinnerung mit dem Titel "' . $dto->title . '" wurde erstellt'
+                'Eine neue Erinnerung mit dem Titel "' . $dto->title . '" wurde erstellt',
             );
 
             return $this->redirectToRoute('reminder_index', ['game' => $game->getId()]);
@@ -64,17 +59,13 @@ final class ReminderController extends AbstractController
         return $this->render('reminder/new.html.twig', ['game' => $game, 'form' => $form->createView()]);
     }
 
-    /**
-     * @Route("/{game}/reminder/edit/{id}", name="reminder_edit")
-     */
+    /** @Route("/{game}/reminder/edit/{id}", name="reminder_edit") */
     public function edit(Request $request, MessageBusInterface $messageBus, Game\Reminder $reminder): Response
     {
         return new Response('NOT IMPLEMENTED', Response::HTTP_NOT_IMPLEMENTED);
     }
 
-    /**
-     * @Route("/{game}/reminder/delete/{id}", name="reminder_delete")
-     */
+    /** @Route("/{game}/reminder/delete/{id}", name="reminder_delete") */
     public function delete(Request $request, MessageBusInterface $messageBus, Game\Reminder $reminder): Response
     {
         $token = $request->request->get('_token', '');
@@ -84,7 +75,7 @@ final class ReminderController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Die Erinnerung mit dem Titel "' . $reminder->getTitle() . '" wurde erfolgreich gelöscht.'
+                'Die Erinnerung mit dem Titel "' . $reminder->getTitle() . '" wurde erfolgreich gelöscht.',
             );
 
             return $this->redirectToRoute('dashboard');
@@ -93,9 +84,7 @@ final class ReminderController extends AbstractController
         return $this->render('reminder/delete.html.twig', ['reminder' => $reminder]);
     }
 
-    /**
-     * @Route("/reminder/remind/{lastCheck}", name="reminder_check")
-     */
+    /** @Route("/reminder/remind/{lastCheck}", name="reminder_check") */
     public function check(DateTimeImmutable $lastCheck): JsonResponse
     {
         $reminderArr = $this->reminderRepository->findUnsentRemindersSince($lastCheck);

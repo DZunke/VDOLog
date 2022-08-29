@@ -18,19 +18,14 @@ class Location implements Stringable
     use UserCreatable;
     use UserEditable;
 
-    private string $id;
-    private string $name;
-
     /** @var Collection<string, AccessScanner> */
     private Collection $accessScanners;
 
-    public function __construct(string $id, string $name)
+    public function __construct(private string $id, private string $name)
     {
         Assertion::uuid($id);
         Assertion::notBlank($name);
 
-        $this->id             = $id;
-        $this->name           = $name;
         $this->accessScanners = new ArrayCollection();
     }
 
@@ -61,9 +56,7 @@ class Location implements Stringable
         $this->name = $name;
     }
 
-    /**
-     * @return array<string, AccessScanner>
-     */
+    /** @return array<string, AccessScanner> */
     public function getAccessScanners(): array
     {
         return $this->accessScanners->toArray();
@@ -87,7 +80,7 @@ class Location implements Stringable
         $this->accessScanners->add($accessScanner);
     }
 
-    public function getAccessScannerByName(string $name): ?AccessScanner
+    public function getAccessScannerByName(string $name): AccessScanner|null
     {
         foreach ($this->accessScanners as $scanner) {
             if ($scanner->getName() === $name) {

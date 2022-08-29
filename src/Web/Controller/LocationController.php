@@ -26,20 +26,16 @@ final class LocationController extends AbstractController
     ) {
     }
 
-    /**
-     * @Route("/", name="location_list")
-     */
+    /** @Route("/", name="location_list") */
     public function index(): Response
     {
         return $this->render(
             'location/index.html.twig',
-            ['locations' => $this->locationRepository->findAll()]
+            ['locations' => $this->locationRepository->findAll()],
         );
     }
 
-    /**
-     * @Route("/create", name="location_create")
-     */
+    /** @Route("/create", name="location_create") */
     public function create(Request $request, MessageBusInterface $messageBus): Response
     {
         $dto  = new LocationDto();
@@ -51,7 +47,7 @@ final class LocationController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Der Standort "' . $dto->name . '" wurde erfolgreich angelegt.'
+                'Der Standort "' . $dto->name . '" wurde erfolgreich angelegt.',
             );
 
             return $this->redirectToRoute('location_list');
@@ -59,13 +55,11 @@ final class LocationController extends AbstractController
 
         return $this->render(
             'location/create.html.twig',
-            ['form' => $form->createView()]
+            ['form' => $form->createView()],
         );
     }
 
-    /**
-     * @Route("/{id}/edit", name="location_edit")
-     */
+    /** @Route("/{id}/edit", name="location_edit") */
     public function edit(Location $location, Request $request, MessageBusInterface $messageBus): Response
     {
         $dto  = LocationDto::fromLocation($location);
@@ -77,7 +71,7 @@ final class LocationController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Der Standort "' . $dto->name . '" wurde erfolgreich bearbeitet.'
+                'Der Standort "' . $dto->name . '" wurde erfolgreich bearbeitet.',
             );
 
             return $this->redirectToRoute('location_list');
@@ -85,7 +79,7 @@ final class LocationController extends AbstractController
 
         return $this->render(
             'location/edit.html.twig',
-            ['location' => $location, 'form' => $form->createView()]
+            ['location' => $location, 'form' => $form->createView()],
         );
     }
 }

@@ -14,7 +14,7 @@ final class CreateUserHandler implements MessageHandlerInterface
     public function __construct(
         private UserRepository $userRepository,
         private SodiumPasswordHasher $passwordHasher,
-        private User\CurrentUserProvider $currentUserProvider
+        private User\CurrentUserProvider $currentUserProvider,
     ) {
     }
 

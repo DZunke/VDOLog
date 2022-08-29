@@ -10,11 +10,8 @@ use VDOLog\Core\Domain\GameRepository;
 
 final class LockGameHandler implements MessageHandlerInterface
 {
-    private GameRepository $gameRepository;
-
-    public function __construct(GameRepository $gameRepository)
+    public function __construct(private GameRepository $gameRepository)
     {
-        $this->gameRepository = $gameRepository;
     }
 
     public function __invoke(LockGame $message): void

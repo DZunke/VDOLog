@@ -8,13 +8,9 @@ use Assert\Assertion;
 
 class DeleteGame
 {
-    private string $id;
-
-    public function __construct(string $id)
+    public function __construct(private string $id)
     {
         Assertion::uuid($id, 'To delete a game a valid id must be given');
-
-        $this->id = $id;
     }
 
     public function getId(): string

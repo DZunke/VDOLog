@@ -14,11 +14,8 @@ use VDOLog\Core\Domain\ProtocolRepository;
 
 class DoctrineProtocolRepository implements ProtocolRepository
 {
-    private EntityManagerInterface $em;
-
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(private readonly EntityManagerInterface $em)
     {
-        $this->em = $em;
     }
 
     public function get(string $id): Protocol
@@ -31,9 +28,7 @@ class DoctrineProtocolRepository implements ProtocolRepository
         return $protocol;
     }
 
-    /**
-     * @return Collection<int,Protocol>
-     */
+    /** @return Collection<int,Protocol> */
     public function findForListing(Game $game): Collection
     {
         return new ArrayCollection(
@@ -42,8 +37,8 @@ class DoctrineProtocolRepository implements ProtocolRepository
                     'parent' => null,
                     'game' => $game,
                 ],
-                ['createdAt' => 'desc']
-            )
+                ['createdAt' => 'desc'],
+            ),
         );
     }
 

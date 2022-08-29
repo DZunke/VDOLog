@@ -17,9 +17,7 @@ final class FormContext extends BaseContext implements Context
 {
     private MinkContext $minkContext;
 
-    /**
-     * @BeforeScenario
-     */
+    /** @BeforeScenario */
     public function gatherContexts(BeforeScenarioScope $scope): void
     {
         $minkContext = $this->getContext($scope, MinkContext::class);
@@ -28,25 +26,19 @@ final class FormContext extends BaseContext implements Context
         $this->minkContext = $minkContext;
     }
 
-    /**
-     * @Then I should see form :formName
-     */
+    /** @Then I should see form :formName */
     public function iShouldSeeForm(string $formName): void
     {
         $this->minkContext->assertElementOnPage('form[name="' . $formName . '"]');
     }
 
-    /**
-     * @Then I should not see form :formName
-     */
+    /** @Then I should not see form :formName */
     public function iShouldNotSeeForm(string $formName): void
     {
         $this->minkContext->assertElementNotOnPage('form[name="' . $formName . '"]');
     }
 
-    /**
-     * @Then I should see fields in form :formName
-     */
+    /** @Then I should see fields in form :formName */
     public function iShouldSeeFieldsInForm(string $formName, TableNode $formElements): void
     {
         foreach ($formElements as $formElement) {
@@ -54,7 +46,7 @@ final class FormContext extends BaseContext implements Context
             $identifierName = array_values($formElement)[0];
 
             $this->minkContext->assertElementOnPage(
-                'form[name="' . $formName . '"] [' . $identifier . '="' . $identifierName . '"]'
+                'form[name="' . $formName . '"] [' . $identifier . '="' . $identifierName . '"]',
             );
         }
     }
