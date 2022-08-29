@@ -195,9 +195,6 @@
     "phpoffice/phpspreadsheet": {
         "version": "1.6.0"
     },
-    "phpspec/prophecy": {
-        "version": "1.11.1"
-    },
     "phpstan/phpdoc-parser": {
         "version": "0.4.2"
     },

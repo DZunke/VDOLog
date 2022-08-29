@@ -1,5 +1,6 @@
 {
     "devDependencies": {
+        "@hotwired/stimulus": "^3.0.0",
         "@symfony/ux-chartjs": "file:vendor/symfony/ux-chartjs/Resources/assets",
         "@tienvx/ux-collection-js": "file:vendor/tienvx/ux-collection-js/src/Resources/assets",
         "babel-eslint": "^10.1.0",
