@@ -28,10 +28,9 @@ class DoctrineReminderRepository implements ReminderRepository
         $qb->where($qb->expr()->isNull('r.sentAt'));
 
         $reminder = new ArrayCollection($qb->getQuery()->getResult());
-        $reminder = $reminder->filter(static function (Reminder $reminder) use ($lastCheck): bool {
+
+        return $reminder->filter(static function (Reminder $reminder) use ($lastCheck): bool {
             return $reminder->getRemindAtAsDate() <= $lastCheck;
         });
-
-        return $reminder;
     }
 }

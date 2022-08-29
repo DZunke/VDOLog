@@ -12,8 +12,8 @@ parameters:
         - tests
     symfony:
         container_xml_path: '%rootDir%/../../../var/cache/dev/VDOLog_Web_KernelDevDebugContainer.xml'
-    doctrine:
-        objectManagerLoader: tests/object-manager.php
+    # doctrine:
+    #    objectManagerLoader: tests/object-manager.php
 
     checkMissingIterableValueType: false
     treatPhpDocTypesAsCertain: false

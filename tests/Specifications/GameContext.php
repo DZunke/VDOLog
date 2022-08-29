@@ -52,6 +52,7 @@ final class GameContext extends BaseContext implements Context
             return;
         }
 
+        /** @phpstan-ignore-next-line */
         $game = $this->em->getRepository(Game::class)->findOneByName($name);
         if ($game !== null) {
             $this->games[$name] = $game;
