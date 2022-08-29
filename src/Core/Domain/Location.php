@@ -13,7 +13,7 @@ use VDOLog\Core\Domain\Location\AccessScanner;
 use VDOLog\Core\Domain\User\UserCreatable;
 use VDOLog\Core\Domain\User\UserEditable;
 
-class Location implements Stringable
+class Location implements \Stringable
 {
     use UserCreatable;
     use UserEditable;
@@ -21,7 +21,7 @@ class Location implements Stringable
     /** @var Collection<string, AccessScanner> */
     private Collection $accessScanners;
 
-    public function __construct(private string $id, private string $name)
+    public function __construct(private readonly string $id, private string $name)
     {
         Assertion::uuid($id);
         Assertion::notBlank($name);

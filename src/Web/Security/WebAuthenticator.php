@@ -20,8 +20,8 @@ use VDOLog\Core\Domain\UserRepository;
 class WebAuthenticator extends AbstractAuthenticator
 {
     public function __construct(
-        private RouterInterface $router,
-        private UserRepository $userRepository,
+        private readonly RouterInterface $router,
+        private readonly UserRepository $userRepository,
     ) {
     }
 
