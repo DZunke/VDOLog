@@ -27,7 +27,7 @@
         "symfony/css-selector": "*",
         "symfony/dotenv": "*",
         "symfony/expression-language": "*",
-        "symfony/flex": "^1.1",
+        "symfony/flex": "^2.2",
         "symfony/form": "*",
         "symfony/framework-bundle": "*",
         "symfony/http-client": "*",
@@ -42,7 +42,7 @@
         "symfony/serializer": "*",
         "symfony/translation": "*",
         "symfony/twig-bundle": "*",
-        "symfony/ux-chartjs": "^1.3",
+        "symfony/ux-chartjs": "^2.4",
         "symfony/validator": "*",
         "symfony/web-link": "*",
         "symfony/webpack-encore-bundle": "^1.7",
@@ -65,11 +65,11 @@
         "phpstan/phpstan-strict-rules": "^1.0",
         "phpstan/phpstan-symfony": "^1.0",
         "phpunit/phpunit": "^9.3",
-        "symfony/debug-bundle": "^5.3",
+        "symfony/debug-bundle": "*",
         "symfony/maker-bundle": "^1.0",
-        "symfony/phpunit-bridge": "^5.2",
-        "symfony/stopwatch": "^5.3",
-        "symfony/web-profiler-bundle": "^5.3"
+        "symfony/phpunit-bridge": "*",
+        "symfony/stopwatch": "*",
+        "symfony/web-profiler-bundle": "*"
     },
     "config": {
         "preferred-install": {
@@ -117,7 +117,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "5.4.*",
+            "require": "6.1.*",
             "docker": false
         }
     }

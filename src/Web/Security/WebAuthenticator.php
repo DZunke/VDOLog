@@ -15,7 +15,6 @@ use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
-use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
 use VDOLog\Core\Domain\UserRepository;
 
 class WebAuthenticator extends AbstractAuthenticator
@@ -31,7 +30,7 @@ class WebAuthenticator extends AbstractAuthenticator
         return $request->getPathInfo() === '/login' && $request->isMethod(Request::METHOD_POST);
     }
 
-    public function authenticate(Request $request): PassportInterface
+    public function authenticate(Request $request): Passport
     {
         $email    = (string) $request->request->get('email');
         $password = (string) $request->request->get('password');

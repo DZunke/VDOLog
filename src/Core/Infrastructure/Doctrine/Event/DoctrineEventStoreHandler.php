@@ -36,7 +36,7 @@ final class DoctrineEventStoreHandler implements EventSubscriber
 
     public function onFlush(OnFlushEventArgs $eventArgs): void
     {
-        $em  = $eventArgs->getEntityManager();
+        $em  = $eventArgs->getObjectManager();
         $uow = $em->getUnitOfWork();
 
         $this->collectEventStoreEvents($uow->getScheduledEntityInsertions());

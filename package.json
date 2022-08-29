@@ -4,7 +4,7 @@
         "@symfony/ux-chartjs": "file:vendor/symfony/ux-chartjs/Resources/assets",
         "@tienvx/ux-collection-js": "file:vendor/tienvx/ux-collection-js/src/Resources/assets",
         "babel-eslint": "^10.1.0",
-        "chart.js": "^2.9.4",
+        "chart.js": "^3.4.1",
         "eslint": "^7.30.0",
         "eslint-config-airbnb": "^18.2.1",
         "eslint-config-airbnb-base": "^14.2.1",
