@@ -10,8 +10,8 @@ use VDOLog\Core\Domain\Protocol;
 class AddProtocol
 {
     private Protocol|null $parent;
-    private string $sender   = '';
-    private string $recipent = '';
+    private string $sender    = '';
+    private string $recipient = '';
 
     public function __construct(private string $gameId, private string $content)
     {
@@ -49,13 +49,13 @@ class AddProtocol
         $this->sender = $sender;
     }
 
-    public function getRecipent(): string
+    public function getRecipient(): string
     {
-        return $this->recipent;
+        return $this->recipient;
     }
 
-    public function setRecipent(string $recipient): void
+    public function setRecipient(string $recipient): void
     {
-        $this->recipent = $recipient;
+        $this->recipient = $recipient;
     }
 }

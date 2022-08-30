@@ -57,7 +57,7 @@ final class ProtocolType extends AbstractType
             ],
         );
         $builder->add(
-            'recipent',
+            'recipient',
             TextType::class,
             [
                 'empty_data' => '',

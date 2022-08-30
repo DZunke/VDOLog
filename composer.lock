@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4a15b8f3302e6b02f3351551e74e8e7f",
+    "content-hash": "0ead32cafde2f072dd80e9a531876bd8",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -9284,6 +9284,214 @@
             "time": "2022-03-30T09:27:43+00:00"
         },
         {
+            "name": "cucumber/gherkin",
+            "version": "v24.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cucumber/gherkin-php.git",
+                "reference": "ee2b9c92c04f96864496e3a99ad09512989c98cf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cucumber/gherkin-php/zipball/ee2b9c92c04f96864496e3a99ad09512989c98cf",
+                "reference": "ee2b9c92c04f96864496e3a99ad09512989c98cf",
+                "shasum": ""
+            },
+            "require": {
+                "cucumber/messages": "^18.0||^19.0",
+                "ext-mbstring": "*",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.5",
+                "phpunit/phpunit": "^9.5",
+                "psalm/plugin-phpunit": "^0.16.1",
+                "vimeo/psalm": "^4.20"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cucumber\\Gherkin\\": [
+                        "src/",
+                        "src-generated/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Gherkin parser",
+            "support": {
+                "source": "https://github.com/cucumber/gherkin-php/tree/v24.0.0"
+            },
+            "time": "2022-05-31T08:02:16+00:00"
+        },
+        {
+            "name": "cucumber/messages",
+            "version": "v19.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cucumber/messages-php.git",
+                "reference": "db1d7d61a7b9a47c929e5ababf817b5bca5b7b8b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cucumber/messages-php/zipball/db1d7d61a7b9a47c929e5ababf817b5bca5b7b8b",
+                "reference": "db1d7d61a7b9a47c929e5ababf817b5bca5b7b8b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.5",
+                "phpunit/phpunit": "^9.5",
+                "psalm/plugin-phpunit": "^0.17.0",
+                "ramsey/uuid": "^4.2",
+                "vimeo/psalm": "^4.18"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cucumber\\Messages\\": [
+                        "src",
+                        "src-generated"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "JSON schema-based messages for Cucumber's inter-process communication",
+            "support": {
+                "source": "https://github.com/cucumber/messages-php/tree/v19.1.2"
+            },
+            "time": "2022-06-22T06:43:47+00:00"
+        },
+        {
+            "name": "dantleech/gherkin-lint",
+            "version": "dev-upgrade-to-symfony-6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DZunke/gherkin-lint-php.git",
+                "reference": "9064141b5dec323dcf59a4583662a5b4ff655bbc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DZunke/gherkin-lint-php/zipball/9064141b5dec323dcf59a4583662a5b4ff655bbc",
+                "reference": "9064141b5dec323dcf59a4583662a5b4ff655bbc",
+                "shasum": ""
+            },
+            "require": {
+                "cucumber/gherkin": "^24.0",
+                "cucumber/messages": "^19.0",
+                "dantleech/invoke": "^2.0",
+                "php": "^8.1",
+                "symfony/console": "^5.0|^6.0",
+                "symfony/filesystem": "^5.0|^6.0",
+                "symfony/finder": "^5.0|^6.0",
+                "symfony/string": "^5.1|^6.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.8",
+                "phpunit/phpunit": "^9.5",
+                "symfony/process": "^6.0",
+                "symfony/var-dumper": "^6.0",
+                "vimeo/psalm": "^5.0@beta"
+            },
+            "bin": [
+                "bin/gherkinlint"
+            ],
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "DTL\\GherkinLint\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "DTL\\GherkinLint\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "integrate": [
+                    "vendor/bin/php-cs-fixer fix",
+                    "vendor/bin/psalm",
+                    "vendor/bin/phpunit",
+                    "bin/gherkinlint lint tests/Example",
+                    "GHERKINLINT_DEV=1 bin/gherkinlint ruledocs docs/rules.md"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Leech",
+                    "email": "dan.t.leech@gmail.com"
+                }
+            ],
+            "description": "Gherkin linter",
+            "support": {
+                "source": "https://github.com/DZunke/gherkin-lint-php/tree/upgrade-to-symfony-6"
+            },
+            "time": "2022-08-29T19:05:24+00:00"
+        },
+        {
+            "name": "dantleech/invoke",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dantleech/invoke.git",
+                "reference": "9b002d746d2c1b86cfa63a47bb5909cee58ef50c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dantleech/invoke/zipball/9b002d746d2c1b86cfa63a47bb5909cee58ef50c",
+                "reference": "9b002d746d2c1b86cfa63a47bb5909cee58ef50c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2||^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.13",
+                "phpbench/phpbench": "^1.0",
+                "phpstan/phpstan": "^0.12.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DTL\\Invoke\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "daniel leech",
+                    "email": "daniel@dantleech.com"
+                }
+            ],
+            "description": "Emulate named parameters",
+            "support": {
+                "issues": "https://github.com/dantleech/invoke/issues",
+                "source": "https://github.com/dantleech/invoke/tree/2.0.0"
+            },
+            "time": "2021-05-01T17:22:58+00:00"
+        },
+        {
             "name": "dealerdirect/phpcodesniffer-composer-installer",
             "version": "v0.7.2",
             "source": {
@@ -12177,7 +12385,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "tienvx/ux-collection-js": 10
+        "tienvx/ux-collection-js": 10,
+        "dantleech/gherkin-lint": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

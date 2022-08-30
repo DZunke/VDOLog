@@ -15,7 +15,7 @@ final class AddProtocolDto
     public string $content       = '';
     public Protocol|null $parent = null;
     public string $sender        = '';
-    public string $recipent      = '';
+    public string $recipient     = '';
 
     public function __construct(Game $game)
     {
@@ -26,7 +26,7 @@ final class AddProtocolDto
     {
         $command = new AddProtocol($this->gameId, $this->content);
         $command->setParent($this->parent);
-        $command->setRecipent($this->recipent);
+        $command->setRecipient($this->recipient);
         $command->setSender($this->sender);
 
         return $command;

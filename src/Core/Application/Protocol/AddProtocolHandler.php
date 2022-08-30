@@ -25,7 +25,7 @@ final class AddProtocolHandler implements MessageHandlerInterface
 
         $protocol = Protocol::create($game, $message->getContent());
         $protocol->setSender($message->getSender());
-        $protocol->setRecipent($message->getRecipent());
+        $protocol->setRecipent($message->getRecipient());
 
         if ($message->getParent() !== null) {
             $protocol->setParent($message->getParent());

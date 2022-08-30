@@ -260,4 +260,13 @@ final class GameContext extends BaseContext implements Context
 
         $this->minkContext->assertPageAddress($url);
     }
+
+    /** @Given I am on the deletion confirmation page of a game named :name */
+    public function iAmOnTheDeletionConfirmationPageOfAGameNamed(string $name): void
+    {
+        $game = $this->getGame($name);
+        $url  = $this->router->generate('game_delete', ['id' => $game->getId()]);
+
+        $this->minkContext->visit($url);
+    }
 }

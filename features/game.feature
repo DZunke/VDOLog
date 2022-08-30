@@ -1,4 +1,5 @@
-Feature:
+Feature: Managing Games
+
     In order to manage a game
     I want to be able to handle game creation
 
@@ -33,7 +34,7 @@ Feature:
         And I should see "Das Spiel mit dem Namen \"FooGame\" wurde erfolgreich gespeichert."
 
     Scenario: A game could not be created with empty name
-        And I am on "/game/new"
+        Given I am on "/game/new"
         And I press "Speichern"
         Then I should be on "/game/new"
         And I should see "Dieser Wert sollte nicht leer sein."
@@ -47,13 +48,17 @@ Feature:
         And I should see "UniqueGameName" in the "table" element
         And I should see "Das Spiel mit dem Namen \"UniqueGameName\" wurde erfolgreich gespeichert."
 
-    Scenario: A game could be deleted
+    Scenario: A game deletion will show up a confirmation page
         Given There is a game named "DeletionFooGame"
         And I am on "/"
         And I see delete link for game "DeletionFooGame"
         When I follow delete link for game "DeletionFooGame"
         Then I should be on delete confirmation page for game "DeletionFooGame"
         And I should see "Löschen" in the "button" element
+
+    Scenario: A game could be deleted from the confirmation page
+        Given There is a game named "DeletionFooGame"
+        And I am on the deletion confirmation page of a game named "DeletionFooGame"
         When I press "Löschen"
         Then I should be on "/"
         And I should not see "DeletionFooGame" in the "table" element

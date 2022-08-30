@@ -1,6 +1,13 @@
 {
     "type": "project",
     "license": "proprietary",
+    "repositories":
+    [
+        {
+            "type": "vcs",
+            "url": "https://github.com/DZunke/gherkin-lint-php"
+        }
+    ],
     "require": {
         "php": ">=8.1",
         "ext-ctype": "*",
@@ -54,6 +61,7 @@
     },
     "require-dev": {
         "behat/behat": "^3.6",
+        "dantleech/gherkin-lint": "dev-upgrade-to-symfony-6",
         "doctrine/coding-standard": "^10.0",
         "friends-of-behat/mink": "^1.8",
         "friends-of-behat/mink-browserkit-driver": "^1.4",

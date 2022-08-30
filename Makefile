@@ -62,4 +62,7 @@ lint-js: ## execute eslint to lint js files
 lint-doctrine: ## linting doctrine scheme
 	 php bin/console doctrine:schema:validate --skip-sync
 
-build: lint-php check-cs static-analysis phpunit lint-doctrine lint-js feature-tests
+lint-gherkin: ## linting gherkin feature files
+	./vendor/bin/gherkinlint lint features/
+
+build: lint-php check-cs static-analysis phpunit lint-doctrine lint-gherkin lint-js feature-tests
