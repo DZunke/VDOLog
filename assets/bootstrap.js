@@ -4,5 +4,5 @@ import { startStimulusApp } from '@symfony/stimulus-bridge';
 export default startStimulusApp(require.context(
   '@symfony/stimulus-bridge/lazy-controller-loader!./controllers',
   true,
-  /\.(j|t)sx?$/,
+  /\.[jt]sx?$/,
 ));

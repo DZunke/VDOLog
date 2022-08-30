@@ -1,4 +1,4 @@
-import { Controller } from 'stimulus';
+import { Controller } from '@hotwired/stimulus';
 
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
@@ -49,7 +49,7 @@ export default class extends Controller {
 
     document.querySelectorAll('input, textarea')
       .forEach((elem) => {
-        elem.setAttribute('value', '');
+        elem.value = '';
       });
     document.querySelectorAll('span.invalid-feedback')
       .forEach((elem) => {
