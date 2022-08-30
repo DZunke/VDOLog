@@ -14,14 +14,14 @@ use function file_get_contents;
 
 use const DIRECTORY_SEPARATOR;
 
-/** @Route("/pages") */
+#[Route(path: '/pages')]
 final class PagesController extends AbstractController
 {
     public function __construct(private string $projectDir)
     {
     }
 
-    /** @Route("/changelog", name="changelog") */
+    #[Route(path: '/changelog', name: 'changelog')]
     public function changelog(Request $request): Response
     {
         $changelog = file_get_contents(

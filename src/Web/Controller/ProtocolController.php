@@ -15,17 +15,15 @@ use VDOLog\Core\Domain\ProtocolRepository;
 use VDOLog\Web\Form\Dto\AddProtocolDto;
 use VDOLog\Web\Form\ProtocolType;
 
-/** @Route("/game/{game}/protocol") */
+#[Route(path: '/game/{game}/protocol')]
 class ProtocolController extends AbstractController
 {
     public function __construct(private ProtocolRepository $protocolRepository)
     {
     }
 
-    /**
-     * @Route("/", name="protocol_index")
-     * @ParamConverter("game", class=Game::class, options={"id" = "game"})
-     */
+    #[Route(path: '/', name: 'protocol_index')]
+    #[ParamConverter('game', class: Game::class, options: ['id' => 'game'])]
     public function index(MessageBusInterface $messageBus, Request $request, Game $game): Response
     {
         $dto  = new AddProtocolDto($game);

@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace VDOLog\Core\Domain\Common;
 
 use Assert\Assertion;
+use Stringable;
 
-final class EMail implements \Stringable
+final class EMail implements Stringable
 {
     public function __construct(private readonly string $email)
     {

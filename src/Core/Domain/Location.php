@@ -13,7 +13,7 @@ use VDOLog\Core\Domain\Location\AccessScanner;
 use VDOLog\Core\Domain\User\UserCreatable;
 use VDOLog\Core\Domain\User\UserEditable;
 
-class Location implements \Stringable
+class Location implements Stringable
 {
     use UserCreatable;
     use UserEditable;

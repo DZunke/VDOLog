@@ -26,10 +26,8 @@ use VDOLog\Web\Form\UserProfileType;
 use function assert;
 use function is_string;
 
-/**
- * @Route("/security/user")
- * @Security("is_granted('ROLE_ADMIN')")
- */
+#[Route(path: '/security/user')]
+#[Security("is_granted('ROLE_ADMIN')")]
 final class UserController extends AbstractController
 {
     public function __construct(
@@ -38,7 +36,7 @@ final class UserController extends AbstractController
     ) {
     }
 
-    /** @Route("/", name="user_list") */
+    #[Route(path: '/', name: 'user_list')]
     public function index(): Response
     {
         return $this->render(
@@ -47,7 +45,7 @@ final class UserController extends AbstractController
         );
     }
 
-    /** @Route("/create", name="user_create") */
+    #[Route(path: '/create', name: 'user_create')]
     public function create(Request $request, MessageBusInterface $messageBus): Response
     {
         $dto  = new CreateUserDto();
@@ -71,7 +69,7 @@ final class UserController extends AbstractController
         );
     }
 
-    /** @Route("/{id}/edit/", name="user_edit") */
+    #[Route(path: '/{id}/edit/', name: 'user_edit')]
     public function edit(User $user, Request $request, MessageBusInterface $messageBus): Response
     {
         $dto  = EditUserDto::fromObject($user);
@@ -95,7 +93,7 @@ final class UserController extends AbstractController
         );
     }
 
-    /** @Route("/{id}/delete", name="user_delete", methods={"GET", "DELETE"}) */
+    #[Route(path: '/{id}/delete', name: 'user_delete', methods: ['GET', 'DELETE'])]
     public function delete(User $user, Request $request, MessageBusInterface $messageBus): Response
     {
         if ($this->currentUserProvider->getCurrentUser()->getId() === $user->getId()) {
@@ -125,7 +123,7 @@ final class UserController extends AbstractController
         return $this->render('user/delete.html.twig', ['user' => $user]);
     }
 
-    /** @Route("/{id}/change_password", name="user_change_password") */
+    #[Route(path: '/{id}/change_password', name: 'user_change_password')]
     public function password(User $user, Request $request, MessageBusInterface $messageBus): Response
     {
         $dto  = ChangePasswordDto::fromObject($user);
@@ -149,12 +147,9 @@ final class UserController extends AbstractController
         );
     }
 
-    /** @Route("/profile", name="user_profile") */
-    public function profile(
-        User\CurrentUserProvider $currentUserProvider,
-        Request $request,
-        MessageBusInterface $messageBus,
-    ): Response {
+    #[Route(path: '/profile', name: 'user_profile')]
+    public function profile(User\CurrentUserProvider $currentUserProvider, Request $request, MessageBusInterface $messageBus): Response
+    {
         $dto  = UserProfileDto::fromObject($currentUserProvider->getCurrentUser());
         $form = $this->createForm(UserProfileType::class, $dto);
         $form->handleRequest($request);

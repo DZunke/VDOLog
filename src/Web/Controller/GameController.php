@@ -36,10 +36,10 @@ use function is_string;
 use function ob_get_clean;
 use function ob_start;
 
-/** @Route("/game") */
+#[Route(path: '/game')]
 class GameController extends AbstractController
 {
-    /** @Route("/new", name="game_new", methods={"GET","POST"}) */
+    #[Route(path: '/new', name: 'game_new', methods: ['GET', 'POST'])]
     public function new(Request $request, MessageBusInterface $messageBus): Response
     {
         $dto  = new CreateGameDto();
@@ -62,7 +62,7 @@ class GameController extends AbstractController
         ]);
     }
 
-    /** @Route("/{id}/edit", name="game_edit", methods={"GET","POST"}) */
+    #[Route(path: '/{id}/edit', name: 'game_edit', methods: ['GET', 'POST'])]
     public function edit(MessageBusInterface $messageBus, Request $request, Game $game): Response
     {
         $dto  = new EditGameDto($game);
@@ -88,7 +88,7 @@ class GameController extends AbstractController
         ]);
     }
 
-    /** @Route("/{id}/delete", name="game_delete", methods={"GET", "DELETE"}) */
+    #[Route(path: '/{id}/delete', name: 'game_delete', methods: ['GET', 'DELETE'])]
     public function delete(MessageBusInterface $messageBus, Request $request, Game $game): Response
     {
         $token = $request->request->get('_token', '');
@@ -107,7 +107,7 @@ class GameController extends AbstractController
         return $this->render('game/delete.html.twig', ['game' => $game]);
     }
 
-    /** @Route("/{id}/lock", name="game_lock", methods={"GET"}) */
+    #[Route(path: '/{id}/lock', name: 'game_lock', methods: ['GET'])]
     public function lock(MessageBusInterface $messageBus, Game $game): Response
     {
         $messageBus->dispatch(new LockGame($game->getId()));
@@ -120,7 +120,7 @@ class GameController extends AbstractController
         return $this->redirectToRoute('dashboard');
     }
 
-    /** @Route("/{id}/unlock", name="game_unlock", methods={"GET"}) */
+    #[Route(path: '/{id}/unlock', name: 'game_unlock', methods: ['GET'])]
     public function unlock(MessageBusInterface $messageBus, Game $game): Response
     {
         $messageBus->dispatch(new UnlockGame($game->getId()));
@@ -133,7 +133,7 @@ class GameController extends AbstractController
         return $this->redirectToRoute('dashboard');
     }
 
-    /** @Route("/{id}/export", name="game_export", methods={"GET"}) */
+    #[Route(path: '/{id}/export', name: 'game_export', methods: ['GET'])]
     public function export(Game $game): StreamedResponse
     {
         $spreadsheet = (new GameExporter())->export($game);
@@ -149,7 +149,7 @@ class GameController extends AbstractController
         return $response;
     }
 
-    /** @Route("/{id}/statistics", name="game_statistics", methods={"GET"}) */
+    #[Route(path: '/{id}/statistics', name: 'game_statistics', methods: ['GET'])]
     public function statistics(Game $game, ChartBuilderInterface $chartBuilder): Response
     {
         return $this->render(
@@ -162,10 +162,8 @@ class GameController extends AbstractController
         );
     }
 
-    /**
-     * @Route("/{id}/import-access-scan-points", name="game_import_access_scan_points")
-     * @Security("is_granted('ROLE_ADMIN')")
-     */
+    #[Route(path: '/{id}/import-access-scan-points', name: 'game_import_access_scan_points')]
+    #[Security("is_granted('ROLE_ADMIN')")]
     public function importAccessScanPoints(Request $request, Game $game, MessageBusInterface $messageBus): Response
     {
         $form = $this->createForm(ImportAccessScanPointsType::class);

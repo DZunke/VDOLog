@@ -16,7 +16,7 @@ class DashboardController extends AbstractController
     {
     }
 
-    /** @Route("/", name="dashboard") */
+    #[Route(path: '/', name: 'dashboard')]
     public function index(): Response
     {
         $games = $this->em->getRepository(Game::class)->findBy([], ['createdAt' => 'desc']);

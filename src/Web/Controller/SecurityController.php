@@ -12,7 +12,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 final class SecurityController extends AbstractController
 {
-    /** @Route("/login", name="vdo_login") */
+    #[Route(path: '/login', name: 'vdo_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
@@ -28,7 +28,7 @@ final class SecurityController extends AbstractController
         );
     }
 
-    /** @Route("/logout", name="vdo_logout") */
+    #[Route(path: '/logout', name: 'vdo_logout')]
     public function logout(): Response
     {
         throw new LogicException('empty by intention, firewall will handle logout');

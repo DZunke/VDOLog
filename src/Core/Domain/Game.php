@@ -20,7 +20,7 @@ use VDOLog\Core\Domain\Game\TimeFrame;
 use VDOLog\Core\Domain\Location\AccessScanner;
 use VDOLog\Core\Domain\User\UserCreatable;
 
-/** @UniqueEntity("name") */
+#[UniqueEntity('name')]
 class Game implements EventStore
 {
     use EventStoreable;

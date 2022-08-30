@@ -15,10 +15,8 @@ use VDOLog\Core\Domain\LocationRepository;
 use VDOLog\Web\Form\Dto\LocationDto;
 use VDOLog\Web\Form\LocationType;
 
-/**
- * @Route("/location")
- * @Security("is_granted('ROLE_ADMIN')")
- */
+#[Route(path: '/location')]
+#[Security("is_granted('ROLE_ADMIN')")]
 final class LocationController extends AbstractController
 {
     public function __construct(
@@ -26,7 +24,7 @@ final class LocationController extends AbstractController
     ) {
     }
 
-    /** @Route("/", name="location_list") */
+    #[Route(path: '/', name: 'location_list')]
     public function index(): Response
     {
         return $this->render(
@@ -35,7 +33,7 @@ final class LocationController extends AbstractController
         );
     }
 
-    /** @Route("/create", name="location_create") */
+    #[Route(path: '/create', name: 'location_create')]
     public function create(Request $request, MessageBusInterface $messageBus): Response
     {
         $dto  = new LocationDto();
@@ -59,7 +57,7 @@ final class LocationController extends AbstractController
         );
     }
 
-    /** @Route("/{id}/edit", name="location_edit") */
+    #[Route(path: '/{id}/edit', name: 'location_edit')]
     public function edit(Location $location, Request $request, MessageBusInterface $messageBus): Response
     {
         $dto  = LocationDto::fromLocation($location);
