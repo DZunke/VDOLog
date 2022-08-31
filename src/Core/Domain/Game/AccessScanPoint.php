@@ -17,8 +17,11 @@ class AccessScanPoint
     private int $entrances = 0;
     private int $exits     = 0;
 
-    public function __construct(private string $id, private Game $game, private DateTimeImmutable $time)
-    {
+    public function __construct(
+        private readonly string $id,
+        private readonly Game $game,
+        private readonly DateTimeImmutable $time,
+    ) {
         Assertion::uuid($id);
     }
 

@@ -14,7 +14,7 @@ use VDOLog\Core\Domain\GameRepository;
 
 final class LockGameHandlerTest extends TestCase
 {
-    public function testLOckingIsDone(): void
+    public function testLockingIsDone(): void
     {
         $id = Uuid::uuid4()->toString();
 
@@ -25,10 +25,7 @@ final class LockGameHandlerTest extends TestCase
         $gameRepositoryMock->expects(self::once())->method('get')->with($id)->willReturn($gameMock);
         $gameRepositoryMock->expects(self::once())->method('save')->with(self::isInstanceOf(Game::class));
 
-        $messageMock = self::createMock(LockGame::class);
-        $messageMock->expects(self::once())->method('getId')->willReturn($id);
-
         $handler = new LockGameHandler($gameRepositoryMock);
-        $handler($messageMock);
+        $handler(new LockGame($id));
     }
 }

@@ -12,14 +12,11 @@ class CreateGame
 {
     private Location|null $location = null;
 
-    public function __construct(private string $name, private TimeFrame $timeFrame)
-    {
+    public function __construct(
+        public readonly string $name,
+        public readonly TimeFrame $timeFrame,
+    ) {
         Assertion::notBlank($name, 'A game must have a name');
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
     }
 
     public function getLocation(): Location|null
@@ -30,10 +27,5 @@ class CreateGame
     public function withLocation(Location $location): void
     {
         $this->location = $location;
-    }
-
-    public function getTimeFrame(): TimeFrame
-    {
-        return $this->timeFrame;
     }
 }

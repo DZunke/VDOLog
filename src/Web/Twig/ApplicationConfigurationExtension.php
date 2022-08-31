@@ -10,7 +10,7 @@ use VDOLog\Web\Model\ApplicationConfiguration;
 
 final class ApplicationConfigurationExtension extends AbstractExtension implements GlobalsInterface
 {
-    public function __construct(private ApplicationConfiguration $applicationConfiguration)
+    public function __construct(private readonly ApplicationConfiguration $applicationConfiguration)
     {
     }
 

@@ -13,7 +13,7 @@ class NewReminderDto
     public string $message  = '';
     public string $remindAt = '';
 
-    public function __construct(private Game $game)
+    public function __construct(private readonly Game $game)
     {
     }
 

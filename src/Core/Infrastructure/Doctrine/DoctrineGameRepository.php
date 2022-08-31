@@ -11,7 +11,7 @@ use VDOLog\Core\Domain\GameRepository;
 
 class DoctrineGameRepository implements GameRepository
 {
-    public function __construct(private EntityManagerInterface $em)
+    public function __construct(private readonly EntityManagerInterface $em)
     {
     }
 

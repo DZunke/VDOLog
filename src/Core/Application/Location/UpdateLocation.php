@@ -11,27 +11,14 @@ use function array_keys;
 class UpdateLocation
 {
     /** @param array<string,string> $accessScanners */
-    public function __construct(private string $id, private string $name, private array $accessScanners)
-    {
+    public function __construct(
+        public readonly string $id,
+        public readonly string $name,
+        public readonly array $accessScanners,
+    ) {
         Assertion::uuid($id);
         Assertion::notBlank($name);
         Assertion::allNotBlank($accessScanners);
         Assertion::allUuid(array_keys($accessScanners));
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /** @return array<string,string> */
-    public function getAccessScanners(): array
-    {
-        return $this->accessScanners;
     }
 }

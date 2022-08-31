@@ -9,13 +9,9 @@ use VDOLog\Core\Domain\User;
 
 final class UserCreated extends DomainEvent
 {
-    public function __construct(private User $user)
-    {
+    public function __construct(
+        public readonly User $user,
+    ) {
         parent::__construct();
-    }
-
-    public function getUser(): User
-    {
-        return $this->user;
     }
 }

@@ -17,7 +17,7 @@ use const DIRECTORY_SEPARATOR;
 #[Route(path: '/pages')]
 final class PagesController extends AbstractController
 {
-    public function __construct(private string $projectDir)
+    public function __construct(private readonly string $projectDir)
     {
     }
 

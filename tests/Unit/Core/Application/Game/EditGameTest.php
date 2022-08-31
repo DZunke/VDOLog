@@ -34,7 +34,7 @@ final class EditGameTest extends TestCase
 
         $message = new EditGame($id, 'foo', self::createMock(TimeFrame::class));
 
-        self::assertSame($message->getId(), $id);
-        self::assertSame($message->getName(), 'foo');
+        self::assertSame($message->id, $id);
+        self::assertSame($message->name, 'foo');
     }
 }

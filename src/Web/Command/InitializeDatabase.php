@@ -25,8 +25,8 @@ final class InitializeDatabase extends Command
     private SymfonyStyle $io;
 
     public function __construct(
-        private Connection $connection,
-        private MessageBusInterface $bus,
+        private readonly Connection $connection,
+        private readonly MessageBusInterface $bus,
     ) {
         parent::__construct();
     }

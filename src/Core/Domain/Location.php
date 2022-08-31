@@ -21,8 +21,10 @@ class Location implements Stringable
     /** @var Collection<string, AccessScanner> */
     private Collection $accessScanners;
 
-    public function __construct(private readonly string $id, private string $name)
-    {
+    public function __construct(
+        private readonly string $id,
+        private string $name,
+    ) {
         Assertion::uuid($id);
         Assertion::notBlank($name);
 

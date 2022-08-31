@@ -18,13 +18,10 @@ final class CreateGameHandlerTest extends TestCase
         $repositoryMock = self::createMock(GameRepository::class);
         $repositoryMock->expects(self::once())->method('save')->with(self::isInstanceOf(Game::class));
 
-        $messageMock = self::createMock(CreateGame::class);
-        $messageMock->expects(self::once())->method('getName')->willReturn('foo');
-
         $currentUserMock = self::createMock(CurrentUserProvider::class);
         $currentUserMock->expects(self::once())->method('hasCurrentUser')->willReturn(false);
 
         $handler = new CreateGameHandler($repositoryMock, $currentUserMock);
-        $handler($messageMock);
+        $handler(new CreateGame('foo', $this->createMock(Game\TimeFrame::class)));
     }
 }

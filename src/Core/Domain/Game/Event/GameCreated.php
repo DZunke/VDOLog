@@ -9,13 +9,8 @@ use VDOLog\Core\Domain\Game;
 
 final class GameCreated extends DomainEvent
 {
-    public function __construct(private Game $game)
+    public function __construct(public readonly Game $game)
     {
         parent::__construct();
-    }
-
-    public function getGame(): Game
-    {
-        return $this->game;
     }
 }

@@ -20,7 +20,7 @@ use VDOLog\Web\Form\LocationType;
 final class LocationController extends AbstractController
 {
     public function __construct(
-        private LocationRepository $locationRepository,
+        private readonly LocationRepository $locationRepository,
     ) {
     }
 

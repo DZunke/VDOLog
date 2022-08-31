@@ -14,18 +14,18 @@ use VDOLog\Core\Domain\User\CurrentUserProvider;
 final class UpdateLocationHandler implements MessageHandlerInterface
 {
     public function __construct(
-        private LocationRepository $locationRepository,
-        private CurrentUserProvider $currentUserProvider,
+        private readonly LocationRepository $locationRepository,
+        private readonly CurrentUserProvider $currentUserProvider,
     ) {
     }
 
     public function __invoke(UpdateLocation $message): void
     {
-        $location = $this->locationRepository->get($message->getId());
+        $location = $this->locationRepository->get($message->id);
         $location->setEditedBy($this->currentUserProvider->getCurrentUser());
-        $location->rename($message->getName());
+        $location->rename($message->name);
 
-        $updatedAccessScanners = $message->getAccessScanners();
+        $updatedAccessScanners = $message->accessScanners;
         $parsedAccessScanners  = [];
         foreach ($updatedAccessScanners as $id => $name) {
             $parsedAccessScanners[$id] = new AccessScanner($id, $location, $name);

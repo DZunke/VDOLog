@@ -19,10 +19,7 @@ final class DeleteGameHandlerTest extends TestCase
         $gameRepositoryMock = self::createMock(GameRepository::class);
         $gameRepositoryMock->expects(self::once())->method('delete')->with($id);
 
-        $messageMock = self::createMock(DeleteGame::class);
-        $messageMock->expects(self::once())->method('getId')->willReturn($id);
-
         $handler = new DeleteGameHandler($gameRepositoryMock);
-        $handler($messageMock);
+        $handler(new DeleteGame($id));
     }
 }

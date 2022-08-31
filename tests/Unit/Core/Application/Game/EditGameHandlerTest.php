@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace VDOLog\Tests\Unit\Core\Application\Game;
 
 use PHPUnit\Framework\TestCase;
+use Ramsey\Uuid\Uuid;
 use VDOLog\Core\Application\Game\EditGame;
 use VDOLog\Core\Application\Game\EditGameHandler;
 use VDOLog\Core\Domain\Game;
@@ -21,11 +22,7 @@ final class EditGameHandlerTest extends TestCase
         $gameRepositoryMock->expects(self::once())->method('get')->willReturn($game);
         $gameRepositoryMock->expects(self::once())->method('save')->with(self::isInstanceOf(Game::class));
 
-        $messageMock = self::createMock(EditGame::class);
-        $messageMock->expects(self::once())->method('getId')->willReturn('12345');
-        $messageMock->expects(self::once())->method('getName')->willReturn('foo');
-
         $handler = new EditGameHandler($gameRepositoryMock);
-        $handler($messageMock);
+        $handler(new EditGame(Uuid::uuid1()->toString(), 'foo', $this->createMock(Game\TimeFrame::class)));
     }
 }

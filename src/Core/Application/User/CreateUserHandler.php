@@ -12,16 +12,16 @@ use VDOLog\Core\Domain\UserRepository;
 final class CreateUserHandler implements MessageHandlerInterface
 {
     public function __construct(
-        private UserRepository $userRepository,
-        private SodiumPasswordHasher $passwordHasher,
-        private User\CurrentUserProvider $currentUserProvider,
+        private readonly UserRepository $userRepository,
+        private readonly SodiumPasswordHasher $passwordHasher,
+        private readonly User\CurrentUserProvider $currentUserProvider,
     ) {
     }
 
     public function __invoke(CreateUser $message): void
     {
-        $user = User::create($message->getEMail(), $this->passwordHasher->hash($message->getPlainTextPassword()));
-        $user->setDisplayName($message->getDisplayName());
+        $user = User::create($message->email, $this->passwordHasher->hash($message->plainTextPassword));
+        $user->setDisplayName($message->displayName);
 
         if ($message->isAdmin()) {
             $user->markAdmin();

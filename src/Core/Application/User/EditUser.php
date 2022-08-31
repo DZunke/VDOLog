@@ -9,30 +9,10 @@ use VDOLog\Core\Domain\Common\EMail;
 class EditUser
 {
     public function __construct(
-        private string $id,
-        private EMail $email,
-        private string $displayName,
-        private bool $isAdmin = false,
+        public readonly string $id,
+        public readonly EMail $email,
+        public readonly string $displayName,
+        public readonly bool $isAdmin = false,
     ) {
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getEMail(): EMail
-    {
-        return $this->email;
-    }
-
-    public function isAdmin(): bool
-    {
-        return $this->isAdmin;
-    }
-
-    public function getDisplayName(): string
-    {
-        return $this->displayName;
     }
 }

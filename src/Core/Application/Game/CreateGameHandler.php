@@ -12,15 +12,15 @@ use VDOLog\Core\Domain\User\CurrentUserProvider;
 final class CreateGameHandler implements MessageHandlerInterface
 {
     public function __construct(
-        private GameRepository $gameRepository,
-        private CurrentUserProvider $currentUserProvider,
+        private readonly GameRepository $gameRepository,
+        private readonly CurrentUserProvider $currentUserProvider,
     ) {
     }
 
     public function __invoke(CreateGame $message): void
     {
-        $game = Game::create($message->getName());
-        $game->setTimeFrame($message->getTimeFrame());
+        $game = Game::create($message->name);
+        $game->setTimeFrame($message->timeFrame);
 
         if ($message->getLocation() !== null) {
             $game->setLocation($message->getLocation());

@@ -13,17 +13,17 @@ use VDOLog\Core\Domain\User\CurrentUserProvider;
 final class AddProtocolHandler implements MessageHandlerInterface
 {
     public function __construct(
-        private ProtocolRepository $protocolRepository,
-        private GameRepository $gameRepository,
-        private CurrentUserProvider $currentUserProvider,
+        private readonly ProtocolRepository $protocolRepository,
+        private readonly GameRepository $gameRepository,
+        private readonly CurrentUserProvider $currentUserProvider,
     ) {
     }
 
     public function __invoke(AddProtocol $message): void
     {
-        $game = $this->gameRepository->get($message->getGameId());
+        $game = $this->gameRepository->get($message->gameId);
 
-        $protocol = Protocol::create($game, $message->getContent());
+        $protocol = Protocol::create($game, $message->content);
         $protocol->setSender($message->getSender());
         $protocol->setRecipent($message->getRecipient());
 

@@ -24,10 +24,7 @@ final class UnlockGameHandlerTest extends TestCase
         $gameRepositoryMock->expects(self::once())->method('get')->with($id)->willReturn($gameMock);
         $gameRepositoryMock->expects(self::once())->method('save')->with(self::isInstanceOf(Game::class));
 
-        $messageMock = self::createMock(UnlockGame::class);
-        $messageMock->expects(self::once())->method('getId')->willReturn($id);
-
         $handler = new UnlockGameHandler($gameRepositoryMock);
-        $handler($messageMock);
+        $handler(new UnlockGame($id));
     }
 }

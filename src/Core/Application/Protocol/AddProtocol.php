@@ -13,20 +13,12 @@ class AddProtocol
     private string $sender    = '';
     private string $recipient = '';
 
-    public function __construct(private string $gameId, private string $content)
-    {
+    public function __construct(
+        public readonly string $gameId,
+        public readonly string $content,
+    ) {
         Assertion::uuid($gameId, 'A game id must not be valid');
         Assertion::notBlank($content, 'A protocol entry must never be empty');
-    }
-
-    public function getGameId(): string
-    {
-        return $this->gameId;
-    }
-
-    public function getContent(): string
-    {
-        return $this->content;
     }
 
     public function getParent(): Protocol|null

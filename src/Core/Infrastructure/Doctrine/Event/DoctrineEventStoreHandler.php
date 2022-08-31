@@ -18,7 +18,7 @@ final class DoctrineEventStoreHandler implements EventSubscriber
     /** @var DomainEvent[] */
     private array $eventStoreCollection = [];
 
-    public function __construct(private EventDispatcherInterface $eventDispatcher)
+    public function __construct(private readonly EventDispatcherInterface $eventDispatcher)
     {
     }
 

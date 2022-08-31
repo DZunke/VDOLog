@@ -10,17 +10,17 @@ use VDOLog\Core\Domain\UserRepository;
 final class EditUserHandler implements MessageHandlerInterface
 {
     public function __construct(
-        private UserRepository $userRepository,
+        private readonly UserRepository $userRepository,
     ) {
     }
 
     public function __invoke(EditUser $message): void
     {
-        $user = $this->userRepository->get($message->getId());
-        $user->setDisplayName($message->getDisplayName());
-        $user->changeEMail($message->getEMail());
+        $user = $this->userRepository->get($message->id);
+        $user->setDisplayName($message->displayName);
+        $user->changeEMail($message->email);
 
-        if ($message->isAdmin()) {
+        if ($message->isAdmin === true) {
             $user->markAdmin();
         }
 

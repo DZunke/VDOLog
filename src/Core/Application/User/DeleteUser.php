@@ -8,13 +8,8 @@ use Assert\Assertion;
 
 class DeleteUser
 {
-    public function __construct(private string $id)
+    public function __construct(public readonly string $id)
     {
         Assertion::uuid($id, 'To delete a user a valid id must be given');
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
     }
 }

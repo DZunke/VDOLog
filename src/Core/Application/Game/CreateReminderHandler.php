@@ -10,19 +10,19 @@ use VDOLog\Core\Domain\GameRepository;
 
 final class CreateReminderHandler implements MessageHandlerInterface
 {
-    public function __construct(private GameRepository $gameRepository)
+    public function __construct(private readonly GameRepository $gameRepository)
     {
     }
 
     public function __invoke(CreateReminder $message): void
     {
-        $game = $message->getGame();
+        $game = $message->game;
 
         $reminder = Game\Reminder::create(
             $game,
-            $message->getTitle(),
-            $message->getMessage(),
-            $message->getRemindAt(),
+            $message->title,
+            $message->message,
+            $message->remindAt,
         );
 
         $game->addReminder($reminder);

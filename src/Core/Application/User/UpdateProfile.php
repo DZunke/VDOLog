@@ -8,23 +8,11 @@ use VDOLog\Core\Helper\Assertion;
 
 class UpdateProfile
 {
-    public function __construct(private string $id, private string $displayName, private bool $enableNotifications)
-    {
+    public function __construct(
+        public readonly string $id,
+        public readonly string $displayName,
+        public readonly bool $enableNotifications,
+    ) {
         Assertion::uuid($id);
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getDisplayName(): string
-    {
-        return $this->displayName;
-    }
-
-    public function enableNotifications(): bool
-    {
-        return $this->enableNotifications;
     }
 }

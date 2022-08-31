@@ -10,16 +10,8 @@ use VDOLog\Core\Domain\User as DomainUser;
 
 final class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    private DomainUser $domainUser;
-
-    public function __construct(DomainUser $user)
+    public function __construct(public readonly DomainUser $domainUser)
     {
-        $this->domainUser = $user;
-    }
-
-    public function getDomainUser(): DomainUser
-    {
-        return $this->domainUser;
     }
 
     /** @return string[] */

@@ -24,6 +24,6 @@ final class LockGameTest extends TestCase
         $id      = Uuid::uuid4()->toString();
         $message = new LockGame($id);
 
-        self::assertSame($message->getId(), $id);
+        self::assertSame($message->id, $id);
     }
 }

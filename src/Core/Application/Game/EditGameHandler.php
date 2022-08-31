@@ -9,15 +9,15 @@ use VDOLog\Core\Domain\GameRepository;
 
 final class EditGameHandler implements MessageHandlerInterface
 {
-    public function __construct(private GameRepository $gameRepository)
+    public function __construct(private readonly GameRepository $gameRepository)
     {
     }
 
     public function __invoke(EditGame $message): void
     {
-        $game = $this->gameRepository->get($message->getId());
-        $game->setName($message->getName());
-        $game->setTimeFrame($message->getTimeFrame());
+        $game = $this->gameRepository->get($message->id);
+        $game->setName($message->name);
+        $game->setTimeFrame($message->timeFrame);
 
         $this->gameRepository->save($game);
     }

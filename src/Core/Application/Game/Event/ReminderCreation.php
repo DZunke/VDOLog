@@ -31,7 +31,7 @@ final class ReminderCreation implements EventSubscriberInterface
 
     public function createSpectatorEntryReminders(GameCreated $event): void
     {
-        $game = $event->getGame();
+        $game = $event->game;
         $game->addReminder(Reminder::create(
             $game,
             'Zuschauereinlass',

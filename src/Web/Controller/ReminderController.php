@@ -23,7 +23,7 @@ use function is_string;
 #[Route(path: '/game')]
 final class ReminderController extends AbstractController
 {
-    public function __construct(private Game\ReminderRepository $reminderRepository)
+    public function __construct(private readonly Game\ReminderRepository $reminderRepository)
     {
     }
 

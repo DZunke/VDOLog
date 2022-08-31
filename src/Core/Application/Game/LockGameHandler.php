@@ -10,13 +10,13 @@ use VDOLog\Core\Domain\GameRepository;
 
 final class LockGameHandler implements MessageHandlerInterface
 {
-    public function __construct(private GameRepository $gameRepository)
+    public function __construct(private readonly GameRepository $gameRepository)
     {
     }
 
     public function __invoke(LockGame $message): void
     {
-        $game = $this->gameRepository->get($message->getId());
+        $game = $this->gameRepository->get($message->id);
         $game->setClosedAt(new DateTimeImmutable());
         $this->gameRepository->save($game);
     }

@@ -9,24 +9,12 @@ use VDOLog\Core\Domain\Game\TimeFrame;
 
 class EditGame
 {
-    public function __construct(private string $id, private string $name, private TimeFrame $timeFrame)
-    {
+    public function __construct(
+        public readonly string $id,
+        public readonly string $name,
+        public readonly TimeFrame $timeFrame,
+    ) {
         Assertion::uuid($id, 'A game id must be given to edit it');
         Assertion::notBlank($name, 'A game must not get an empty name');
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getTimeFrame(): TimeFrame
-    {
-        return $this->timeFrame;
     }
 }

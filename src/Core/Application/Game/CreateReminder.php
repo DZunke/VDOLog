@@ -10,33 +10,13 @@ use VDOLog\Core\Helper\Assertion;
 class CreateReminder
 {
     public function __construct(
-        private Game $game,
-        private string $title,
-        private string $message,
-        private string $remindAt,
+        public readonly Game $game,
+        public readonly string $title,
+        public readonly string $message,
+        public readonly string $remindAt,
     ) {
         Assertion::notBlank($title);
         Assertion::notBlank($message);
         Assertion::relativeDateTimeString($remindAt);
-    }
-
-    public function getGame(): Game
-    {
-        return $this->game;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getMessage(): string
-    {
-        return $this->message;
-    }
-
-    public function getRemindAt(): string
-    {
-        return $this->remindAt;
     }
 }

@@ -24,6 +24,6 @@ final class DeleteGameTest extends TestCase
         $id      = Uuid::uuid4()->toString();
         $message = new DeleteGame($id);
 
-        self::assertSame($message->getId(), $id);
+        self::assertSame($message->id, $id);
     }
 }

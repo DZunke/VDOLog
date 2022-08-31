@@ -31,8 +31,8 @@ use function is_string;
 final class UserController extends AbstractController
 {
     public function __construct(
-        private UserRepository $userRepository,
-        private User\CurrentUserProvider $currentUserProvider,
+        private readonly UserRepository $userRepository,
+        private readonly User\CurrentUserProvider $currentUserProvider,
     ) {
     }
 

@@ -11,24 +11,24 @@ use VDOLog\Core\Domain\LocationRepository;
 final class AccessScanPointCreateHandler implements MessageHandlerInterface
 {
     public function __construct(
-        private GameRepository $gameRepository,
-        private LocationRepository $locationRepository,
+        private readonly GameRepository $gameRepository,
+        private readonly LocationRepository $locationRepository,
     ) {
     }
 
     public function __invoke(AccessScanPointCreate $message): void
     {
-        $game = $this->gameRepository->get($message->getGameId());
+        $game = $this->gameRepository->get($message->gameId);
 
         $accessScanner = null;
-        if ($message->getAccessScannerId() !== null) {
-            $accessScanner = $this->locationRepository->getAccessScanner($message->getAccessScannerId());
+        if ($message->accessScannerId !== null) {
+            $accessScanner = $this->locationRepository->getAccessScanner($message->accessScannerId);
         }
 
         $game->createAccessScanPoint(
-            $message->getTime(),
-            $message->getEntrances(),
-            $message->getExits(),
+            $message->time,
+            $message->entrances,
+            $message->exits,
             $accessScanner,
         );
 

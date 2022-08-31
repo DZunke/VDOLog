@@ -9,12 +9,12 @@ use VDOLog\Core\Domain\UserRepository;
 
 final class DeleteUserHandler implements MessageHandlerInterface
 {
-    public function __construct(private UserRepository $userRepository)
+    public function __construct(private readonly UserRepository $userRepository)
     {
     }
 
     public function __invoke(DeleteUser $message): void
     {
-        $this->userRepository->delete($message->getId());
+        $this->userRepository->delete($message->id);
     }
 }

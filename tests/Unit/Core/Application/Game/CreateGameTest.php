@@ -23,6 +23,6 @@ final class CreateGameTest extends TypeTestCase
     {
         $message = new CreateGame('foo', self::createMock(TimeFrame::class));
 
-        self::assertSame($message->getName(), 'foo');
+        self::assertSame($message->name, 'foo');
     }
 }

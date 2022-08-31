@@ -11,15 +11,15 @@ use VDOLog\Core\Domain\UserRepository;
 final class ChangePasswordHandler implements MessageHandlerInterface
 {
     public function __construct(
-        private UserRepository $userRepository,
-        private SodiumPasswordHasher $passwordHasher,
+        private readonly UserRepository $userRepository,
+        private readonly SodiumPasswordHasher $passwordHasher,
     ) {
     }
 
     public function __invoke(ChangePassword $message): void
     {
-        $user = $this->userRepository->get($message->getId());
-        $user->changeCredentials($this->passwordHasher->hash($message->getPlainPassword()));
+        $user = $this->userRepository->get($message->id);
+        $user->changeCredentials($this->passwordHasher->hash($message->plainPassword));
 
         $this->userRepository->save($user);
     }

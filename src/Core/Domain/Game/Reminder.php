@@ -15,8 +15,13 @@ class Reminder
     private DateTimeImmutable|null $sentAt;
     private DateTimeImmutable|null $seenAt;
 
-    public function __construct(private string $id, private Game $game, private string $title, private string $message, private string $remindAt)
-    {
+    public function __construct(
+        private readonly string $id,
+        private readonly Game $game,
+        private readonly string $title,
+        private readonly string $message,
+        private readonly string $remindAt,
+    ) {
         Assertion::uuid($id);
         Assertion::notBlank($title);
         Assertion::notBlank($message);

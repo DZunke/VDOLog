@@ -10,16 +10,16 @@ use VDOLog\Core\Domain\UserRepository;
 final class UpdateProfileHandler implements MessageHandlerInterface
 {
     public function __construct(
-        private UserRepository $userRepository,
+        private readonly UserRepository $userRepository,
     ) {
     }
 
     public function __invoke(UpdateProfile $message): void
     {
-        $user = $this->userRepository->get($message->getId());
+        $user = $this->userRepository->get($message->id);
 
-        $user->setDisplayName($message->getDisplayName());
-        $message->enableNotifications() ? $user->receiveNotifications() : $user->disableNotifications();
+        $user->setDisplayName($message->displayName);
+        $message->enableNotifications ? $user->receiveNotifications() : $user->disableNotifications();
 
         $this->userRepository->save($user);
     }

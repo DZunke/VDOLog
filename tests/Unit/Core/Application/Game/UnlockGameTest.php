@@ -24,6 +24,6 @@ final class UnlockGameTest extends TestCase
         $id      = Uuid::uuid4()->toString();
         $message = new UnlockGame($id);
 
-        self::assertSame($message->getId(), $id);
+        self::assertSame($message->id, $id);
     }
 }

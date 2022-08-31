@@ -197,9 +197,9 @@ class GameController extends AbstractController
                 foreach ($parsedAccessPointScans as $accessScanPoint) {
                     $messageBus->dispatch(new AccessScanPointCreate(
                         $game->getId(),
-                        $accessScanPoint->getTime(),
-                        $accessScanPoint->getEntrances(),
-                        $accessScanPoint->getExits(),
+                        $accessScanPoint->time,
+                        $accessScanPoint->entrances,
+                        $accessScanPoint->exits,
                     ));
                 }
 

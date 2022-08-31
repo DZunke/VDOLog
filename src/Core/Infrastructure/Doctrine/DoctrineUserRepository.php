@@ -14,7 +14,7 @@ use VDOLog\Core\Domain\UserRepository;
 
 class DoctrineUserRepository implements UserRepository
 {
-    public function __construct(private EntityManagerInterface $em)
+    public function __construct(private readonly EntityManagerInterface $em)
     {
     }
 

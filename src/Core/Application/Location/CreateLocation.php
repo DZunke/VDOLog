@@ -9,20 +9,9 @@ use VDOLog\Core\Helper\Assertion;
 class CreateLocation
 {
     /** @param string[] $accessScanners */
-    public function __construct(private string $name, private array $accessScanners)
+    public function __construct(public readonly string $name, public readonly array $accessScanners)
     {
         Assertion::notBlank($name);
         Assertion::allString($accessScanners);
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /** @return string[] */
-    public function getAccessScanners(): array
-    {
-        return $this->accessScanners;
     }
 }

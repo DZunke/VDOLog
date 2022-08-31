@@ -9,7 +9,7 @@ use VDOLog\Core\Domain\Game\Reminder;
 final class DeleteReminder
 {
     public function __construct(
-        public Reminder $reminder,
+        public readonly Reminder $reminder,
     ) {
     }
 }

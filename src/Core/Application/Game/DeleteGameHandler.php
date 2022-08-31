@@ -9,12 +9,12 @@ use VDOLog\Core\Domain\GameRepository;
 
 final class DeleteGameHandler implements MessageHandlerInterface
 {
-    public function __construct(private GameRepository $gameRepository)
+    public function __construct(private readonly GameRepository $gameRepository)
     {
     }
 
     public function __invoke(DeleteGame $message): void
     {
-        $this->gameRepository->delete($message->getId());
+        $this->gameRepository->delete($message->id);
     }
 }

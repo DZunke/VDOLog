@@ -8,13 +8,8 @@ use Assert\Assertion;
 
 class UnlockGame
 {
-    public function __construct(private string $id)
+    public function __construct(public readonly string $id)
     {
         Assertion::uuid($id, 'A valid game id must be given');
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
     }
 }

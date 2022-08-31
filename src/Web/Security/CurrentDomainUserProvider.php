@@ -14,7 +14,7 @@ use function assert;
 
 final class CurrentDomainUserProvider implements CurrentUserProvider
 {
-    public function __construct(private TokenStorageInterface $tokenStorage)
+    public function __construct(private readonly TokenStorageInterface $tokenStorage)
     {
     }
 
@@ -40,6 +40,6 @@ final class CurrentDomainUserProvider implements CurrentUserProvider
         $user = $token->getUser();
         assert($user instanceof User);
 
-        return $user->getDomainUser();
+        return $user->domainUser;
     }
 }

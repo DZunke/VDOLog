@@ -9,7 +9,7 @@ use VDOLog\Core\Domain\GameRepository;
 
 final class DeleteReminderHandler implements MessageHandlerInterface
 {
-    public function __construct(private GameRepository $gameRepository)
+    public function __construct(private readonly GameRepository $gameRepository)
     {
     }
 

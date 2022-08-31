@@ -34,7 +34,7 @@ final class AddProtocolTest extends TestCase
 
         $message = new AddProtocol($id, $content);
 
-        self::assertSame($id, $message->getGameId());
-        self::assertSame($content, $message->getContent());
+        self::assertSame($id, $message->gameId);
+        self::assertSame($content, $message->content);
     }
 }

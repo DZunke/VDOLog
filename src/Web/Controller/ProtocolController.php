@@ -18,7 +18,7 @@ use VDOLog\Web\Form\ProtocolType;
 #[Route(path: '/game/{game}/protocol')]
 class ProtocolController extends AbstractController
 {
-    public function __construct(private ProtocolRepository $protocolRepository)
+    public function __construct(private readonly ProtocolRepository $protocolRepository)
     {
     }
 

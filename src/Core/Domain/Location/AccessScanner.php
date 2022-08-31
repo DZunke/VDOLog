@@ -10,8 +10,11 @@ use VDOLog\Core\Domain\Location;
 
 class AccessScanner
 {
-    public function __construct(private string $id, private Location $location, private string $name)
-    {
+    public function __construct(
+        private readonly string $id,
+        private readonly Location $location,
+        private string $name,
+    ) {
         Assertion::uuid($id);
         Assertion::notBlank($name);
     }

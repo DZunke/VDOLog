@@ -12,7 +12,7 @@ use VDOLog\Core\Domain\UserRepository;
 
 class WebUserProvider implements UserProviderInterface
 {
-    public function __construct(private UserRepository $userRepository)
+    public function __construct(private readonly UserRepository $userRepository)
     {
     }
 
@@ -22,7 +22,7 @@ class WebUserProvider implements UserProviderInterface
             throw new UnsupportedUserException();
         }
 
-        $domainUser = $this->userRepository->get($user->getDomainUser()->getId());
+        $domainUser = $this->userRepository->get($user->domainUser->getId());
 
         return new User($domainUser);
     }

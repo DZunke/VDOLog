@@ -12,15 +12,15 @@ use VDOLog\Core\Domain\User\CurrentUserProvider;
 final class CreateLocationHandler implements MessageHandlerInterface
 {
     public function __construct(
-        private LocationRepository $locationRepository,
-        private CurrentUserProvider $currentUserProvider,
+        private readonly LocationRepository $locationRepository,
+        private readonly CurrentUserProvider $currentUserProvider,
     ) {
     }
 
     public function __invoke(CreateLocation $message): void
     {
-        $location = Location::create($message->getName());
-        foreach ($message->getAccessScanners() as $accessScanner) {
+        $location = Location::create($message->name);
+        foreach ($message->accessScanners as $accessScanner) {
             $location->createAccessScanner($accessScanner);
         }
 
