@@ -1016,7 +1016,7 @@
     error-stack-parser "^2.0.0"
     string-width "^4.2.3"
 
-"@popperjs/core@^2.11.5":
+"@popperjs/core@^2.11.6":
   version "2.11.6"
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.6.tgz#cee20bd55e68a1720bdab363ecf0c821ded4cd45"
   integrity sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==
@@ -1065,19 +1065,13 @@
     webpack-dev-server "^4.8.0"
     yargs-parser "^21.0.0"
 
-"@tabler/core@^1.0.0-beta":
-  version "1.0.0-beta11"
-  resolved "https://registry.yarnpkg.com/@tabler/core/-/core-1.0.0-beta11.tgz#d8de270ea05f7612c79cc51a3fee121406e21b50"
-  integrity sha512-sHW3zXzKHy8fNb3lWF1hZ9dPNVzLCWKq6WQXVwc2TcypN+/3XIu7Yqt8EmQtDU9rl8nktuX6nZHtbZ+v6PWFHw==
+"@tabler/core@^1.0.0-beta17":
+  version "1.0.0-beta17"
+  resolved "https://registry.yarnpkg.com/@tabler/core/-/core-1.0.0-beta17.tgz#3c949342fa09ad86d3a44b3e545892906fb620b3"
+  integrity sha512-tQpzw8oi7vjLJTyCWLHHXKyGTd0JA4bsgN3w7lifl6HhyNOQSsxIx9EpkE/ZT842MlFwy+2tXkxi5fghegHQBw==
   dependencies:
-    "@popperjs/core" "^2.11.5"
-    "@tabler/icons" "^1.78.1"
-    bootstrap "5.2.0"
-
-"@tabler/icons@^1.78.1":
-  version "1.91.0"
-  resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-1.91.0.tgz#0d5e6790ef592a15352275a06209222f14917e4a"
-  integrity sha512-hh3ly553MhAXvwU4rWwlvIKGKI2/Y9pqKUWHUpZF4hEa06DGjXUA4fJKwyf9TNq3xa2tcvD8J0tG3TaP18ZCtw==
+    "@popperjs/core" "^2.11.6"
+    bootstrap "5.3.0-alpha1"
 
 "@tienvx/ux-collection-js@file:vendor/tienvx/ux-collection-js/src/Resources/assets":
   version "1.1.0"
@@ -1683,10 +1677,10 @@ boolbase@^1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==
 
-bootstrap@5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.2.0.tgz#838727fb60f1630db370fe57c63cbcf2962bb3d3"
-  integrity sha512-qlnS9GL6YZE6Wnef46GxGv1UpGGzAwO0aPL1yOjzDIJpeApeMvqV24iL+pjr2kU4dduoBA9fINKWKgMToobx9A==
+bootstrap@5.3.0-alpha1:
+  version "5.3.0-alpha1"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.3.0-alpha1.tgz#380629c4367893f02f7879a01ea3ae0f94e2e70e"
+  integrity sha512-ABZpKK4ObS3kKlIqH+ZVDqoy5t/bhFG0oHTAzByUdon7YIom0lpCeTqRniDzJmbtcWkNe800VVPBiJgxSYTYew==
 
 bootstrap@^4.6.0:
   version "4.6.2"
