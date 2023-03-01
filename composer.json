@@ -73,7 +73,7 @@
         "phpstan/phpstan-doctrine": "^1.0",
         "phpstan/phpstan-strict-rules": "^1.0",
         "phpstan/phpstan-symfony": "^1.0",
-        "phpunit/phpunit": "^9.3",
+        "phpunit/phpunit": "^10.0",
         "symfony/debug-bundle": "*",
         "symfony/maker-bundle": "^1.0",
         "symfony/phpunit-bridge": "*",
