@@ -7,10 +7,10 @@ help:
 
 phpdesktop: ## build phpdesktop release
 	rm -rf build
-	wget https://github.com/cztomczak/phpdesktop/releases/download/chrome-v57.0-rc/phpdesktop-chrome-57.0-rc-php-7.1.3.zip
-	unzip phpdesktop-chrome-57.0-rc-php-7.1.3.zip
-	mv phpdesktop-chrome-57.0-rc-php-7.1.3 build
-	rm phpdesktop-chrome-57.0-rc-php-7.1.3.zip
+	wget https://github.com/cztomczak/phpdesktop/releases/download/chrome-v130.1/phpdesktop-chrome-130.1-php-8.3.zip
+	unzip phpdesktop-chrome-130.1-php-8.3.zip
+	mv phpdesktop-chrome-130.1-php-8.3 build
+	rm phpdesktop-chrome-130.1-php-8.3.zip
 	cd build/www; rm -rf *
 	cd build; rm -rf php/*
 	cd build/php; wget https://windows.php.net/downloads/releases/latest/php-8.0-nts-Win32-vs16-x86-latest.zip
