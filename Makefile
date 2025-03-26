@@ -13,9 +13,10 @@ phpdesktop: ## build phpdesktop release
 	rm phpdesktop-chrome-130.1-php-8.3.zip
 	cd build/www; rm -rf *
 	cd build; rm -rf php/*
-	cd build/php; wget https://windows.php.net/downloads/releases/latest/php-8.0-nts-Win32-vs16-x86-latest.zip
-	cd build/php; unzip php-8.0-nts-Win32-vs16-x86-latest.zip
-	cd build/php; rm php-8.0-nts-Win32-vs16-x86-latest.zip
+	cd build; mv phpdesktop-chrome.exe VDOLog.exe
+	cd build/php; wget https://windows.php.net/downloads/releases/latest/php-8.4-nts-Win32-vs17-x64-latest.zip
+	cd build/php; unzip php-8.4-nts-Win32-vs17-x64-latest.zip
+	cd build/php; rm php-8.4-nts-Win32-vs17-x64-latest.zip
 
 	git archive HEAD | (cd build/www; tar x)
 	cd build/www; mv config/phpdesktop/php.ini ../php
@@ -26,8 +27,8 @@ phpdesktop: ## build phpdesktop release
 	cd build/www; APP_ENV=prod php bin/console assets:install public -q
 	cd build/www; APP_ENV=prod php bin/console doctrine:database:create -q
 	cd build/www; APP_ENV=prod php bin/console doctrine:schema:create -q
-	cd build/www; yarn install
-	cd build/www; yarn run build
+	cd build/www; npm install
+	cd build/www; npm run build
 	cd build/www; rm -rf assets node_modules
 
 serve-web: ## start dev webserver

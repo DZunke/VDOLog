@@ -78,7 +78,7 @@ class GameController extends AbstractController
      */
     public function delete(Request $request, Game $game): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $game->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $game->getId(), (string) $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($game);
             $entityManager->flush();

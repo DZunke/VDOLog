@@ -27,11 +27,9 @@ jobs:
                 with:
                     composer-options: ${{ matrix.composer-options }}
 
-            - name: setup yarn for frontend assets
+            - name: setup npm and install dependencies
               run: |
-                curl -o- -L https://yarnpkg.com/install.sh | sudo bash
-                yarn install
-                yarn run build
+                npm ci
 
             -   name: Linting PHP
                 run: make lint-php

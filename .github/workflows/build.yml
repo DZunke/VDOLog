@@ -1,7 +1,6 @@
 on:
     push:
         branches:
-            - master
             - v1.x
 
 name: Build
@@ -17,10 +16,9 @@ jobs:
                 with:
                     php-version: '8.0'
 
-            -   name: setup yarn
+            -   name: setup npm and install dependencies
                 run: |
-                    curl -o- -L https://yarnpkg.com/install.sh | sudo bash
-                    yarn install
+                    npm ci
 
             -   name: do application build
                 run: make phpdesktop

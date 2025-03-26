@@ -20,6 +20,6 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "@tabler/core": "^1.0.0-beta"
+        "@tabler/core": "1.0.0-beta"
     }
 }
